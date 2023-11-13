@@ -32,7 +32,7 @@ namespace OpenAPI_Cs_WinForm
 		{
 			var respText = string.Empty;
 
-			var uri = "http://jsonplaceholder.typicode.com/todos/1";
+			var uri = "http://192.168.1.150/project/rgen";
 
 			var request = (HttpWebRequest)WebRequest.Create(uri);
 			request.Method = "GET";
@@ -50,9 +50,13 @@ namespace OpenAPI_Cs_WinForm
 				}
 			}
 
-			var jobj = JObject.Parse(respText);
-			tbState.Text = jobj["title"].ToString();
-			tbProgCnt.Text = jobj["id"].ToString();
+			var jo = JObject.Parse(respText);
+            var pno = jo["cur_prog_no"];
+            var sno = jo["cur_step_no"];
+            var fno = jo["cur_func_no"];
+            var str = string.Format("P{0}/S{1}/F{2}", pno, sno, fno);
+			//tbState.Text = jobj["title"].ToString();
+			//tbProgCnt.Text = jobj["id"].ToString();
 		}
 
 
