@@ -18,6 +18,11 @@ namespace OpenAPI_Cs_WinForm
 {
 	public partial class FormBase : Form
 	{
+		const int CRD_BASE = 0;
+		const int CRD_ROBOT = 1;
+		const int CRD_AXES = 2;
+		const int CRD_USER = 4;
+
 		public FormBase()
 		{
 			InitializeComponent();
@@ -35,7 +40,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int UpdateStateFromRemote()
+		protected int UpdateState()
 		{
 			string respBody = "";
 			GetData("project/rgen", ref respBody);
@@ -110,7 +115,9 @@ namespace OpenAPI_Cs_WinForm
 		{
 			if (chkUpdateOn.Checked)
 			{
-				UpdateStateFromRemote();
+				UpdateState();
+				UpdateCurPose(CRD_AXES);
+				UpdateCurPose(CRD_BASE);
 			}
 		}
 
@@ -167,6 +174,53 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
+		protected int UpdateCurPose(int crd)
+		{
+			string query = string.Format("?crd={0}&mechinfo=-1", crd);
+			string respBody = "";
+			GetData("project/robot/po_cur", query, ref respBody);
+
+			var jo = JObject.Parse(respBody);
+
+			if (crd == CRD_BASE || crd == CRD_ROBOT)
+			{
+				DisplayCurPoseBase(jo);
+			}
+			else if (crd == CRD_AXES)
+			{
+				DisplayCurPoseAxes(jo);
+			}
+
+			return 0;
+		}
+
+
+		protected int DisplayCurPoseAxes(JObject jo)
+		{
+			var j1 = jo["j1"];
+			var j2 = jo["j2"];
+			var j3 = jo["j3"];
+			var j4 = jo["j4"];
+			var j5 = jo["j5"];
+			var j6 = jo["j6"];
+			tbCurPoseAxes.Text = string.Format("({0}, {1}, {2}, {3}, {4}, {5})", j1, j2, j3, j4, j5, j6);
+			return 0;
+		}
+
+
+		protected int DisplayCurPoseBase(JObject jo)
+		{
+			var x = jo["x"];
+			var y = jo["y"];
+			var z = jo["z"];
+			var rx = jo["rx"];
+			var ry = jo["ry"];
+			var rz = jo["rz"];
+			tbCurPoseBase.Text = string.Format("({0}, {1}, {2}, {3}, {4}, {5})", x, y, z, rx, ry, rz);
+			return 0;
+		}
+
+
 		public string StrDomain()
 		{
 			var str_ip = tbIpAddrRemote.Text;
@@ -177,7 +231,14 @@ namespace OpenAPI_Cs_WinForm
 
 		protected int GetData(string path, ref string respBody)
 		{
-			var request = (HttpWebRequest)WebRequest.Create(StrDomain() + path);
+			return GetData(path, "", ref respBody);
+		}
+
+
+		protected int GetData(string path, string query, ref string respBody)
+		{
+			var url = StrDomain() + path + query;
+			var request = (HttpWebRequest)WebRequest.Create(url);
 			request.Method = "GET";
 			request.Timeout = 30 * 1000; // 30초
 

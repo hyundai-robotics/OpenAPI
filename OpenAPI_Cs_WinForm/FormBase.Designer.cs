@@ -49,6 +49,12 @@
 			this.tbIpAddrRemote = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.chkUpdateOn = new System.Windows.Forms.CheckBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.tbCurPoseAxes = new System.Windows.Forms.TextBox();
+			this.tbCurPoseBase = new System.Windows.Forms.TextBox();
+			this.tbCurPoseUser = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// tbMode
@@ -78,7 +84,7 @@
 			// 
 			// timerUpdate
 			// 
-			this.timerUpdate.Interval = 1000;
+			this.timerUpdate.Interval = 200;
 			this.timerUpdate.Tick += new System.EventHandler(this.timerUpdate_Tick);
 			// 
 			// btSelectJob
@@ -230,11 +236,62 @@
 			this.chkUpdateOn.UseVisualStyleBackColor = true;
 			this.chkUpdateOn.CheckedChanged += new System.EventHandler(this.chkUpdateOn_CheckedChanged);
 			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(436, 102);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(37, 12);
+			this.label6.TabIndex = 2;
+			this.label6.Text = "AXES";
+			// 
+			// tbCurPoseAxes
+			// 
+			this.tbCurPoseAxes.Location = new System.Drawing.Point(498, 97);
+			this.tbCurPoseAxes.Name = "tbCurPoseAxes";
+			this.tbCurPoseAxes.ReadOnly = true;
+			this.tbCurPoseAxes.Size = new System.Drawing.Size(281, 21);
+			this.tbCurPoseAxes.TabIndex = 1;
+			// 
+			// tbCurPoseBase
+			// 
+			this.tbCurPoseBase.Location = new System.Drawing.Point(498, 128);
+			this.tbCurPoseBase.Name = "tbCurPoseBase";
+			this.tbCurPoseBase.ReadOnly = true;
+			this.tbCurPoseBase.Size = new System.Drawing.Size(281, 21);
+			this.tbCurPoseBase.TabIndex = 1;
+			// 
+			// tbCurPoseUser
+			// 
+			this.tbCurPoseUser.Location = new System.Drawing.Point(498, 158);
+			this.tbCurPoseUser.Name = "tbCurPoseUser";
+			this.tbCurPoseUser.ReadOnly = true;
+			this.tbCurPoseUser.Size = new System.Drawing.Size(281, 21);
+			this.tbCurPoseUser.TabIndex = 1;
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(436, 132);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(37, 12);
+			this.label7.TabIndex = 2;
+			this.label7.Text = "BASE";
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(436, 162);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(37, 12);
+			this.label8.TabIndex = 2;
+			this.label8.Text = "USER";
+			// 
 			// FormBase
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(769, 475);
+			this.ClientSize = new System.Drawing.Size(882, 475);
 			this.Controls.Add(this.chkUpdateOn);
 			this.Controls.Add(this.tbIpAddrRemote);
 			this.Controls.Add(this.btStart);
@@ -249,10 +306,16 @@
 			this.Controls.Add(this.tbMotor);
 			this.Controls.Add(this.tbProgCnt);
 			this.Controls.Add(this.label5);
+			this.Controls.Add(this.label8);
+			this.Controls.Add(this.label7);
+			this.Controls.Add(this.label6);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
+			this.Controls.Add(this.tbCurPoseUser);
+			this.Controls.Add(this.tbCurPoseBase);
+			this.Controls.Add(this.tbCurPoseAxes);
 			this.Controls.Add(this.tbMode);
 			this.Name = "FormBase";
 			this.Text = "Base";
@@ -283,6 +346,12 @@
 		private System.Windows.Forms.TextBox tbIpAddrRemote;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.CheckBox chkUpdateOn;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.TextBox tbCurPoseAxes;
+		private System.Windows.Forms.TextBox tbCurPoseBase;
+		private System.Windows.Forms.TextBox tbCurPoseUser;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label label8;
 	}
 }
 
