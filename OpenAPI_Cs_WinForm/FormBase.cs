@@ -18,6 +18,8 @@ namespace OpenAPI_Cs_WinForm
 {
 	public partial class FormBase : Form
 	{
+		String str_domain_ = "http://192.168.1.172:8888/";
+
 		public FormBase()
 		{
 			InitializeComponent();
@@ -28,13 +30,138 @@ namespace OpenAPI_Cs_WinForm
 			timerUpdate.Enabled =  true;
 		}
 
-		protected void UpdateState()
+		protected int UpdateStateFromRemote()
 		{
-			var respText = string.Empty;
+			string respBody = "";
+			GetData("project/rgen", ref respBody);
 
-			var uri = "http://192.168.1.150/project/rgen";
+			var jo = JObject.Parse(respBody);
+			DisplayState(jo);
+			
+			return 0;
+		}
 
-			var request = (HttpWebRequest)WebRequest.Create(uri);
+		
+		protected int DisplayState(JObject jo)
+		{
+			DisplayState_Mode(jo);
+			DisplayState_Motor(jo);
+			DisplayState_ProgCnt(jo);
+			DisplayState_Playback(jo);
+			
+			return 0;
+		}
+
+
+		protected int DisplayState_Mode(JObject jo)
+		{
+			int cur_mode = Convert.ToInt32(jo["cur_mode"]);
+			tbMode.Text = (cur_mode <= 1) ? "MANUAL" : "AUTO";
+			return 0;
+		}
+
+
+		protected int DisplayState_Motor(JObject jo)
+		{
+			String str;
+			int enable_state = Convert.ToInt32(jo["enable_state"]);
+			var mot = enable_state & 0xFF;
+			if (mot == 0) {
+				str = "ON";
+			}
+			else if (mot == 1)
+			{
+				str = "OFF";
+			}
+			else
+			{
+				str = "-";
+			}	
+
+			tbMotor.Text = str;
+			return 0;
+		}
+
+
+		protected int DisplayState_ProgCnt(JObject jo)
+		{
+			var pno = jo["cur_prog_no"];
+			var sno = jo["cur_step_no"];
+			var fno = jo["cur_func_no"];
+			tbProgCnt.Text = string.Format("P{0}/S{1}/F{2}", pno, sno, fno);
+			return 0;
+		}
+
+
+		protected int DisplayState_Playback(JObject jo)
+		{
+			int is_playback = Convert.ToInt32(jo["is_playback"]);
+			tbPlayback.Text = (is_playback > 0) ? "RUN" : "STOP";
+			return 0;
+		}
+				
+		
+		private void timerUpdate_Tick(object sender, EventArgs e)
+		{
+			UpdateStateFromRemote();
+		}
+
+
+		private void btSelectJob_Click(object sender, EventArgs e)
+		{
+			var pno = Convert.ToInt32(tbJobNo.Text);
+
+			string path = "project/context/tasks[0]/cur_prog_cnt";
+			var joReqBody = new JObject();
+			joReqBody.Add("pno", pno);
+			joReqBody.Add("sno", 0);
+			joReqBody.Add("fno", 0);
+			joReqBody.Add("ext_sel", 0);
+
+			PostData(path, joReqBody.ToString());
+		}
+
+		
+		private void btSelectStepFunc_Click(object sender, EventArgs e)
+		{
+			var sno = Convert.ToInt32(tbStep.Text);
+			var fno = Convert.ToInt32(tbFunc.Text);
+
+			string path = "project/context/tasks[0]/cur_prog_cnt";
+			var joReqBody = new JObject();
+			joReqBody.Add("pno", -1);
+			joReqBody.Add("sno", sno);
+			joReqBody.Add("fno", fno);
+			joReqBody.Add("ext_sel", 0);
+
+			PostData(path, joReqBody.ToString());
+		}
+
+
+		private void btStart_Click(object sender, EventArgs e)
+		{
+			string path = "project/robot/start";
+			PostData(path);
+		}
+
+
+		private void btStop_Click(object sender, EventArgs e)
+		{
+			string path = "project/robot/stop";
+			PostData(path);
+		}
+
+		
+		private void btReset_Click(object sender, EventArgs e)
+		{
+			string path = "project/context/tasks/reset";
+			PostData(path);
+		}
+
+
+		protected int GetData(string path, ref string respBody)
+		{
+			var request = (HttpWebRequest)WebRequest.Create(str_domain_ + path);
 			request.Method = "GET";
 			request.Timeout = 30 * 1000; // 30초
 
@@ -46,28 +173,24 @@ namespace OpenAPI_Cs_WinForm
 				var respStream = resp.GetResponseStream();
 				using (var sr = new StreamReader(respStream))
 				{
-					respText = sr.ReadToEnd();
+					respBody = sr.ReadToEnd();
 				}
 			}
 
-			var jo = JObject.Parse(respText);
-            var pno = jo["cur_prog_no"];
-            var sno = jo["cur_step_no"];
-            var fno = jo["cur_func_no"];
-            var str = string.Format("P{0}/S{1}/F{2}", pno, sno, fno);
-			//tbState.Text = jobj["title"].ToString();
-			//tbProgCnt.Text = jobj["id"].ToString();
+			return 0;
 		}
 
 
-		private void timerUpdate_Tick(object sender, EventArgs e)
+		protected int PostData(string path)
 		{
-			UpdateState();
+			var joReqBody = new JObject();
+			return PostData(path, joReqBody.ToString());
 		}
 
-		protected void PostData(string url, string reqBody)
+
+		protected int PostData(string path, string reqBody)
 		{
-			var request = (HttpWebRequest)WebRequest.Create(url);
+			var request = (HttpWebRequest)WebRequest.Create(str_domain_ + path);
 			request.Method = "POST";
 			request.ContentType = "application/json";
 			request.Timeout = 5 * 1000;
@@ -91,14 +214,8 @@ namespace OpenAPI_Cs_WinForm
 					responseText = sr.ReadToEnd();
 				}
 			}
-		}
 
-		private void btSelectJob_Click(object sender, EventArgs e)
-		{
-			string url = "https://httpbin.org/post";
-			string reqBody = "{ \"id\": \"101\", \"name\" : \"Alex\" }";
-
-			PostData(url, reqBody);
+			return 0;
 		}
 	}
 }
