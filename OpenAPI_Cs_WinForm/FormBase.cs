@@ -18,8 +18,6 @@ namespace OpenAPI_Cs_WinForm
 {
 	public partial class FormBase : Form
 	{
-		String str_domain_ = "http://192.168.1.172:8888/";
-
 		public FormBase()
 		{
 			InitializeComponent();
@@ -29,6 +27,13 @@ namespace OpenAPI_Cs_WinForm
 		{
 			timerUpdate.Enabled =  true;
 		}
+
+
+		private void chkUpdateOn_CheckedChanged(object sender, EventArgs e)
+		{
+			tbIpAddrRemote.Enabled = !(chkUpdateOn.Checked);
+		}
+
 
 		protected int UpdateStateFromRemote()
 		{
@@ -103,7 +108,10 @@ namespace OpenAPI_Cs_WinForm
 		
 		private void timerUpdate_Tick(object sender, EventArgs e)
 		{
-			UpdateStateFromRemote();
+			if (chkUpdateOn.Checked)
+			{
+				UpdateStateFromRemote();
+			}
 		}
 
 
@@ -159,9 +167,17 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
+		public string StrDomain()
+		{
+			var str_ip = tbIpAddrRemote.Text;
+			var str = "http://" + str_ip + ":8888/";
+			return str;
+		}
+
+
 		protected int GetData(string path, ref string respBody)
 		{
-			var request = (HttpWebRequest)WebRequest.Create(str_domain_ + path);
+			var request = (HttpWebRequest)WebRequest.Create(StrDomain() + path);
 			request.Method = "GET";
 			request.Timeout = 30 * 1000; // 30초
 
@@ -190,7 +206,7 @@ namespace OpenAPI_Cs_WinForm
 
 		protected int PostData(string path, string reqBody)
 		{
-			var request = (HttpWebRequest)WebRequest.Create(str_domain_ + path);
+			var request = (HttpWebRequest)WebRequest.Create(StrDomain() + path);
 			request.Method = "POST";
 			request.ContentType = "application/json";
 			request.Timeout = 5 * 1000;
