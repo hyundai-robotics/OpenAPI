@@ -55,6 +55,7 @@
 			this.tbCurPoseUser = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
+			this.cbUCrdNos = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
 			// tbMode
@@ -263,10 +264,10 @@
 			// 
 			// tbCurPoseUser
 			// 
-			this.tbCurPoseUser.Location = new System.Drawing.Point(498, 158);
+			this.tbCurPoseUser.Location = new System.Drawing.Point(565, 158);
 			this.tbCurPoseUser.Name = "tbCurPoseUser";
 			this.tbCurPoseUser.ReadOnly = true;
-			this.tbCurPoseUser.Size = new System.Drawing.Size(281, 21);
+			this.tbCurPoseUser.Size = new System.Drawing.Size(214, 21);
 			this.tbCurPoseUser.TabIndex = 1;
 			// 
 			// label7
@@ -287,11 +288,22 @@
 			this.label8.TabIndex = 2;
 			this.label8.Text = "USER";
 			// 
+			// cbUCrdNos
+			// 
+			this.cbUCrdNos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbUCrdNos.FormattingEnabled = true;
+			this.cbUCrdNos.Location = new System.Drawing.Point(498, 158);
+			this.cbUCrdNos.Name = "cbUCrdNos";
+			this.cbUCrdNos.Size = new System.Drawing.Size(61, 20);
+			this.cbUCrdNos.Sorted = true;
+			this.cbUCrdNos.TabIndex = 8;
+			// 
 			// FormBase
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(882, 475);
+			this.Controls.Add(this.cbUCrdNos);
 			this.Controls.Add(this.chkUpdateOn);
 			this.Controls.Add(this.tbIpAddrRemote);
 			this.Controls.Add(this.btStart);
@@ -352,6 +364,7 @@
 		private System.Windows.Forms.TextBox tbCurPoseUser;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.ComboBox cbUCrdNos;
 	}
 }
 

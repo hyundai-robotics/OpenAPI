@@ -36,14 +36,20 @@ namespace OpenAPI_Cs_WinForm
 
 		private void chkUpdateOn_CheckedChanged(object sender, EventArgs e)
 		{
-			tbIpAddrRemote.Enabled = !(chkUpdateOn.Checked);
+			bool on = chkUpdateOn.Checked;
+			tbIpAddrRemote.Enabled = !on;
+
+			if(on) {
+				UpdateUCrdNos();
+			}
 		}
 
 
 		protected int UpdateState()
 		{
 			string respBody = "";
-			GetData("project/rgen", ref respBody);
+			var iret = GetData("project/rgen", ref respBody);
+			if (iret < 0) return -1;
 
 			var jo = JObject.Parse(respBody);
 			DisplayState(jo);
@@ -118,6 +124,7 @@ namespace OpenAPI_Cs_WinForm
 				UpdateState();
 				UpdateCurPose(CRD_AXES);
 				UpdateCurPose(CRD_BASE);
+				UpdateCurPose(CRD_USER);
 			}
 		}
 
@@ -176,12 +183,49 @@ namespace OpenAPI_Cs_WinForm
 
 		protected int UpdateCurPose(int crd)
 		{
-			string query = string.Format("?crd={0}&mechinfo=-1", crd);
+			var query = string.Format("?crd={0}&mechinfo=-1", crd);
+			if (crd == CRD_USER)
+			{
+				var ucrd_no = cbUCrdNos.SelectedItem.ToString();
+				if (ucrd_no == "")
+				{
+					return DisplayCurPose(crd, null);
+				}
+				else {
+					query += string.Format("&ucrd_no={0}", ucrd_no);
+				}
+			}
 			string respBody = "";
-			GetData("project/robot/po_cur", query, ref respBody);
+			var iret = GetData("project/robot/po_cur", query, ref respBody);
+			if (iret < 0) return -1;
 
 			var jo = JObject.Parse(respBody);
 
+			return DisplayCurPose(crd, jo);
+		}
+
+
+		protected int UpdateUCrdNos()
+		{
+			cbUCrdNos.Items.Clear();
+			cbUCrdNos.Items.Add(0);
+
+			string respBody = "";
+			var iret = GetData("project/control/ucss/ucs_nos", ref respBody);
+			if (iret < 0) return -1;
+
+			var jaNo = JArray.Parse(respBody);
+			foreach(var no in jaNo) {
+				cbUCrdNos.Items.Add(no);
+			}
+			cbUCrdNos.SelectedIndex = 0;
+
+			return 0;
+		}
+
+
+		protected int DisplayCurPose(int crd, JObject jo)
+		{
 			if (crd == CRD_BASE || crd == CRD_ROBOT)
 			{
 				DisplayCurPoseBase(jo);
@@ -189,6 +233,10 @@ namespace OpenAPI_Cs_WinForm
 			else if (crd == CRD_AXES)
 			{
 				DisplayCurPoseAxes(jo);
+			}
+			else if (crd == CRD_USER)
+			{
+				DisplayCurPoseUser(jo);
 			}
 
 			return 0;
@@ -221,6 +269,24 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
+		protected int DisplayCurPoseUser(JObject jo)
+		{
+			if (jo == null)
+			{
+				tbCurPoseUser.Text = "";
+				return 0;
+			}
+			var x = jo["x"];
+			var y = jo["y"];
+			var z = jo["z"];
+			var rx = jo["rx"];
+			var ry = jo["ry"];
+			var rz = jo["rz"];
+			tbCurPoseUser.Text = string.Format("({0}, {1}, {2}, {3}, {4}, {5})", x, y, z, rx, ry, rz);
+			return 0;
+		}
+
+
 		public string StrDomain()
 		{
 			var str_ip = tbIpAddrRemote.Text;
@@ -237,21 +303,32 @@ namespace OpenAPI_Cs_WinForm
 
 		protected int GetData(string path, string query, ref string respBody)
 		{
-			var url = StrDomain() + path + query;
-			var request = (HttpWebRequest)WebRequest.Create(url);
-			request.Method = "GET";
-			request.Timeout = 30 * 1000; // 30초
-
-			using (var resp = (HttpWebResponse)request.GetResponse())
+			try
 			{
-				var status = resp.StatusCode;
-				Console.WriteLine(status);  // 정상이면 "OK"
+				var url = StrDomain() + path + query;
+				var request = (HttpWebRequest)WebRequest.Create(url);
+				request.Method = "GET";
+				request.Timeout = 30 * 1000; // 30초
 
-				var respStream = resp.GetResponseStream();
-				using (var sr = new StreamReader(respStream))
+				using (var resp = (HttpWebResponse)request.GetResponse())
 				{
-					respBody = sr.ReadToEnd();
+					var status = resp.StatusCode;
+					Console.WriteLine(status);  // 정상이면 "OK"
+
+					var respStream = resp.GetResponseStream();
+					using (var sr = new StreamReader(respStream))
+					{
+						respBody = sr.ReadToEnd();
+					}
 				}
+			}
+			catch(WebException e)
+			{
+				using (var resp = (HttpWebResponse)e.Response)
+				{
+					//Console.WriteLine("Error code: {0}", resp.StatusCode);
+				}
+				return -1;
 			}
 
 			return 0;
@@ -267,29 +344,40 @@ namespace OpenAPI_Cs_WinForm
 
 		protected int PostData(string path, string reqBody)
 		{
-			var request = (HttpWebRequest)WebRequest.Create(StrDomain() + path);
-			request.Method = "POST";
-			request.ContentType = "application/json";
-			request.Timeout = 5 * 1000;
-
-			// POST할 데이타를 Request Stream에 쓴다
-			byte[] bytes = Encoding.ASCII.GetBytes(reqBody);
-			request.ContentLength = bytes.Length; // 바이트수 지정
-
-			using (var reqStream = request.GetRequestStream())
+			try
 			{
-				reqStream.Write(bytes, 0, bytes.Length);
-			}
+				var request = (HttpWebRequest)WebRequest.Create(StrDomain() + path);
+				request.Method = "POST";
+				request.ContentType = "application/json";
+				request.Timeout = 5 * 1000;
 
-			// Response 처리
-			string responseText = string.Empty;
-			using (var resp = request.GetResponse())
-			{
-				Stream respStream = resp.GetResponseStream();
-				using (StreamReader sr = new StreamReader(respStream))
+				// POST할 데이타를 Request Stream에 쓴다
+				byte[] bytes = Encoding.ASCII.GetBytes(reqBody);
+				request.ContentLength = bytes.Length; // 바이트수 지정
+
+				using (var reqStream = request.GetRequestStream())
 				{
-					responseText = sr.ReadToEnd();
+					reqStream.Write(bytes, 0, bytes.Length);
 				}
+
+				// Response 처리
+				string responseText = string.Empty;
+				using (var resp = request.GetResponse())
+				{
+					Stream respStream = resp.GetResponseStream();
+					using (StreamReader sr = new StreamReader(respStream))
+					{
+						responseText = sr.ReadToEnd();
+					}
+				}
+			}
+			catch (WebException e)
+			{
+				using (var resp = (HttpWebResponse)e.Response)
+				{
+					//Console.WriteLine("Error code: {0}", resp.StatusCode);
+				}
+				return -1;
 			}
 
 			return 0;
