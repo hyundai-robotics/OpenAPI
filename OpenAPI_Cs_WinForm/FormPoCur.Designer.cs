@@ -79,7 +79,7 @@
 			this.tbCurPoseUser.Location = new System.Drawing.Point(153, 93);
 			this.tbCurPoseUser.Name = "tbCurPoseUser";
 			this.tbCurPoseUser.ReadOnly = true;
-			this.tbCurPoseUser.Size = new System.Drawing.Size(214, 21);
+			this.tbCurPoseUser.Size = new System.Drawing.Size(285, 21);
 			this.tbCurPoseUser.TabIndex = 9;
 			// 
 			// tbCurPoseBase
@@ -87,7 +87,7 @@
 			this.tbCurPoseBase.Location = new System.Drawing.Point(86, 63);
 			this.tbCurPoseBase.Name = "tbCurPoseBase";
 			this.tbCurPoseBase.ReadOnly = true;
-			this.tbCurPoseBase.Size = new System.Drawing.Size(281, 21);
+			this.tbCurPoseBase.Size = new System.Drawing.Size(352, 21);
 			this.tbCurPoseBase.TabIndex = 10;
 			// 
 			// tbCurPoseAxes
@@ -95,7 +95,7 @@
 			this.tbCurPoseAxes.Location = new System.Drawing.Point(86, 32);
 			this.tbCurPoseAxes.Name = "tbCurPoseAxes";
 			this.tbCurPoseAxes.ReadOnly = true;
-			this.tbCurPoseAxes.Size = new System.Drawing.Size(281, 21);
+			this.tbCurPoseAxes.Size = new System.Drawing.Size(352, 21);
 			this.tbCurPoseAxes.TabIndex = 11;
 			// 
 			// FormPoCur

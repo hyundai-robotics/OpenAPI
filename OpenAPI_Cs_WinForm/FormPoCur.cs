@@ -73,6 +73,7 @@ namespace OpenAPI_Cs_WinForm
 		public int UpdateUCrdNos()
 		{
 			cbUCrdNos.Items.Clear();
+			cbUCrdNos.Items.Add("");
 			cbUCrdNos.Items.Add(0);
 
 			string respBody = "";
