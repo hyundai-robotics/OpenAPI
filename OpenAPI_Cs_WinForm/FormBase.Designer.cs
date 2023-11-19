@@ -29,23 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.tbMode = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.tbProgCnt = new System.Windows.Forms.TextBox();
 			this.timerUpdate = new System.Windows.Forms.Timer(this.components);
-			this.btSelectJob = new System.Windows.Forms.Button();
-			this.label2 = new System.Windows.Forms.Label();
-			this.tbMotor = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
-			this.tbPlayback = new System.Windows.Forms.TextBox();
-			this.tbJobNo = new System.Windows.Forms.TextBox();
-			this.btSelStepFunc = new System.Windows.Forms.Button();
-			this.tbStep = new System.Windows.Forms.TextBox();
-			this.tbFunc = new System.Windows.Forms.TextBox();
-			this.btReset = new System.Windows.Forms.Button();
-			this.button1 = new System.Windows.Forms.Button();
-			this.btStart = new System.Windows.Forms.Button();
 			this.tbIpAddrRemote = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.chkUpdateOn = new System.Windows.Forms.CheckBox();
@@ -57,160 +41,15 @@
 			this.label8 = new System.Windows.Forms.Label();
 			this.cbUCrdNos = new System.Windows.Forms.ComboBox();
 			this.tabCtrl = new System.Windows.Forms.TabControl();
-			this.pgIoRelay = new System.Windows.Forms.TabPage();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.pageIoRelay = new System.Windows.Forms.TabPage();
+			this.pageGeneral = new System.Windows.Forms.TabPage();
 			this.tabCtrl.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// tbMode
-			// 
-			this.tbMode.Location = new System.Drawing.Point(30, 97);
-			this.tbMode.Name = "tbMode";
-			this.tbMode.ReadOnly = true;
-			this.tbMode.Size = new System.Drawing.Size(108, 21);
-			this.tbMode.TabIndex = 1;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(30, 131);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(101, 12);
-			this.label1.TabIndex = 2;
-			this.label1.Text = "Program Counter";
-			// 
-			// tbProgCnt
-			// 
-			this.tbProgCnt.Location = new System.Drawing.Point(30, 147);
-			this.tbProgCnt.Name = "tbProgCnt";
-			this.tbProgCnt.ReadOnly = true;
-			this.tbProgCnt.Size = new System.Drawing.Size(108, 21);
-			this.tbProgCnt.TabIndex = 3;
 			// 
 			// timerUpdate
 			// 
 			this.timerUpdate.Interval = 200;
 			this.timerUpdate.Tick += new System.EventHandler(this.timerUpdate_Tick);
-			// 
-			// btSelectJob
-			// 
-			this.btSelectJob.Location = new System.Drawing.Point(30, 183);
-			this.btSelectJob.Name = "btSelectJob";
-			this.btSelectJob.Size = new System.Drawing.Size(108, 21);
-			this.btSelectJob.TabIndex = 4;
-			this.btSelectJob.Text = "Select JOB";
-			this.btSelectJob.UseVisualStyleBackColor = true;
-			this.btSelectJob.Click += new System.EventHandler(this.btSelectJob_Click);
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(148, 82);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(37, 12);
-			this.label2.TabIndex = 2;
-			this.label2.Text = "Motor";
-			// 
-			// tbMotor
-			// 
-			this.tbMotor.Location = new System.Drawing.Point(150, 97);
-			this.tbMotor.Name = "tbMotor";
-			this.tbMotor.ReadOnly = true;
-			this.tbMotor.Size = new System.Drawing.Size(62, 21);
-			this.tbMotor.TabIndex = 3;
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(30, 82);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(37, 12);
-			this.label3.TabIndex = 2;
-			this.label3.Text = "Mode";
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(148, 131);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(57, 12);
-			this.label4.TabIndex = 2;
-			this.label4.Text = "Playback";
-			// 
-			// tbPlayback
-			// 
-			this.tbPlayback.Location = new System.Drawing.Point(150, 147);
-			this.tbPlayback.Name = "tbPlayback";
-			this.tbPlayback.ReadOnly = true;
-			this.tbPlayback.Size = new System.Drawing.Size(62, 21);
-			this.tbPlayback.TabIndex = 3;
-			// 
-			// tbJobNo
-			// 
-			this.tbJobNo.Location = new System.Drawing.Point(150, 183);
-			this.tbJobNo.Name = "tbJobNo";
-			this.tbJobNo.Size = new System.Drawing.Size(62, 21);
-			this.tbJobNo.TabIndex = 3;
-			this.tbJobNo.Text = "1";
-			this.tbJobNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// btSelStepFunc
-			// 
-			this.btSelStepFunc.Location = new System.Drawing.Point(30, 221);
-			this.btSelStepFunc.Name = "btSelStepFunc";
-			this.btSelStepFunc.Size = new System.Drawing.Size(86, 21);
-			this.btSelStepFunc.TabIndex = 4;
-			this.btSelStepFunc.Text = "Select S/F";
-			this.btSelStepFunc.UseVisualStyleBackColor = true;
-			this.btSelStepFunc.Click += new System.EventHandler(this.btSelectStepFunc_Click);
-			// 
-			// tbStep
-			// 
-			this.tbStep.Location = new System.Drawing.Point(127, 221);
-			this.tbStep.Name = "tbStep";
-			this.tbStep.Size = new System.Drawing.Size(38, 21);
-			this.tbStep.TabIndex = 3;
-			this.tbStep.Text = "0";
-			this.tbStep.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// tbFunc
-			// 
-			this.tbFunc.Location = new System.Drawing.Point(174, 221);
-			this.tbFunc.Name = "tbFunc";
-			this.tbFunc.Size = new System.Drawing.Size(38, 21);
-			this.tbFunc.TabIndex = 3;
-			this.tbFunc.Text = "0";
-			this.tbFunc.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// btReset
-			// 
-			this.btReset.Location = new System.Drawing.Point(155, 259);
-			this.btReset.Name = "btReset";
-			this.btReset.Size = new System.Drawing.Size(57, 40);
-			this.btReset.TabIndex = 5;
-			this.btReset.Text = "RESET";
-			this.btReset.UseVisualStyleBackColor = true;
-			this.btReset.Click += new System.EventHandler(this.btReset_Click);
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(92, 259);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(57, 40);
-			this.button1.TabIndex = 5;
-			this.button1.Text = "STOP";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.btStop_Click);
-			// 
-			// btStart
-			// 
-			this.btStart.Location = new System.Drawing.Point(30, 259);
-			this.btStart.Name = "btStart";
-			this.btStart.Size = new System.Drawing.Size(57, 40);
-			this.btStart.TabIndex = 5;
-			this.btStart.Text = "START";
-			this.btStart.UseVisualStyleBackColor = true;
-			this.btStart.Click += new System.EventHandler(this.btStart_Click);
 			// 
 			// tbIpAddrRemote
 			// 
@@ -304,33 +143,33 @@
 			// 
 			// tabCtrl
 			// 
-			this.tabCtrl.Controls.Add(this.pgIoRelay);
-			this.tabCtrl.Controls.Add(this.tabPage2);
-			this.tabCtrl.Location = new System.Drawing.Point(294, 292);
+			this.tabCtrl.Controls.Add(this.pageGeneral);
+			this.tabCtrl.Controls.Add(this.pageIoRelay);
+			this.tabCtrl.Location = new System.Drawing.Point(58, 212);
 			this.tabCtrl.Name = "tabCtrl";
 			this.tabCtrl.SelectedIndex = 0;
-			this.tabCtrl.Size = new System.Drawing.Size(341, 198);
+			this.tabCtrl.Size = new System.Drawing.Size(501, 278);
 			this.tabCtrl.TabIndex = 9;
 			// 
-			// pgIoRelay
+			// pageGeneral
 			// 
-			this.pgIoRelay.Location = new System.Drawing.Point(4, 22);
-			this.pgIoRelay.Name = "pgIoRelay";
-			this.pgIoRelay.Padding = new System.Windows.Forms.Padding(3);
-			this.pgIoRelay.Size = new System.Drawing.Size(333, 172);
-			this.pgIoRelay.TabIndex = 0;
-			this.pgIoRelay.Text = "IoRelay";
-			this.pgIoRelay.UseVisualStyleBackColor = true;
+			this.pageGeneral.Location = new System.Drawing.Point(4, 22);
+			this.pageGeneral.Name = "pageGeneral";
+			this.pageGeneral.Padding = new System.Windows.Forms.Padding(3);
+			this.pageGeneral.Size = new System.Drawing.Size(493, 252);
+			this.pageGeneral.TabIndex = 0;
+			this.pageGeneral.Text = "General";
+			this.pageGeneral.UseVisualStyleBackColor = true;
 			// 
-			// tabPage2
+			// pageIoRelay
 			// 
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(333, 172);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "tabPage2";
-			this.tabPage2.UseVisualStyleBackColor = true;
+			this.pageIoRelay.Location = new System.Drawing.Point(4, 22);
+			this.pageIoRelay.Name = "pageIoRelay";
+			this.pageIoRelay.Padding = new System.Windows.Forms.Padding(3);
+			this.pageIoRelay.Size = new System.Drawing.Size(333, 172);
+			this.pageIoRelay.TabIndex = 1;
+			this.pageIoRelay.Text = "IoRelay";
+			this.pageIoRelay.UseVisualStyleBackColor = true;
 			// 
 			// FormBase
 			// 
@@ -341,29 +180,13 @@
 			this.Controls.Add(this.cbUCrdNos);
 			this.Controls.Add(this.chkUpdateOn);
 			this.Controls.Add(this.tbIpAddrRemote);
-			this.Controls.Add(this.btStart);
-			this.Controls.Add(this.button1);
-			this.Controls.Add(this.btReset);
-			this.Controls.Add(this.btSelStepFunc);
-			this.Controls.Add(this.btSelectJob);
-			this.Controls.Add(this.tbFunc);
-			this.Controls.Add(this.tbStep);
-			this.Controls.Add(this.tbJobNo);
-			this.Controls.Add(this.tbPlayback);
-			this.Controls.Add(this.tbMotor);
-			this.Controls.Add(this.tbProgCnt);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.label7);
 			this.Controls.Add(this.label6);
-			this.Controls.Add(this.label3);
-			this.Controls.Add(this.label4);
-			this.Controls.Add(this.label2);
-			this.Controls.Add(this.label1);
 			this.Controls.Add(this.tbCurPoseUser);
 			this.Controls.Add(this.tbCurPoseBase);
 			this.Controls.Add(this.tbCurPoseAxes);
-			this.Controls.Add(this.tbMode);
 			this.Name = "FormBase";
 			this.Text = "Base";
 			this.tabCtrl.ResumeLayout(false);
@@ -374,23 +197,7 @@
 
 		#endregion
 
-		private System.Windows.Forms.TextBox tbMode;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox tbProgCnt;
 		private System.Windows.Forms.Timer timerUpdate;
-		private System.Windows.Forms.Button btSelectJob;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbMotor;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.TextBox tbPlayback;
-		private System.Windows.Forms.TextBox tbJobNo;
-		private System.Windows.Forms.Button btSelStepFunc;
-		private System.Windows.Forms.TextBox tbStep;
-		private System.Windows.Forms.TextBox tbFunc;
-		private System.Windows.Forms.Button btReset;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Button btStart;
 		private System.Windows.Forms.TextBox tbIpAddrRemote;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.CheckBox chkUpdateOn;
@@ -402,8 +209,8 @@
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.ComboBox cbUCrdNos;
 		private System.Windows.Forms.TabControl tabCtrl;
-		private System.Windows.Forms.TabPage pgIoRelay;
-		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.TabPage pageIoRelay;
+		private System.Windows.Forms.TabPage pageGeneral;
 	}
 }
 

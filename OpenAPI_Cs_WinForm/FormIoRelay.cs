@@ -14,25 +14,18 @@ using Newtonsoft.Json.Linq;
 
 namespace OpenAPI_Cs_WinForm
 {
-	public partial class FormIoRelay : Form
+	public partial class FormIoRelay : FormClient
 	{
-		private HttpCli cli;
-
-
 		public FormIoRelay()
 		{
 			InitializeComponent();
 		}
 
 
-		public void SetHttpCli(HttpCli httpCli)
+		public int DoUpdate()
 		{
-			cli = httpCli;
-		}
+			if (Visible==false) return 0;
 
-
-		public int Update()
-		{
 			string relayName = SelectedRelayName();
 			if (relayName == "") return -1;
 			string path = string.Format("project/plc/{0}/val_s32", relayName);

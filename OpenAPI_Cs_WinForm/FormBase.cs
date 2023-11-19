@@ -33,6 +33,7 @@ namespace OpenAPI_Cs_WinForm
 		const int CRD_USER = 4;
 
 		HttpCli cli = new HttpCli();
+		FormGeneral formGeneral;
 		FormIoRelay formIoRelay;
 
 		public FormBase()
@@ -40,17 +41,27 @@ namespace OpenAPI_Cs_WinForm
 			InitializeComponent();
 		}
 
+
 		protected override void OnLoad(EventArgs e)
 		{
 			cli.IpAddr = tbIpAddrRemote.Text;
-			timerUpdate.Enabled = true;
+			
+			AddClientPage(0, formGeneral = new FormGeneral());
+			AddClientPage(1, formIoRelay = new FormIoRelay());
+			tabCtrl.SelectedIndex = 0;
 
-			formIoRelay = new FormIoRelay();
-			formIoRelay.SetHttpCli(cli);
-			formIoRelay.TopLevel = false;
-			tabCtrl.TabPages[0].Controls.Add(formIoRelay);
-			formIoRelay.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-			formIoRelay.Show();
+			timerUpdate.Enabled = true;
+		}
+
+
+		protected void AddClientPage(int idx, FormClient form)
+		{
+			form.SetHttpCli(cli);
+			form.TopLevel = false;
+			tabCtrl.TabPages[idx].Controls.Add(form);
+			tabCtrl.SelectedIndex = idx;
+			form.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+			form.Show();
 		}
 
 
@@ -69,142 +80,20 @@ namespace OpenAPI_Cs_WinForm
 		///////////////////////////////////////////////////////////////////////
 		// state
 		///////////////////////////////////////////////////////////////////////
-		protected int UpdateState()
-		{
-			string respBody = "";
-			var iret = cli.GetData("project/rgen", ref respBody);
-			if (iret < 0) return -1;
-
-			var jo = JObject.Parse(respBody);
-			DisplayState(jo);
-
-			return 0;
-		}
-
-
-		protected int DisplayState(JObject jo)
-		{
-			DisplayState_Mode(jo);
-			DisplayState_Motor(jo);
-			DisplayState_ProgCnt(jo);
-			DisplayState_Playback(jo);
-
-			return 0;
-		}
-
-
-		protected int DisplayState_Mode(JObject jo)
-		{
-			int cur_mode = Convert.ToInt32(jo["cur_mode"]);
-			tbMode.Text = (cur_mode <= 1) ? "MANUAL" : "AUTO";
-			return 0;
-		}
-
-
-		protected int DisplayState_Motor(JObject jo)
-		{
-			String str;
-			int enable_state = Convert.ToInt32(jo["enable_state"]);
-			var mot = enable_state & 0xFF;
-			if (mot == 0)
-			{
-				str = "ON";
-			}
-			else if (mot == 1)
-			{
-				str = "OFF";
-			}
-			else
-			{
-				str = "-";
-			}
-
-			tbMotor.Text = str;
-			return 0;
-		}
-
-
-		protected int DisplayState_ProgCnt(JObject jo)
-		{
-			var pno = jo["cur_prog_no"];
-			var sno = jo["cur_step_no"];
-			var fno = jo["cur_func_no"];
-			tbProgCnt.Text = string.Format("P{0}/S{1}/F{2}", pno, sno, fno);
-			return 0;
-		}
-
-
-		protected int DisplayState_Playback(JObject jo)
-		{
-			int is_playback = Convert.ToInt32(jo["is_playback"]);
-			tbPlayback.Text = (is_playback > 0) ? "RUN" : "STOP";
-			return 0;
-		}
-
+		
 
 		private void timerUpdate_Tick(object sender, EventArgs e)
 		{
 			if (chkUpdateOn.Checked)
 			{
-				UpdateState();
+				formGeneral.DoUpdate();
 				UpdateCurPose(CRD_AXES);
 				UpdateCurPose(CRD_BASE);
 				UpdateCurPose(CRD_USER);
-				formIoRelay.Update();
+				formIoRelay.DoUpdate();
 			}
 		}
 
-
-		private void btSelectJob_Click(object sender, EventArgs e)
-		{
-			var pno = Convert.ToInt32(tbJobNo.Text);
-
-			string path = "project/context/tasks[0]/cur_prog_cnt";
-			var joReqBody = new JObject();
-			joReqBody.Add("pno", pno);
-			joReqBody.Add("sno", 0);
-			joReqBody.Add("fno", 0);
-			joReqBody.Add("ext_sel", 0);
-
-			cli.PostData(path, joReqBody.ToString());
-		}
-
-
-		private void btSelectStepFunc_Click(object sender, EventArgs e)
-		{
-			var sno = Convert.ToInt32(tbStep.Text);
-			var fno = Convert.ToInt32(tbFunc.Text);
-
-			string path = "project/context/tasks[0]/cur_prog_cnt";
-			var joReqBody = new JObject();
-			joReqBody.Add("pno", -1);
-			joReqBody.Add("sno", sno);
-			joReqBody.Add("fno", fno);
-			joReqBody.Add("ext_sel", 0);
-
-			cli.PostData(path, joReqBody.ToString());
-		}
-
-
-		private void btStart_Click(object sender, EventArgs e)
-		{
-			string path = "project/robot/start";
-			cli.PostData(path);
-		}
-
-
-		private void btStop_Click(object sender, EventArgs e)
-		{
-			string path = "project/robot/stop";
-			cli.PostData(path);
-		}
-
-
-		private void btReset_Click(object sender, EventArgs e)
-		{
-			string path = "project/context/tasks/reset";
-			cli.PostData(path);
-		}
 
 
 		///////////////////////////////////////////////////////////////////////
