@@ -32,6 +32,8 @@ namespace OpenAPI_Cs_WinForm
 		const int CRD_AXES = 2;
 		const int CRD_USER = 4;
 
+		HttpCli cli = new HttpCli();
+
 		public FormBase()
 		{
 			InitializeComponent();
@@ -39,7 +41,8 @@ namespace OpenAPI_Cs_WinForm
 
 		protected override void OnLoad(EventArgs e)
 		{
-			timerUpdate.Enabled =  true;
+			cli.IpAddr = tbIpAddrRemote.Text;
+			timerUpdate.Enabled = true;
 		}
 
 
@@ -48,7 +51,8 @@ namespace OpenAPI_Cs_WinForm
 			bool on = chkUpdateOn.Checked;
 			tbIpAddrRemote.Enabled = !on;
 
-			if(on) {
+			if (on)
+			{
 				UpdateUCrdNos();
 			}
 		}
@@ -60,23 +64,23 @@ namespace OpenAPI_Cs_WinForm
 		protected int UpdateState()
 		{
 			string respBody = "";
-			var iret = GetData("project/rgen", ref respBody);
+			var iret = cli.GetData("project/rgen", ref respBody);
 			if (iret < 0) return -1;
 
 			var jo = JObject.Parse(respBody);
 			DisplayState(jo);
-			
+
 			return 0;
 		}
 
-		
+
 		protected int DisplayState(JObject jo)
 		{
 			DisplayState_Mode(jo);
 			DisplayState_Motor(jo);
 			DisplayState_ProgCnt(jo);
 			DisplayState_Playback(jo);
-			
+
 			return 0;
 		}
 
@@ -94,7 +98,8 @@ namespace OpenAPI_Cs_WinForm
 			String str;
 			int enable_state = Convert.ToInt32(jo["enable_state"]);
 			var mot = enable_state & 0xFF;
-			if (mot == 0) {
+			if (mot == 0)
+			{
 				str = "ON";
 			}
 			else if (mot == 1)
@@ -104,7 +109,7 @@ namespace OpenAPI_Cs_WinForm
 			else
 			{
 				str = "-";
-			}	
+			}
 
 			tbMotor.Text = str;
 			return 0;
@@ -127,8 +132,8 @@ namespace OpenAPI_Cs_WinForm
 			tbPlayback.Text = (is_playback > 0) ? "RUN" : "STOP";
 			return 0;
 		}
-				
-		
+
+
 		private void timerUpdate_Tick(object sender, EventArgs e)
 		{
 			if (chkUpdateOn.Checked)
@@ -153,10 +158,10 @@ namespace OpenAPI_Cs_WinForm
 			joReqBody.Add("fno", 0);
 			joReqBody.Add("ext_sel", 0);
 
-			PostData(path, joReqBody.ToString());
+			cli.PostData(path, joReqBody.ToString());
 		}
 
-		
+
 		private void btSelectStepFunc_Click(object sender, EventArgs e)
 		{
 			var sno = Convert.ToInt32(tbStep.Text);
@@ -169,28 +174,28 @@ namespace OpenAPI_Cs_WinForm
 			joReqBody.Add("fno", fno);
 			joReqBody.Add("ext_sel", 0);
 
-			PostData(path, joReqBody.ToString());
+			cli.PostData(path, joReqBody.ToString());
 		}
 
 
 		private void btStart_Click(object sender, EventArgs e)
 		{
 			string path = "project/robot/start";
-			PostData(path);
+			cli.PostData(path);
 		}
 
 
 		private void btStop_Click(object sender, EventArgs e)
 		{
 			string path = "project/robot/stop";
-			PostData(path);
+			cli.PostData(path);
 		}
 
-		
+
 		private void btReset_Click(object sender, EventArgs e)
 		{
 			string path = "project/context/tasks/reset";
-			PostData(path);
+			cli.PostData(path);
 		}
 
 
@@ -209,12 +214,13 @@ namespace OpenAPI_Cs_WinForm
 				{
 					return DisplayCurPose(crd, null);
 				}
-				else {
+				else
+				{
 					query += string.Format("&ucrd_no={0}", ucrd_no);
 				}
 			}
 			string respBody = "";
-			var iret = GetData("project/robot/po_cur", query, ref respBody);
+			var iret = cli.GetData("project/robot/po_cur", query, ref respBody);
 			if (iret < 0) return -1;
 
 			var jo = JObject.Parse(respBody);
@@ -229,11 +235,12 @@ namespace OpenAPI_Cs_WinForm
 			cbUCrdNos.Items.Add(0);
 
 			string respBody = "";
-			var iret = GetData("project/control/ucss/ucs_nos", ref respBody);
+			var iret = cli.GetData("project/control/ucss/ucs_nos", ref respBody);
 			if (iret < 0) return -1;
 
 			var jaNo = JArray.Parse(respBody);
-			foreach(var no in jaNo) {
+			foreach (var no in jaNo)
+			{
 				cbUCrdNos.Items.Add(no);
 			}
 			cbUCrdNos.SelectedIndex = 0;
@@ -316,7 +323,7 @@ namespace OpenAPI_Cs_WinForm
 			string query = "?st=0&len=30";	// 30 * 4byte = 120byte
 			string respBody = "";
 
-			var iret = GetData(path, query, ref respBody);
+			var iret = cli.GetData(path, query, ref respBody);
 			if (iret < 0) return -1;
 
 			var jaLong = JArray.Parse(respBody);
@@ -385,7 +392,7 @@ namespace OpenAPI_Cs_WinForm
 
 		protected int GetValueFromJaLong(JArray jaLong, DataType dataType, int idx)
 		{
-			switch(dataType)
+			switch (dataType)
 			{
 				case DataType.Bit:
 					return GetBitFromJaLong(jaLong, idx);
@@ -447,95 +454,6 @@ namespace OpenAPI_Cs_WinForm
 			var str_ip = tbIpAddrRemote.Text;
 			var str = "http://" + str_ip + ":8888/";
 			return str;
-		}
-
-
-		protected int GetData(string path, ref string respBody)
-		{
-			return GetData(path, "", ref respBody);
-		}
-
-
-		protected int GetData(string path, string query, ref string respBody)
-		{
-			try
-			{
-				var url = StrDomain() + path + query;
-				var request = (HttpWebRequest)WebRequest.Create(url);
-				request.Method = "GET";
-				request.Timeout = 30 * 1000; // 30초
-
-				using (var resp = (HttpWebResponse)request.GetResponse())
-				{
-					var status = resp.StatusCode;
-					Console.WriteLine(status);  // 정상이면 "OK"
-
-					var respStream = resp.GetResponseStream();
-					using (var sr = new StreamReader(respStream))
-					{
-						respBody = sr.ReadToEnd();
-					}
-				}
-			}
-			catch(WebException e)
-			{
-				using (var resp = (HttpWebResponse)e.Response)
-				{
-					//Console.WriteLine("Error code: {0}", resp.StatusCode);
-				}
-				return -1;
-			}
-
-			return 0;
-		}
-
-
-		protected int PostData(string path)
-		{
-			var joReqBody = new JObject();
-			return PostData(path, joReqBody.ToString());
-		}
-
-
-		protected int PostData(string path, string reqBody)
-		{
-			try
-			{
-				var request = (HttpWebRequest)WebRequest.Create(StrDomain() + path);
-				request.Method = "POST";
-				request.ContentType = "application/json";
-				request.Timeout = 5 * 1000;
-
-				// POST할 데이타를 Request Stream에 쓴다
-				byte[] bytes = Encoding.ASCII.GetBytes(reqBody);
-				request.ContentLength = bytes.Length; // 바이트수 지정
-
-				using (var reqStream = request.GetRequestStream())
-				{
-					reqStream.Write(bytes, 0, bytes.Length);
-				}
-
-				// Response 처리
-				string responseText = string.Empty;
-				using (var resp = request.GetResponse())
-				{
-					Stream respStream = resp.GetResponseStream();
-					using (StreamReader sr = new StreamReader(respStream))
-					{
-						responseText = sr.ReadToEnd();
-					}
-				}
-			}
-			catch (WebException e)
-			{
-				using (var resp = (HttpWebResponse)e.Response)
-				{
-					//Console.WriteLine("Error code: {0}", resp.StatusCode);
-				}
-				return -1;
-			}
-
-			return 0;
 		}
 	}
 }
