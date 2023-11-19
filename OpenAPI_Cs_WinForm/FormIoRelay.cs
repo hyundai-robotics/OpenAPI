@@ -14,21 +14,32 @@ using Newtonsoft.Json.Linq;
 
 namespace OpenAPI_Cs_WinForm
 {
-	public enum DataType
-	{
-		Invalid = -1,
-		Bit,
-		Char,
-		Short,
-		Long
-	}
-
-
 	public partial class FormIoRelay : FormClient
 	{
+		protected enum DataType
+		{
+			Invalid = -1,
+			Bit,
+			Char,
+			Short,
+			Long
+		}
+
+		
+		protected enum RelayNotation
+		{
+			Url,
+			Variable
+		}
+
+
 		public FormIoRelay()
 		{
 			InitializeComponent();
+
+			cbObjType.SelectedIndex = 0;
+			cbRelayType.SelectedIndex = 0;
+			cbDataType.SelectedIndex = 0;
 		}
 
 
@@ -36,7 +47,7 @@ namespace OpenAPI_Cs_WinForm
 		{
 			if (Visible==false) return 0;
 
-			string relayName = SelectedRelayName();
+			string relayName = SelectedRelayName(RelayNotation.Url);
 			if (relayName == "") return -1;
 			string path = string.Format("project/plc/{0}/val_s32", relayName);
 			string query = "?st=0&len=30";	// 30 * 4byte = 120byte
@@ -59,8 +70,10 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected string SelectedRelayName()
+		protected string SelectedRelayName(RelayNotation notation)
 		{
+			char separator = (notation == RelayNotation.Url) ? '_' : '.';
+
 			var item = cbRelayType.SelectedItem;
 			if (item == null) return "";
 			var name = item.ToString();
@@ -69,8 +82,17 @@ namespace OpenAPI_Cs_WinForm
 				item = cbObjType.SelectedItem;
 				if (item == null) return "";
 				var objType = item.ToString();
-				var prefix = objType + tbObjIdx.Text + "_";
+				var prefix = objType + tbObjIdx.Text + separator;
 				name = prefix + name;
+			}
+			else if (notation == RelayNotation.Variable)
+			{
+				name = '_' + name;		// _m, _s ..
+			}
+
+			if (notation == RelayNotation.Variable)
+			{
+				name += SelectedDataTypeSuffix();
 			}
 			return name;
 		}
@@ -86,6 +108,19 @@ namespace OpenAPI_Cs_WinForm
 			else if (str == "Short") return DataType.Short;
 			else if (str == "Long") return DataType.Long;
 			else return DataType.Invalid;
+		}
+
+
+		protected string SelectedDataTypeSuffix()
+		{
+			var item = cbDataType.SelectedItem;
+			if (item == null) return "";
+			var str = cbDataType.SelectedItem.ToString();
+			if (str == "Bit") return "";
+			else if (str == "Char") return "b";
+			else if (str == "Short") return "w";
+			else if (str == "Long") return "l";
+			else return "";
 		}
 
 
@@ -165,6 +200,22 @@ namespace OpenAPI_Cs_WinForm
 		protected int GetLongFromJaLong(JArray jaLong, int idx)
 		{
 			return jaLong[idx].Value<int>();
+		}
+
+
+		private void btSet_Click(object sender, EventArgs e)
+		{
+			string path = "project/plc/set_relay_value";
+
+			var name = SelectedRelayName(RelayNotation.Variable);
+			name += tbIndex.Text;
+			var strValue = tbNewValue.Text;
+
+			var joReqBody = new JObject();
+			joReqBody.Add("name", name);
+			joReqBody.Add("value", strValue);
+
+			cli.PostData(path, joReqBody.ToString());
 		}
 	}
 }
