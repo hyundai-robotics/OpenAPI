@@ -14,13 +14,17 @@ using Newtonsoft.Json.Linq;
 
 namespace OpenAPI_Cs_WinForm
 {
+	public enum CrdType
+	{
+		Base = 0,
+		Robot = 1,
+		Axes = 2,
+		User = 4
+	}
+
+
 	public partial class FormPoCur : FormClient
 	{
-		const int CRD_BASE = 0;
-		const int CRD_ROBOT = 1;
-		const int CRD_AXES = 2;
-		const int CRD_USER = 4;
-
 		public FormPoCur()
 		{
 			InitializeComponent();
@@ -31,24 +35,25 @@ namespace OpenAPI_Cs_WinForm
 		{
 			if (Visible == false) return 0;
 
-			UpdateCurPose(CRD_AXES);
-			UpdateCurPose(CRD_BASE);
-			UpdateCurPose(CRD_USER);
+			UpdateCurPose(CrdType.Axes);
+			UpdateCurPose(CrdType.Base);
+			UpdateCurPose(CrdType.User);
 			return 0;
 		}
 
 
-		protected int UpdateCurPose(int crd)
+		protected int UpdateCurPose(CrdType crdType)
 		{
+			var crd = (int)(crdType);
 			var query = string.Format("?crd={0}&mechinfo=-1", crd);
-			if (crd == CRD_USER)
+			if (crdType == CrdType.User)
 			{
 				var item = cbUCrdNos.SelectedItem;
 				if (item == null) return -1;
 				var ucrd_no = item.ToString();
 				if (ucrd_no == "")
 				{
-					return DisplayCurPose(crd, null);
+					return DisplayCurPose(crdType, null);
 				}
 				else
 				{
@@ -61,7 +66,7 @@ namespace OpenAPI_Cs_WinForm
 
 			var jo = JObject.Parse(respBody);
 
-			return DisplayCurPose(crd, jo);
+			return DisplayCurPose(crdType, jo);
 		}
 
 
@@ -85,17 +90,17 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int DisplayCurPose(int crd, JObject jo)
+		protected int DisplayCurPose(CrdType crdType, JObject jo)
 		{
-			if (crd == CRD_BASE || crd == CRD_ROBOT)
+			if (crdType == CrdType.Base || crdType == CrdType.Robot)
 			{
 				DisplayCurPoseBase(jo);
 			}
-			else if (crd == CRD_AXES)
+			else if (crdType == CrdType.Axes)
 			{
 				DisplayCurPoseAxes(jo);
 			}
-			else if (crd == CRD_USER)
+			else if (crdType == CrdType.User)
 			{
 				DisplayCurPoseUser(jo);
 			}
