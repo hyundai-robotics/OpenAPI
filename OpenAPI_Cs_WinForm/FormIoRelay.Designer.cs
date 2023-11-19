@@ -51,7 +51,7 @@
 			this.cbDataType.FormattingEnabled = true;
 			this.cbDataType.Items.AddRange(new object[] {
             "Bit",
-            "Char",
+            "SByte",
             "Short",
             "Long"});
 			this.cbDataType.Location = new System.Drawing.Point(29, 118);
@@ -103,6 +103,7 @@
 			// 
 			this.tbCurValue.Location = new System.Drawing.Point(186, 118);
 			this.tbCurValue.Name = "tbCurValue";
+			this.tbCurValue.ReadOnly = true;
 			this.tbCurValue.Size = new System.Drawing.Size(61, 21);
 			this.tbCurValue.TabIndex = 16;
 			this.tbCurValue.Text = "0";

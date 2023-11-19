@@ -20,7 +20,7 @@ namespace OpenAPI_Cs_WinForm
 		{
 			Invalid = -1,
 			Bit,
-			Char,
+			SByte,
 			Short,
 			Long
 		}
@@ -104,7 +104,7 @@ namespace OpenAPI_Cs_WinForm
 			if (item == null) return DataType.Invalid;
 			var str = cbDataType.SelectedItem.ToString();
 			if (str == "Bit") return DataType.Bit;
-			else if (str == "Char") return DataType.Char;
+			else if (str == "SByte") return DataType.SByte;
 			else if (str == "Short") return DataType.Short;
 			else if (str == "Long") return DataType.Long;
 			else return DataType.Invalid;
@@ -117,7 +117,7 @@ namespace OpenAPI_Cs_WinForm
 			if (item == null) return "";
 			var str = cbDataType.SelectedItem.ToString();
 			if (str == "Bit") return "";
-			else if (str == "Char") return "b";
+			else if (str == "SByte") return "b";
 			else if (str == "Short") return "w";
 			else if (str == "Long") return "l";
 			else return "";
@@ -151,8 +151,8 @@ namespace OpenAPI_Cs_WinForm
 				case DataType.Bit:
 					return GetBitFromJaLong(jaLong, idx);
 
-				case DataType.Char:
-					return GetCharFromJaLong(jaLong, idx);
+				case DataType.SByte:
+					return GetSByteFromJaLong(jaLong, idx);
 
 				case DataType.Short:
 					return GetShortFromJaLong(jaLong, idx);
@@ -175,17 +175,17 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int GetCharFromJaLong(JArray jaLong, int idx)
+		protected sbyte GetSByteFromJaLong(JArray jaLong, int idx)
 		{
 			int i = idx / 4;
 			var s32 = jaLong[i].Value<int>();
 			var nBitToShift = (idx % 4) * 8;
 			s32 >>= nBitToShift;
-			return s32 & 0xFF;
+			return (sbyte)(s32 & 0xFF);
 		}
 
 
-		protected int GetShortFromJaLong(JArray jaLong, int idx)
+		protected short GetShortFromJaLong(JArray jaLong, int idx)
 		{
 			int i = idx / 2;
 			var s32 = jaLong[i].Value<int>();
@@ -193,7 +193,7 @@ namespace OpenAPI_Cs_WinForm
 			{
 				s32 >>= 16;
 			}
-			return s32 & 0xFFFF;
+			return (short)(s32 & 0xFFFF);
 		}
 
 
