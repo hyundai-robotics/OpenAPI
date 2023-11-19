@@ -56,18 +56,10 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.cbUCrdNos = new System.Windows.Forms.ComboBox();
-			this.lbObjIdx = new System.Windows.Forms.Label();
-			this.label10 = new System.Windows.Forms.Label();
-			this.cbRelayType = new System.Windows.Forms.ComboBox();
-			this.tbObjIdx = new System.Windows.Forms.TextBox();
-			this.lbObjType = new System.Windows.Forms.Label();
-			this.cbObjType = new System.Windows.Forms.ComboBox();
-			this.label12 = new System.Windows.Forms.Label();
-			this.tbCurValue = new System.Windows.Forms.TextBox();
-			this.label13 = new System.Windows.Forms.Label();
-			this.cbDataType = new System.Windows.Forms.ComboBox();
-			this.tbIndex = new System.Windows.Forms.TextBox();
-			this.label14 = new System.Windows.Forms.Label();
+			this.tabCtrl = new System.Windows.Forms.TabControl();
+			this.pgIoRelay = new System.Windows.Forms.TabPage();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.tabCtrl.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tbMode
@@ -310,140 +302,42 @@
 			this.cbUCrdNos.Sorted = true;
 			this.cbUCrdNos.TabIndex = 8;
 			// 
-			// lbObjIdx
+			// tabCtrl
 			// 
-			this.lbObjIdx.AutoSize = true;
-			this.lbObjIdx.Location = new System.Drawing.Point(108, 358);
-			this.lbObjIdx.Name = "lbObjIdx";
-			this.lbObjIdx.Size = new System.Drawing.Size(45, 12);
-			this.lbObjIdx.TabIndex = 2;
-			this.lbObjIdx.Text = "obj_idx";
+			this.tabCtrl.Controls.Add(this.pgIoRelay);
+			this.tabCtrl.Controls.Add(this.tabPage2);
+			this.tabCtrl.Location = new System.Drawing.Point(294, 292);
+			this.tabCtrl.Name = "tabCtrl";
+			this.tabCtrl.SelectedIndex = 0;
+			this.tabCtrl.Size = new System.Drawing.Size(341, 198);
+			this.tabCtrl.TabIndex = 9;
 			// 
-			// label10
+			// pgIoRelay
 			// 
-			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(171, 357);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(63, 12);
-			this.label10.TabIndex = 2;
-			this.label10.Text = "relay_type";
+			this.pgIoRelay.Location = new System.Drawing.Point(4, 22);
+			this.pgIoRelay.Name = "pgIoRelay";
+			this.pgIoRelay.Padding = new System.Windows.Forms.Padding(3);
+			this.pgIoRelay.Size = new System.Drawing.Size(333, 172);
+			this.pgIoRelay.TabIndex = 0;
+			this.pgIoRelay.Text = "IoRelay";
+			this.pgIoRelay.UseVisualStyleBackColor = true;
 			// 
-			// cbRelayType
+			// tabPage2
 			// 
-			this.cbRelayType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbRelayType.FormattingEnabled = true;
-			this.cbRelayType.Items.AddRange(new object[] {
-            "di",
-            "do",
-            "x",
-            "y",
-            "m",
-            "s",
-            "r",
-            "k"});
-			this.cbRelayType.Location = new System.Drawing.Point(174, 381);
-			this.cbRelayType.Name = "cbRelayType";
-			this.cbRelayType.Size = new System.Drawing.Size(61, 20);
-			this.cbRelayType.TabIndex = 8;
-			this.cbRelayType.SelectedIndexChanged += new System.EventHandler(this.cbRelayType_SelectedIndexChanged);
-			// 
-			// tbObjIdx
-			// 
-			this.tbObjIdx.Location = new System.Drawing.Point(110, 381);
-			this.tbObjIdx.Name = "tbObjIdx";
-			this.tbObjIdx.Size = new System.Drawing.Size(38, 21);
-			this.tbObjIdx.TabIndex = 3;
-			this.tbObjIdx.Text = "0";
-			this.tbObjIdx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// lbObjType
-			// 
-			this.lbObjType.AutoSize = true;
-			this.lbObjType.Location = new System.Drawing.Point(35, 358);
-			this.lbObjType.Name = "lbObjType";
-			this.lbObjType.Size = new System.Drawing.Size(52, 12);
-			this.lbObjType.TabIndex = 2;
-			this.lbObjType.Text = "obj_type";
-			// 
-			// cbObjType
-			// 
-			this.cbObjType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbObjType.FormattingEnabled = true;
-			this.cbObjType.Items.AddRange(new object[] {
-            "fb",
-            "fn"});
-			this.cbObjType.Location = new System.Drawing.Point(32, 381);
-			this.cbObjType.Name = "cbObjType";
-			this.cbObjType.Size = new System.Drawing.Size(61, 20);
-			this.cbObjType.TabIndex = 8;
-			// 
-			// label12
-			// 
-			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(178, 416);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(57, 12);
-			this.label12.TabIndex = 2;
-			this.label12.Text = "cur.value";
-			// 
-			// tbCurValue
-			// 
-			this.tbCurValue.Location = new System.Drawing.Point(181, 439);
-			this.tbCurValue.Name = "tbCurValue";
-			this.tbCurValue.Size = new System.Drawing.Size(55, 21);
-			this.tbCurValue.TabIndex = 3;
-			this.tbCurValue.Text = "0";
-			this.tbCurValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// label13
-			// 
-			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(33, 416);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(59, 12);
-			this.label13.TabIndex = 2;
-			this.label13.Text = "data_type";
-			// 
-			// cbDataType
-			// 
-			this.cbDataType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbDataType.FormattingEnabled = true;
-			this.cbDataType.Items.AddRange(new object[] {
-            "Bit",
-            "Char",
-            "Long",
-            "Short"});
-			this.cbDataType.Location = new System.Drawing.Point(30, 439);
-			this.cbDataType.Name = "cbDataType";
-			this.cbDataType.Size = new System.Drawing.Size(61, 20);
-			this.cbDataType.TabIndex = 8;
-			// 
-			// tbIndex
-			// 
-			this.tbIndex.Location = new System.Drawing.Point(110, 438);
-			this.tbIndex.Name = "tbIndex";
-			this.tbIndex.Size = new System.Drawing.Size(55, 21);
-			this.tbIndex.TabIndex = 3;
-			this.tbIndex.Text = "0";
-			this.tbIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// label14
-			// 
-			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(108, 416);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(36, 12);
-			this.label14.TabIndex = 2;
-			this.label14.Text = "index";
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(333, 172);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "tabPage2";
+			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
 			// FormBase
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(882, 543);
-			this.Controls.Add(this.cbDataType);
-			this.Controls.Add(this.cbObjType);
-			this.Controls.Add(this.cbRelayType);
+			this.Controls.Add(this.tabCtrl);
 			this.Controls.Add(this.cbUCrdNos);
 			this.Controls.Add(this.chkUpdateOn);
 			this.Controls.Add(this.tbIpAddrRemote);
@@ -453,21 +347,12 @@
 			this.Controls.Add(this.btSelStepFunc);
 			this.Controls.Add(this.btSelectJob);
 			this.Controls.Add(this.tbFunc);
-			this.Controls.Add(this.tbIndex);
-			this.Controls.Add(this.tbCurValue);
-			this.Controls.Add(this.tbObjIdx);
 			this.Controls.Add(this.tbStep);
 			this.Controls.Add(this.tbJobNo);
 			this.Controls.Add(this.tbPlayback);
 			this.Controls.Add(this.tbMotor);
 			this.Controls.Add(this.tbProgCnt);
-			this.Controls.Add(this.label13);
 			this.Controls.Add(this.label5);
-			this.Controls.Add(this.lbObjType);
-			this.Controls.Add(this.label14);
-			this.Controls.Add(this.label12);
-			this.Controls.Add(this.label10);
-			this.Controls.Add(this.lbObjIdx);
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.label7);
 			this.Controls.Add(this.label6);
@@ -481,6 +366,7 @@
 			this.Controls.Add(this.tbMode);
 			this.Name = "FormBase";
 			this.Text = "Base";
+			this.tabCtrl.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -515,18 +401,9 @@
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.ComboBox cbUCrdNos;
-		private System.Windows.Forms.Label lbObjIdx;
-		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.ComboBox cbRelayType;
-		private System.Windows.Forms.TextBox tbObjIdx;
-		private System.Windows.Forms.Label lbObjType;
-		private System.Windows.Forms.ComboBox cbObjType;
-		private System.Windows.Forms.Label label12;
-		private System.Windows.Forms.TextBox tbCurValue;
-		private System.Windows.Forms.Label label13;
-		private System.Windows.Forms.ComboBox cbDataType;
-		private System.Windows.Forms.TextBox tbIndex;
-		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.TabControl tabCtrl;
+		private System.Windows.Forms.TabPage pgIoRelay;
+		private System.Windows.Forms.TabPage tabPage2;
 	}
 }
 

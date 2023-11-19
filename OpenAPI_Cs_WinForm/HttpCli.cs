@@ -12,7 +12,7 @@ using Newtonsoft.Json.Linq;
 
 namespace OpenAPI_Cs_WinForm
 {
-	class HttpCli
+	public class HttpCli
 	{
 		public string IpAddr;
 
