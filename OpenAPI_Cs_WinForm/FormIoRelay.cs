@@ -14,6 +14,16 @@ using Newtonsoft.Json.Linq;
 
 namespace OpenAPI_Cs_WinForm
 {
+	public enum DataType
+	{
+		Invalid = -1,
+		Bit,
+		Char,
+		Short,
+		Long
+	}
+
+
 	public partial class FormIoRelay : FormClient
 	{
 		public FormIoRelay()
