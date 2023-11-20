@@ -32,6 +32,7 @@ namespace OpenAPI_Cs_WinForm
 
 			var jo = JObject.Parse(respBody);
 			DisplayState(jo);
+			UpdateEidLast(jo);
 
 			return 0;
 		}
@@ -146,6 +147,21 @@ namespace OpenAPI_Cs_WinForm
 		{
 			string path = "project/context/tasks/reset";
 			cli.PostData(path);
+		}
+
+
+		private EidLast _eidLast;
+		public EidLast EidLast
+		{
+			get { return _eidLast; }
+		}
+		
+		protected void UpdateEidLast(JObject jo)
+		{
+			_eidLast.err = jo.Value<Int64>("eid_last_err");
+			_eidLast.warn = jo.Value<Int64>("eid_last_warn");
+			_eidLast.notice = jo.Value<Int64>("eid_last_noti");
+			_eidLast.history = jo.Value<Int64>("eid_last_history");
 		}
 	}
 }

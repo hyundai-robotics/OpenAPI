@@ -37,6 +37,8 @@
 			this.pageGeneral = new System.Windows.Forms.TabPage();
 			this.pagePoCur = new System.Windows.Forms.TabPage();
 			this.pageIoRelay = new System.Windows.Forms.TabPage();
+			this.panelLog = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
 			this.tabCtrl.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -79,7 +81,7 @@
 			this.tabCtrl.Controls.Add(this.pageGeneral);
 			this.tabCtrl.Controls.Add(this.pagePoCur);
 			this.tabCtrl.Controls.Add(this.pageIoRelay);
-			this.tabCtrl.Location = new System.Drawing.Point(40, 78);
+			this.tabCtrl.Location = new System.Drawing.Point(30, 76);
 			this.tabCtrl.Name = "tabCtrl";
 			this.tabCtrl.SelectedIndex = 0;
 			this.tabCtrl.Size = new System.Drawing.Size(501, 278);
@@ -114,14 +116,32 @@
 			this.pageIoRelay.Text = "IoRelay";
 			this.pageIoRelay.UseVisualStyleBackColor = true;
 			// 
+			// panelLog
+			// 
+			this.panelLog.Location = new System.Drawing.Point(30, 395);
+			this.panelLog.Name = "panelLog";
+			this.panelLog.Size = new System.Drawing.Size(497, 128);
+			this.panelLog.TabIndex = 10;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(32, 377);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(64, 12);
+			this.label1.TabIndex = 2;
+			this.label1.Text = "Events log";
+			// 
 			// FormBase
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(627, 417);
+			this.ClientSize = new System.Drawing.Size(563, 554);
+			this.Controls.Add(this.panelLog);
 			this.Controls.Add(this.tabCtrl);
 			this.Controls.Add(this.chkUpdateOn);
 			this.Controls.Add(this.tbIpAddrRemote);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.label5);
 			this.Name = "FormBase";
 			this.Text = "Base";
@@ -141,6 +161,8 @@
 		private System.Windows.Forms.TabPage pageIoRelay;
 		private System.Windows.Forms.TabPage pageGeneral;
 		private System.Windows.Forms.TabPage pagePoCur;
+		private System.Windows.Forms.Panel panelLog;
+		private System.Windows.Forms.Label label1;
 	}
 }
 

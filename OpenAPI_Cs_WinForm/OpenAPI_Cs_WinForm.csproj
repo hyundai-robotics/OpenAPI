@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EidLast.cs" />
     <Compile Include="FormClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +66,12 @@
     </Compile>
     <Compile Include="FormIoRelay.Designer.cs">
       <DependentUpon>FormIoRelay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLog.Designer.cs">
+      <DependentUpon>FormLog.cs</DependentUpon>
     </Compile>
     <Compile Include="FormPoCur.cs">
       <SubType>Form</SubType>
@@ -89,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormIoRelay.resx">
       <DependentUpon>FormIoRelay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLog.resx">
+      <DependentUpon>FormLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPoCur.resx">
       <DependentUpon>FormPoCur.cs</DependentUpon>

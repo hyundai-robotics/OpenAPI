@@ -22,6 +22,7 @@ namespace OpenAPI_Cs_WinForm
 		FormGeneral formGeneral;
 		FormPoCur formPoCur;
 		FormIoRelay formIoRelay;
+		FormLog formLog;
 
 		public FormBase()
 		{
@@ -38,6 +39,8 @@ namespace OpenAPI_Cs_WinForm
 			AddClientPage(2, formIoRelay = new FormIoRelay());
 			tabCtrl.SelectedIndex = 0;
 
+			CreateLogPanel();
+
 			timerUpdate.Enabled = true;
 		}
 
@@ -50,6 +53,17 @@ namespace OpenAPI_Cs_WinForm
 			tabCtrl.SelectedIndex = idx;
 			form.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			form.Show();
+		}
+
+
+		protected void CreateLogPanel()
+		{
+			formLog = new FormLog();
+			formLog.SetHttpCli(cli);
+			formLog.TopLevel = false;
+			panelLog.Controls.Add(formLog);
+			formLog.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+			formLog.Show();
 		}
 
 
@@ -72,6 +86,9 @@ namespace OpenAPI_Cs_WinForm
 				formGeneral.DoUpdate();
 				formPoCur.DoUpdate();
 				formIoRelay.DoUpdate();
+
+				formLog.EidLast = formGeneral.EidLast;
+				formLog.DoUpdate();
 			}
 		}
 	}
