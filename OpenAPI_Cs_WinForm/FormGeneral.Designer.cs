@@ -54,6 +54,7 @@
 			this.btStart.TabIndex = 19;
 			this.btStart.Text = "START";
 			this.btStart.UseVisualStyleBackColor = true;
+			this.btStart.Click += new System.EventHandler(this.btStart_Click);
 			// 
 			// button1
 			// 
@@ -63,6 +64,7 @@
 			this.button1.TabIndex = 20;
 			this.button1.Text = "STOP";
 			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.btStop_Click);
 			// 
 			// btReset
 			// 
@@ -72,6 +74,7 @@
 			this.btReset.TabIndex = 21;
 			this.btReset.Text = "RESET";
 			this.btReset.UseVisualStyleBackColor = true;
+			this.btReset.Click += new System.EventHandler(this.btReset_Click);
 			// 
 			// btSelStepFunc
 			// 
@@ -81,6 +84,7 @@
 			this.btSelStepFunc.TabIndex = 17;
 			this.btSelStepFunc.Text = "Select S/F";
 			this.btSelStepFunc.UseVisualStyleBackColor = true;
+			this.btSelStepFunc.Click += new System.EventHandler(this.btSelectStepFunc_Click);
 			// 
 			// btSelectJob
 			// 
@@ -90,6 +94,7 @@
 			this.btSelectJob.TabIndex = 18;
 			this.btSelectJob.Text = "Select JOB";
 			this.btSelectJob.UseVisualStyleBackColor = true;
+			this.btSelectJob.Click += new System.EventHandler(this.btSelectJob_Click);
 			// 
 			// tbFunc
 			// 

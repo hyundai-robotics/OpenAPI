@@ -26,11 +26,11 @@ namespace OpenAPI_Cs_WinForm
 		{
 			if (Visible == false) return 0;
 
-			string respBody = "";
-			var iret = cli.GetData("project/rgen", ref respBody);
+			Body respBody;
+			var iret = cli.GetData("project/rgen", out respBody);
 			if (iret < 0) return -1;
 
-			var jo = JObject.Parse(respBody);
+			var jo = respBody.ToJObject();
 			DisplayState(jo);
 			UpdateEidLast(jo);
 
@@ -109,7 +109,8 @@ namespace OpenAPI_Cs_WinForm
 			joReqBody.Add("fno", 0);
 			joReqBody.Add("ext_sel", 0);
 
-			cli.PostData(path, joReqBody.ToString());
+			var body = new Body(joReqBody);
+			cli.PostData(path, ref body);
 		}
 
 
@@ -125,7 +126,8 @@ namespace OpenAPI_Cs_WinForm
 			joReqBody.Add("fno", fno);
 			joReqBody.Add("ext_sel", 0);
 
-			cli.PostData(path, joReqBody.ToString());
+			var body = new Body(joReqBody);
+			cli.PostData(path, ref body);
 		}
 
 

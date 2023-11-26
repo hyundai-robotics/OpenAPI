@@ -51,12 +51,12 @@ namespace OpenAPI_Cs_WinForm
 			if (relayName == "") return -1;
 			string path = string.Format("project/plc/{0}/val_s32", relayName);
 			string query = "?st=0&len=30";	// 30 * 4byte = 120byte
-			string respBody = "";
+			Body respBody;
 
-			var iret = cli.GetData(path, query, ref respBody);
+			var iret = cli.GetData(path, query, out respBody);
 			if (iret < 0) return -1;
 
-			var jaLong = JArray.Parse(respBody);
+			var jaLong = respBody.ToJArray();
 
 			var dataType = SelectedDataType();
 			if (dataType == DataType.Invalid) return -1;
@@ -215,7 +215,8 @@ namespace OpenAPI_Cs_WinForm
 			joReqBody.Add("name", name);
 			joReqBody.Add("value", strValue);
 
-			cli.PostData(path, joReqBody.ToString());
+			var body = new Body(joReqBody);
+			cli.PostData(path, ref body);
 		}
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,8 +50,7 @@ namespace OpenAPI_Cs_WinForm
 
 		private void btUpdateRemote_Click(object sender, EventArgs e)
 		{
-			var path = tbPathRemote.Text;
-			UpdateRemoteFileList(path);
+			UpdateRemoteFileList(tbPathRemote.Text);
 		}
 
 
@@ -130,9 +130,9 @@ namespace OpenAPI_Cs_WinForm
 			var items = lvRemote.SelectedItems;
 			if (items.Count != 1) return;
 			var item = items[(int)Column.FName];
-			var fname = item.Text;
 			var size = item.SubItems[(int)Column.Size].Text;
-			tbFNameRemote.Text = (size == dirMark) ? "" : fname;
+			var fname = (size == dirMark) ? "" : item.Text;
+			tbFNameLocal.Text = tbFNameRemote.Text = fname;
 		}
 
 
@@ -149,11 +149,8 @@ namespace OpenAPI_Cs_WinForm
 			{
 				SetToUpperDirRemote();
 			}
-			else if (tbPathRemote.Text == "") {
-				tbPathRemote.Text = fname;
-			}
 			else {
-				tbPathRemote.Text += "/" + fname;
+				tbPathRemote.Text = CombinePath(tbPathRemote.Text, fname);
 			}
 			tbFNameRemote.Text = "";
 
@@ -166,14 +163,6 @@ namespace OpenAPI_Cs_WinForm
 		{
 			var path = tbPathRemote.Text;
 			tbPathRemote.Text = UpperPath(path);
-		}
-
-
-		private void btGet_Click(object sender, EventArgs e)
-		{
-			string pathnameLocal = "";
-			string pathnameRemote = tbPathRemote.Text + "/" + tbFNameRemote.Text;
-			fcli.GetFile(pathnameLocal, pathnameRemote);
 		}
 
 
@@ -193,7 +182,7 @@ namespace OpenAPI_Cs_WinForm
 
 			try
 			{
-				var di = new System.IO.DirectoryInfo(_path);
+				var di = new DirectoryInfo(_path);
 				
 				// dirs
 				if (_path.Length > 3)	// e.g. "D:/"
@@ -224,13 +213,13 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 		
-		private void AddFileInfoToLvLocal(System.IO.FileSystemInfo fsi)
+		private void AddFileInfoToLvLocal(FileSystemInfo fsi)
 		{
 			var fname = fsi.Name;
 			string size;
-			if (fsi is System.IO.FileInfo)
+			if (fsi is FileInfo)
 			{
-				var fi = (System.IO.FileInfo)fsi;
+				var fi = (FileInfo)fsi;
 				size = fi.Length.ToString();
 			}
 			else
@@ -249,9 +238,9 @@ namespace OpenAPI_Cs_WinForm
 			var items = lvLocal.SelectedItems;
 			if (items.Count != 1) return;
 			var item = items[(int)Column.FName];
-			var fname = item.Text;
 			var size = item.SubItems[(int)Column.Size].Text;
-			tbFNameLocal.Text = (size == dirMark) ? "" : fname;
+			var fname = (size == dirMark) ? "" : item.Text;
+			tbFNameLocal.Text = tbFNameRemote.Text = fname;
 		}
 
 
@@ -268,13 +257,9 @@ namespace OpenAPI_Cs_WinForm
 			{
 				SetToUpperDirLocal();
 			}
-			else if (tbPathLocal.Text.EndsWith("/"))
-			{
-				tbPathLocal.Text += fname;
-			}
 			else
 			{
-				tbPathLocal.Text += "/" + fname;
+				tbPathLocal.Text = CombinePath(tbPathLocal.Text, fname);
 			}
 			tbFNameLocal.Text = "";
 
@@ -296,11 +281,52 @@ namespace OpenAPI_Cs_WinForm
 		private string UpperPath(string path)
 		{
 			string _path = path.Replace('\\', '/');
+			char[] cs = { '/', '\\' };
+			_path = _path.TrimEnd(cs);
+
 			if (_path == "") return "";
 			var idx = _path.LastIndexOf('/');
 			_path = (idx < 0) ? "" : _path.Substring(0, idx);
 			if (_path.EndsWith(":")) _path += '/';	// e.g. "D:/" <- "D:"
 			return _path;
+		}
+
+
+		private string CombinePath(string path1, string path2)
+		{
+			char[] cs = { '/', '\\' };
+			var path = path1.TrimEnd(cs) + "/" + path2.TrimStart(cs);
+			return path;
+		}
+
+
+		private string PathnameRemote()
+		{
+			string str = tbFNameRemote.Text;
+			if (tbPathRemote.Text != "") str = tbPathRemote.Text + "/" + str;
+			return str;
+		}
+
+
+		private void btGet_Click(object sender, EventArgs e)
+		{
+			string pathnameLocal = tbPathLocal.Text + "/" + tbFNameLocal.Text;
+			string pathnameRemote = PathnameRemote();
+			var iret = fcli.GetFile(pathnameLocal, pathnameRemote);
+			if (iret < 0) return;
+
+			UpdateLocalFileList(tbPathLocal.Text);
+		}
+
+
+		private void btPut_Click(object sender, EventArgs e)
+		{
+			string pathnameLocal = tbPathLocal.Text + "/" + tbFNameLocal.Text;
+			string pathnameRemote = PathnameRemote();
+			var iret = fcli.PutFile(pathnameLocal, pathnameRemote);
+			if (iret < 0) return;
+
+			UpdateRemoteFileList(tbPathRemote.Text);
 		}
 	}
 }

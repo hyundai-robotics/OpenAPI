@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Body.cs" />
     <Compile Include="EidLast.cs" />
     <Compile Include="FileCli.cs" />
     <Compile Include="FormClient.cs">

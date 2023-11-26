@@ -49,6 +49,7 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
+			this.btPut = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// lvRemote
@@ -60,6 +61,7 @@
 			this.lvRemote.FullRowSelect = true;
 			this.lvRemote.GridLines = true;
 			this.lvRemote.Location = new System.Drawing.Point(12, 40);
+			this.lvRemote.MultiSelect = false;
 			this.lvRemote.Name = "lvRemote";
 			this.lvRemote.Size = new System.Drawing.Size(335, 230);
 			this.lvRemote.TabIndex = 0;
@@ -84,9 +86,9 @@
 			// 
 			// btUpdateRemote
 			// 
-			this.btUpdateRemote.Location = new System.Drawing.Point(353, 40);
+			this.btUpdateRemote.Location = new System.Drawing.Point(71, 348);
 			this.btUpdateRemote.Name = "btUpdateRemote";
-			this.btUpdateRemote.Size = new System.Drawing.Size(61, 56);
+			this.btUpdateRemote.Size = new System.Drawing.Size(115, 24);
 			this.btUpdateRemote.TabIndex = 1;
 			this.btUpdateRemote.Text = "Update Remote";
 			this.btUpdateRemote.UseVisualStyleBackColor = true;
@@ -94,7 +96,7 @@
 			// 
 			// tbPathRemote
 			// 
-			this.tbPathRemote.Location = new System.Drawing.Point(71, 276);
+			this.tbPathRemote.Location = new System.Drawing.Point(71, 286);
 			this.tbPathRemote.Name = "tbPathRemote";
 			this.tbPathRemote.Size = new System.Drawing.Size(276, 21);
 			this.tbPathRemote.TabIndex = 2;
@@ -102,7 +104,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(12, 281);
+			this.label1.Location = new System.Drawing.Point(12, 291);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(30, 12);
 			this.label1.TabIndex = 3;
@@ -111,7 +113,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(12, 314);
+			this.label2.Location = new System.Drawing.Point(12, 324);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(46, 12);
 			this.label2.TabIndex = 3;
@@ -119,18 +121,18 @@
 			// 
 			// tbFNameRemote
 			// 
-			this.tbFNameRemote.Location = new System.Drawing.Point(71, 308);
+			this.tbFNameRemote.Location = new System.Drawing.Point(71, 318);
 			this.tbFNameRemote.Name = "tbFNameRemote";
 			this.tbFNameRemote.Size = new System.Drawing.Size(276, 21);
 			this.tbFNameRemote.TabIndex = 2;
 			// 
 			// btGet
 			// 
-			this.btGet.Location = new System.Drawing.Point(353, 103);
+			this.btGet.Location = new System.Drawing.Point(353, 80);
 			this.btGet.Name = "btGet";
-			this.btGet.Size = new System.Drawing.Size(61, 53);
+			this.btGet.Size = new System.Drawing.Size(61, 62);
 			this.btGet.TabIndex = 4;
-			this.btGet.Text = "Get";
+			this.btGet.Text = "Get\r\n\r\n->";
 			this.btGet.UseVisualStyleBackColor = true;
 			this.btGet.Click += new System.EventHandler(this.btGet_Click);
 			// 
@@ -143,6 +145,7 @@
 			this.lvLocal.FullRowSelect = true;
 			this.lvLocal.GridLines = true;
 			this.lvLocal.Location = new System.Drawing.Point(420, 40);
+			this.lvLocal.MultiSelect = false;
 			this.lvLocal.Name = "lvLocal";
 			this.lvLocal.Size = new System.Drawing.Size(335, 230);
 			this.lvLocal.TabIndex = 0;
@@ -167,14 +170,14 @@
 			// 
 			// tbPathLocal
 			// 
-			this.tbPathLocal.Location = new System.Drawing.Point(479, 276);
+			this.tbPathLocal.Location = new System.Drawing.Point(479, 286);
 			this.tbPathLocal.Name = "tbPathLocal";
 			this.tbPathLocal.Size = new System.Drawing.Size(276, 21);
 			this.tbPathLocal.TabIndex = 2;
 			// 
 			// tbFNameLocal
 			// 
-			this.tbFNameLocal.Location = new System.Drawing.Point(479, 308);
+			this.tbFNameLocal.Location = new System.Drawing.Point(479, 318);
 			this.tbFNameLocal.Name = "tbFNameLocal";
 			this.tbFNameLocal.Size = new System.Drawing.Size(276, 21);
 			this.tbFNameLocal.TabIndex = 2;
@@ -182,7 +185,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(420, 281);
+			this.label3.Location = new System.Drawing.Point(420, 291);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(30, 12);
 			this.label3.TabIndex = 3;
@@ -191,7 +194,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(420, 314);
+			this.label4.Location = new System.Drawing.Point(420, 324);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(46, 12);
 			this.label4.TabIndex = 3;
@@ -217,19 +220,30 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(353, 214);
+			this.button1.Location = new System.Drawing.Point(479, 348);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(61, 56);
+			this.button1.Size = new System.Drawing.Size(115, 24);
 			this.button1.TabIndex = 1;
 			this.button1.Text = "Update Local";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.btUpdateLocal_Click);
 			// 
+			// btPut
+			// 
+			this.btPut.Location = new System.Drawing.Point(353, 161);
+			this.btPut.Name = "btPut";
+			this.btPut.Size = new System.Drawing.Size(61, 62);
+			this.btPut.TabIndex = 5;
+			this.btPut.Text = "Put\r\n\r\n<-";
+			this.btPut.UseVisualStyleBackColor = true;
+			this.btPut.Click += new System.EventHandler(this.btPut_Click);
+			// 
 			// FormFileMng
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(812, 350);
+			this.ClientSize = new System.Drawing.Size(812, 389);
+			this.Controls.Add(this.btPut);
 			this.Controls.Add(this.btGet);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label6);
@@ -276,5 +290,6 @@
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btPut;
 	}
 }

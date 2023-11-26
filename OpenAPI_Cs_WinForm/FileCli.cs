@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,16 +19,16 @@ namespace OpenAPI_Cs_WinForm
 			string str_incl_file = incl_file ? "true" : "false";
 			string query = string.Format("?path={0}&incl_dir={1}&incl_file={2}"
 				, path, str_incl_dir, str_incl_file);
-			string respBody = "";
+			Body body;
 
-			var iret = GetData(urlPath, query, ref respBody);
+			var iret = GetData(urlPath, query, out body);
 			if (iret < 0)
 			{
 				jaFileInfos = new JArray();
 				return iret;
 			}
 
-			jaFileInfos = JArray.Parse(respBody);
+			jaFileInfos = body.ToJArray();
 			
 			return 0;
 		}
@@ -37,12 +38,37 @@ namespace OpenAPI_Cs_WinForm
 		{
 			string urlPath = "file_manager/files";
 			string query = "?pathname=" + pathnameRemote;
-			string respBody = "";
+			Body body;
 
-			var iret = GetData(urlPath, query, ref respBody);
-			if (iret < 0) return -1;
-	
+			var iret = GetData(urlPath, query, out body);
+			if (iret < 0) return iret;
+
+			var fs = new FileStream(pathnameLocal, FileMode.CreateNew, FileAccess.Write);
+			var bw = new BinaryWriter(fs);
+			bw.Write(body.binBuf);
+
+			fs.Close();
+
 			return 0;
+		}
+
+		
+		public int PutFile(string pathnameLocal, string pathnameRemote)
+		{
+			string urlPath = "file_manager/files/";
+			urlPath += pathnameRemote;
+			var body = new Body();
+			body.contentType = "application/octet-stream";
+
+			var fs = new FileStream(pathnameLocal, FileMode.Open, FileAccess.Read);
+			var br = new BinaryReader(fs);
+			var nbyte = new FileInfo(pathnameLocal).Length;
+
+			body.binBuf = new byte[nbyte];
+			br.Read(body.binBuf, 0, (int)nbyte);
+			fs.Close();
+
+			return PostData(urlPath, ref body);
 		}
 	}
 }

@@ -23,14 +23,15 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		public int GetData(string path, ref string respBody)
+		public int GetData(string path, out Body respBody)
 		{
-			return GetData(path, "", ref respBody);
+			return GetData(path, "", out respBody);
 		}
 
 
-		public int GetData(string path, string query, ref string respBody)
+		public int GetData(string path, string query, out Body respBody)
 		{
+			respBody = new Body();
 			try
 			{
 				var url = StrDomain() + path + query;
@@ -41,13 +42,9 @@ namespace OpenAPI_Cs_WinForm
 				using (var resp = (HttpWebResponse)request.GetResponse())
 				{
 					var status = resp.StatusCode;
-					Console.WriteLine(status);  // 정상이면 "OK"
-
-					var respStream = resp.GetResponseStream();
-					using (var sr = new StreamReader(respStream))
-					{
-						respBody = sr.ReadToEnd();
-					}
+					//Console.WriteLine(status);  // 정상이면 "OK"
+					
+					respBody.setResp(resp);
 				}
 			}
 			catch (WebException e)
@@ -62,25 +59,25 @@ namespace OpenAPI_Cs_WinForm
 			return 0;
 		}
 
-
+	
 		public int PostData(string path)
 		{
-			var joReqBody = new JObject();
-			return PostData(path, joReqBody.ToString());
+			var body = new Body();
+			return PostData(path, ref body);
 		}
 
 
-		public int PostData(string path, string reqBody)
+		public int PostData(string path, ref Body body)
 		{
 			try
 			{
 				var request = (HttpWebRequest)WebRequest.Create(StrDomain() + path);
 				request.Method = "POST";
-				request.ContentType = "application/json";
+				request.ContentType = body.contentType;
 				request.Timeout = 5 * 1000;
 
 				// POST할 데이타를 Request Stream에 쓴다
-				byte[] bytes = Encoding.ASCII.GetBytes(reqBody);
+				byte[] bytes = body.ToBytes();
 				request.ContentLength = bytes.Length; // 바이트수 지정
 
 				using (var reqStream = request.GetRequestStream())
@@ -90,13 +87,9 @@ namespace OpenAPI_Cs_WinForm
 
 				// Response 처리
 				string responseText = string.Empty;
-				using (var resp = request.GetResponse())
+				using (var resp = (HttpWebResponse)request.GetResponse())
 				{
-					Stream respStream = resp.GetResponseStream();
-					using (StreamReader sr = new StreamReader(respStream))
-					{
-						responseText = sr.ReadToEnd();
-					}
+					body.setResp(resp);
 				}
 			}
 			catch (WebException e)
