@@ -46,7 +46,7 @@ namespace OpenAPI_Cs_WinForm
 
 		private void btUpdateRemote_Click(object sender, EventArgs e)
 		{
-			var path = tbPath.Text;
+			var path = tbPathRemote.Text;
 			UpdateRemoteFileList(path);
 		}
 
@@ -60,7 +60,7 @@ namespace OpenAPI_Cs_WinForm
 			if (iret < 0) return;
 
 			// dirs
-			if (tbPath.Text != "")
+			if (tbPathRemote.Text != "")
 			{
 				AddParentDirToLvRemote();
 			}
@@ -89,7 +89,7 @@ namespace OpenAPI_Cs_WinForm
 
 		private void AddParentDirToLvRemote()
 		{
-			var strs = new String[] { "..", "<dir>", "" };
+			var strs = new String[] { "..", dirMark, "" };
 			var item = new ListViewItem(strs);
 			lvRemote.Items.Add(item);
 		}
@@ -108,6 +108,43 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
+		private void btUpdateLocal_Click(object sender, EventArgs e)
+		{
+			var path = tbPathLocal.Text;
+			var dirs = System.IO.Directory.GetDirectories(path);
+
+			var di = new System.IO.DirectoryInfo(path);
+			foreach (var di_sub in di.GetDirectories())
+			{
+				AddFileInfoToLvLocal(di_sub);
+			}
+			foreach (var fi in di.GetFiles())
+			{
+				AddFileInfoToLvLocal(fi);
+			}
+		}
+
+
+		private void AddFileInfoToLvLocal(System.IO.FileSystemInfo fsi)
+		{
+			var fname = fsi.Name;
+			string size;
+			if (fsi is System.IO.FileInfo)
+			{
+				var fi = (System.IO.FileInfo)fsi;
+				size = fi.Length.ToString();
+			}
+			else
+			{
+				size = dirMark;
+			}
+			var datetime = StrDateTime(fsi.LastWriteTime);
+			var strs = new String[] { fname, size, datetime };
+			var item = new ListViewItem(strs);
+			lvLocal.Items.Add(item);
+		}
+
+
 		private string StrDateTime(JObject jo)
 		{
 			var year = PropVal(jo, "year", "D4");
@@ -122,9 +159,42 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
+		private string StrDateTime(System.DateTime dt)
+		{
+			var year = dt.Year.ToString("D4");
+			var month = dt.Month.ToString("D2");
+			var mday = dt.Day.ToString("D2");
+			var hour = dt.Hour.ToString("D2");
+			var min = dt.Minute.ToString("D2");
+			
+			string str = String.Format(
+				"{0}/{1}/{2} {3}:{4}"
+				, year, month, mday, hour, min);
+			return str;
+		}
+
+
 		private string PropVal(JObject jo, string key, string fmt)
 		{
 			return jo[key].Value<int>().ToString(fmt);
+		}
+		
+
+		private void lvRemote_MouseClick(object sender, MouseEventArgs e)
+		{
+			var items = lvRemote.SelectedItems;
+			if (items.Count != 1) return;
+			var item = items[(int)Column.FName];
+			var fname = item.Text;
+			var size = item.SubItems[(int)Column.Size].Text;
+			if (size == dirMark)
+			{
+				tbFNameRemote.Text = "";
+			}
+			else
+			{
+				tbFNameRemote.Text = fname;
+			}
 		}
 
 
@@ -141,31 +211,43 @@ namespace OpenAPI_Cs_WinForm
 			{
 				GotoUpperDir();
 			}
-			else if (tbPath.Text == "") {
-				tbPath.Text = fname;
+			else if (tbPathRemote.Text == "") {
+				tbPathRemote.Text = fname;
 			}
 			else {
-				tbPath.Text += "/" + fname;
+				tbPathRemote.Text += "/" + fname;
 			}
+			tbFNameRemote.Text = "";
 
-			var path = tbPath.Text;
+			var path = tbPathRemote.Text;
 			UpdateRemoteFileList(path);
 		}
 		
 
 		private void GotoUpperDir()
 		{
-			var path = tbPath.Text;
+			var path = tbPathRemote.Text;
 			if (path == "") return;
 			var idx = path.LastIndexOf('/');
 			if (idx < 0)
 			{
-				tbPath.Text = "";
+				tbPathRemote.Text = "";
 			}
 			else
 			{
-				tbPath.Text = path.Substring(0, idx);
+				tbPathRemote.Text = path.Substring(0, idx);
 			}
 		}
+
+
+		private void btGet_Click(object sender, EventArgs e)
+		{
+			string pathnameLocal = "";
+			string pathnameRemote = tbPathRemote.Text + "/" + tbFNameRemote.Text;
+			fcli.GetFile(pathnameLocal, pathnameRemote);
+		}
+
+
+		
 	}
 }

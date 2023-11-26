@@ -13,14 +13,14 @@ namespace OpenAPI_Cs_WinForm
 	{
 		public int GetList(string path, bool incl_dir, bool incl_file, out JArray jaFileInfos)
 		{
-			string url_path = "file_manager/file_list";
+			string urlPath = "file_manager/file_list";
 			string str_incl_dir = incl_dir ? "true" : "false";
 			string str_incl_file = incl_file ? "true" : "false";
 			string query = string.Format("?path={0}&incl_dir={1}&incl_file={2}"
 				, path, str_incl_dir, str_incl_file);
 			string respBody = "";
 
-			var iret = GetData(url_path, query, ref respBody);
+			var iret = GetData(urlPath, query, ref respBody);
 			if (iret < 0)
 			{
 				jaFileInfos = new JArray();
@@ -29,6 +29,19 @@ namespace OpenAPI_Cs_WinForm
 
 			jaFileInfos = JArray.Parse(respBody);
 			
+			return 0;
+		}
+
+
+		public int GetFile(string pathnameLocal, string pathnameRemote)
+		{
+			string urlPath = "file_manager/files";
+			string query = "?pathname=" + pathnameRemote;
+			string respBody = "";
+
+			var iret = GetData(urlPath, query, ref respBody);
+			if (iret < 0) return -1;
+	
 			return 0;
 		}
 	}
