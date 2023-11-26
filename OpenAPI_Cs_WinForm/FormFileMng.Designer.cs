@@ -31,8 +31,8 @@
 			this.lvRemote = new System.Windows.Forms.ListView();
 			this.hdName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.hdSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.btUpdateRemote = new System.Windows.Forms.Button();
 			this.hdDateTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.btUpdateRemote = new System.Windows.Forms.Button();
 			this.tbPathRemote = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
@@ -77,6 +77,11 @@
 			// 
 			this.hdSize.Text = "Size";
 			// 
+			// hdDateTime
+			// 
+			this.hdDateTime.Text = "Modified Time";
+			this.hdDateTime.Width = 120;
+			// 
 			// btUpdateRemote
 			// 
 			this.btUpdateRemote.Location = new System.Drawing.Point(353, 40);
@@ -86,11 +91,6 @@
 			this.btUpdateRemote.Text = "Update Remote";
 			this.btUpdateRemote.UseVisualStyleBackColor = true;
 			this.btUpdateRemote.Click += new System.EventHandler(this.btUpdateRemote_Click);
-			// 
-			// hdDateTime
-			// 
-			this.hdDateTime.Text = "Modified Time";
-			this.hdDateTime.Width = 120;
 			// 
 			// tbPathRemote
 			// 
@@ -148,8 +148,8 @@
 			this.lvLocal.TabIndex = 0;
 			this.lvLocal.UseCompatibleStateImageBehavior = false;
 			this.lvLocal.View = System.Windows.Forms.View.Details;
-			this.lvLocal.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvRemote_MouseClick);
-			this.lvLocal.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvRemote_MouseDoubleClick);
+			this.lvLocal.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvLocal_MouseClick);
+			this.lvLocal.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvLocal_MouseDoubleClick);
 			// 
 			// columnHeader1
 			// 
