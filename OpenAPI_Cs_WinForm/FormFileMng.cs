@@ -103,7 +103,8 @@ namespace OpenAPI_Cs_WinForm
 			var fname = jo["fname"].ToString();
 			var is_dir = IsFileInfoDir(jo);
 			var size = is_dir ? dirMark : jo["size"].ToString();
-			var datetime = StrDateTime(jo);
+			var dt = DateTimeFrom(jo);
+			var datetime = dt.ToString("yyyy/MM/dd hh:mm");
 
 			var strs = new String[] { fname, size, datetime };
 			var item = new ListViewItem(strs);
@@ -111,25 +112,18 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		private string StrDateTime(JObject jo)
+		private System.DateTime DateTimeFrom(JObject jo)
 		{
-			var year = PropVal(jo, "year", "D4");
-			var month = PropVal(jo, "month", "D2");
-			var mday = PropVal(jo, "mday", "D2");
-			var hour = PropVal(jo, "hour", "D2");
-			var min = PropVal(jo, "min", "D2");
-			string str = String.Format(
-				"{0}/{1}/{2} {3}:{4}"
-				, year, month, mday, hour, min);
-			return str;
-		}		
+			var year = jo["year"].Value<int>();
+			var month = jo["month"].Value<int>();
+			var mday = jo["mday"].Value<int>();
+			var hour = jo["hour"].Value<int>();
+			var min = jo["min"].Value<int>();
 
-
-		private string PropVal(JObject jo, string key, string fmt)
-		{
-			return jo[key].Value<int>().ToString(fmt);
+			var dt = new System.DateTime(year, month, mday, hour, min, 0);
+			return dt;
 		}
-		
+
 
 		private void lvRemote_MouseClick(object sender, MouseEventArgs e)
 		{
@@ -216,7 +210,7 @@ namespace OpenAPI_Cs_WinForm
 					AddFileInfoToLvLocal(fi);
 				}
 			}
-			catch(Exception e)
+			catch(Exception)
 			{
 			}
 		}
@@ -243,25 +237,10 @@ namespace OpenAPI_Cs_WinForm
 			{
 				size = dirMark;
 			}
-			var datetime = StrDateTime(fsi.LastWriteTime);
+			var datetime = fsi.LastWriteTime.ToString("yyyy/MM/dd hh:mm");
 			var strs = new String[] { fname, size, datetime };
 			var item = new ListViewItem(strs);
 			lvLocal.Items.Add(item);
-		}
-
-
-		private string StrDateTime(System.DateTime dt)
-		{
-			var year = dt.Year.ToString("D4");
-			var month = dt.Month.ToString("D2");
-			var mday = dt.Day.ToString("D2");
-			var hour = dt.Hour.ToString("D2");
-			var min = dt.Minute.ToString("D2");
-
-			string str = String.Format(
-				"{0}/{1}/{2} {3}:{4}"
-				, year, month, mday, hour, min);
-			return str;
 		}
 
 
