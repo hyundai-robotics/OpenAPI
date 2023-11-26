@@ -15,6 +15,15 @@ namespace OpenAPI_Cs_WinForm
 {
 	public partial class FormFileMng : FormClient
 	{
+		enum Column : int
+		{
+			FName = 0,
+			Size,
+			DateTime
+		}
+
+		private const string dirMark = "<dir>";
+
 		protected FileCli fcli;
 
 		public FormFileMng()
@@ -37,13 +46,24 @@ namespace OpenAPI_Cs_WinForm
 
 		private void btUpdateRemote_Click(object sender, EventArgs e)
 		{
+			var path = tbPath.Text;
+			UpdateRemoteFileList(path);
+		}
+
+
+		private void UpdateRemoteFileList(string path)
+		{
 			lvRemote.Items.Clear();
 
 			JArray jaFileInfos;
-			var iret = fcli.GetList("", true, true, out jaFileInfos);
+			var iret = fcli.GetList(path, true, true, out jaFileInfos);
 			if (iret < 0) return;
 
 			// dirs
+			if (tbPath.Text != "")
+			{
+				AddParentDirToLvRemote();
+			}
 			foreach (var fi in jaFileInfos)
 			{
 				var jo = fi.ToObject<JObject>();
@@ -67,11 +87,19 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
+		private void AddParentDirToLvRemote()
+		{
+			var strs = new String[] { "..", "<dir>", "" };
+			var item = new ListViewItem(strs);
+			lvRemote.Items.Add(item);
+		}
+
+
 		private void AddFileInfoToLvRemote(JObject jo)
 		{
 			var fname = jo["fname"].ToString();
 			var is_dir = IsFileInfoDir(jo);
-			var size = is_dir ? "<dir>" : jo["size"].ToString();
+			var size = is_dir ? dirMark : jo["size"].ToString();
 			var datetime = StrDateTime(jo);
 
 			var strs = new String[] { fname, size, datetime };
@@ -97,6 +125,47 @@ namespace OpenAPI_Cs_WinForm
 		private string PropVal(JObject jo, string key, string fmt)
 		{
 			return jo[key].Value<int>().ToString(fmt);
+		}
+
+
+		private void lvRemote_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			var items = lvRemote.SelectedItems;
+			if (items.Count != 1) return;
+			var item = items[(int)Column.FName];
+			var fname = item.Text;
+			var size = item.SubItems[(int)Column.Size].Text;
+			if (size != dirMark) return;
+
+			if (fname == "..")
+			{
+				GotoUpperDir();
+			}
+			else if (tbPath.Text == "") {
+				tbPath.Text = fname;
+			}
+			else {
+				tbPath.Text += "/" + fname;
+			}
+
+			var path = tbPath.Text;
+			UpdateRemoteFileList(path);
+		}
+		
+
+		private void GotoUpperDir()
+		{
+			var path = tbPath.Text;
+			if (path == "") return;
+			var idx = path.LastIndexOf('/');
+			if (idx < 0)
+			{
+				tbPath.Text = "";
+			}
+			else
+			{
+				tbPath.Text = path.Substring(0, idx);
+			}
 		}
 	}
 }
