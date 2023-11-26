@@ -52,8 +52,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EidLast.cs" />
+    <Compile Include="FileCli.cs" />
     <Compile Include="FormClient.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFileMng.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFileMng.Designer.cs">
+      <DependentUpon>FormFileMng.cs</DependentUpon>
     </Compile>
     <Compile Include="FormGeneral.cs">
       <SubType>Form</SubType>
@@ -90,6 +97,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFileMng.resx">
+      <DependentUpon>FormFileMng.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormGeneral.resx">
       <DependentUpon>FormGeneral.cs</DependentUpon>

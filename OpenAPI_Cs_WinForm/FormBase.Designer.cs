@@ -37,6 +37,7 @@
 			this.pageGeneral = new System.Windows.Forms.TabPage();
 			this.pagePoCur = new System.Windows.Forms.TabPage();
 			this.pageIoRelay = new System.Windows.Forms.TabPage();
+			this.pageFileMng = new System.Windows.Forms.TabPage();
 			this.panelLog = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.tabCtrl.SuspendLayout();
@@ -81,10 +82,11 @@
 			this.tabCtrl.Controls.Add(this.pageGeneral);
 			this.tabCtrl.Controls.Add(this.pagePoCur);
 			this.tabCtrl.Controls.Add(this.pageIoRelay);
+			this.tabCtrl.Controls.Add(this.pageFileMng);
 			this.tabCtrl.Location = new System.Drawing.Point(30, 76);
 			this.tabCtrl.Name = "tabCtrl";
 			this.tabCtrl.SelectedIndex = 0;
-			this.tabCtrl.Size = new System.Drawing.Size(501, 278);
+			this.tabCtrl.Size = new System.Drawing.Size(725, 367);
 			this.tabCtrl.TabIndex = 9;
 			// 
 			// pageGeneral
@@ -92,7 +94,7 @@
 			this.pageGeneral.Location = new System.Drawing.Point(4, 22);
 			this.pageGeneral.Name = "pageGeneral";
 			this.pageGeneral.Padding = new System.Windows.Forms.Padding(3);
-			this.pageGeneral.Size = new System.Drawing.Size(493, 252);
+			this.pageGeneral.Size = new System.Drawing.Size(717, 341);
 			this.pageGeneral.TabIndex = 0;
 			this.pageGeneral.Text = "General";
 			this.pageGeneral.UseVisualStyleBackColor = true;
@@ -116,17 +118,26 @@
 			this.pageIoRelay.Text = "IoRelay";
 			this.pageIoRelay.UseVisualStyleBackColor = true;
 			// 
+			// pageFileMng
+			// 
+			this.pageFileMng.Location = new System.Drawing.Point(4, 22);
+			this.pageFileMng.Name = "pageFileMng";
+			this.pageFileMng.Size = new System.Drawing.Size(493, 252);
+			this.pageFileMng.TabIndex = 3;
+			this.pageFileMng.Text = "FileMng";
+			this.pageFileMng.UseVisualStyleBackColor = true;
+			// 
 			// panelLog
 			// 
-			this.panelLog.Location = new System.Drawing.Point(30, 395);
+			this.panelLog.Location = new System.Drawing.Point(34, 487);
 			this.panelLog.Name = "panelLog";
-			this.panelLog.Size = new System.Drawing.Size(497, 128);
+			this.panelLog.Size = new System.Drawing.Size(717, 128);
 			this.panelLog.TabIndex = 10;
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(32, 377);
+			this.label1.Location = new System.Drawing.Point(32, 465);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(64, 12);
 			this.label1.TabIndex = 2;
@@ -136,7 +147,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(563, 554);
+			this.ClientSize = new System.Drawing.Size(784, 641);
 			this.Controls.Add(this.panelLog);
 			this.Controls.Add(this.tabCtrl);
 			this.Controls.Add(this.chkUpdateOn);
@@ -163,6 +174,7 @@
 		private System.Windows.Forms.TabPage pagePoCur;
 		private System.Windows.Forms.Panel panelLog;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.TabPage pageFileMng;
 	}
 }
 

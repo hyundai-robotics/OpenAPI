@@ -19,9 +19,11 @@ namespace OpenAPI_Cs_WinForm
 	public partial class FormBase : Form
 	{
 		HttpCli cli = new HttpCli();
+		FileCli fcli = new FileCli();
 		FormGeneral formGeneral;
 		FormPoCur formPoCur;
 		FormIoRelay formIoRelay;
+		FormFileMng formFileMng;
 		FormLog formLog;
 
 		public FormBase()
@@ -33,10 +35,13 @@ namespace OpenAPI_Cs_WinForm
 		protected override void OnLoad(EventArgs e)
 		{
 			cli.IpAddr = tbIpAddrRemote.Text;
+			fcli.IpAddr = tbIpAddrRemote.Text;
 
 			AddClientPage(0, formGeneral = new FormGeneral());
 			AddClientPage(1, formPoCur = new FormPoCur());
 			AddClientPage(2, formIoRelay = new FormIoRelay());
+			AddClientPage(3, formFileMng = new FormFileMng());
+			formFileMng.SetFileCli(fcli);
 			tabCtrl.SelectedIndex = 0;
 
 			CreateLogPanel();
