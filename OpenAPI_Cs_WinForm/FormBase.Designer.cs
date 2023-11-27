@@ -54,7 +54,7 @@
 			this.tbIpAddrRemote.Name = "tbIpAddrRemote";
 			this.tbIpAddrRemote.Size = new System.Drawing.Size(114, 21);
 			this.tbIpAddrRemote.TabIndex = 1;
-			this.tbIpAddrRemote.Text = "192.168.1.172";
+			this.tbIpAddrRemote.Text = "192.168.1.150";
 			// 
 			// label5
 			// 

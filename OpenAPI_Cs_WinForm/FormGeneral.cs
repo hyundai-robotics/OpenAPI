@@ -81,6 +81,20 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
+		private void btMotorOn_Click(object sender, EventArgs e)
+		{
+			string path = "project/robot/motor_on";
+			cli.PostData(path);
+		}
+
+
+		private void btMotorOff_Click(object sender, EventArgs e)
+		{
+			string path = "project/robot/motor_off";
+			cli.PostData(path);
+		}
+
+
 		private int DisplayState_ProgCnt(JObject jo)
 		{
 			var pno = jo["cur_prog_no"];
