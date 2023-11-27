@@ -39,7 +39,7 @@
 			this.tbLog.Name = "tbLog";
 			this.tbLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.tbLog.Size = new System.Drawing.Size(472, 167);
-			this.tbLog.TabIndex = 1;
+			this.tbLog.TabIndex = 0;
 			this.tbLog.WordWrap = false;
 			// 
 			// FormLog

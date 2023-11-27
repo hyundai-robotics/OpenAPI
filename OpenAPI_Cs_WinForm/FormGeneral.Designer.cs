@@ -51,7 +51,7 @@
 			this.btStart.Location = new System.Drawing.Point(28, 203);
 			this.btStart.Name = "btStart";
 			this.btStart.Size = new System.Drawing.Size(57, 40);
-			this.btStart.TabIndex = 19;
+			this.btStart.TabIndex = 13;
 			this.btStart.Text = "START";
 			this.btStart.UseVisualStyleBackColor = true;
 			this.btStart.Click += new System.EventHandler(this.btStart_Click);
@@ -61,7 +61,7 @@
 			this.button1.Location = new System.Drawing.Point(90, 203);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(57, 40);
-			this.button1.TabIndex = 20;
+			this.button1.TabIndex = 14;
 			this.button1.Text = "STOP";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.btStop_Click);
@@ -71,7 +71,7 @@
 			this.btReset.Location = new System.Drawing.Point(153, 203);
 			this.btReset.Name = "btReset";
 			this.btReset.Size = new System.Drawing.Size(57, 40);
-			this.btReset.TabIndex = 21;
+			this.btReset.TabIndex = 15;
 			this.btReset.Text = "RESET";
 			this.btReset.UseVisualStyleBackColor = true;
 			this.btReset.Click += new System.EventHandler(this.btReset_Click);
@@ -81,7 +81,7 @@
 			this.btSelStepFunc.Location = new System.Drawing.Point(28, 165);
 			this.btSelStepFunc.Name = "btSelStepFunc";
 			this.btSelStepFunc.Size = new System.Drawing.Size(86, 21);
-			this.btSelStepFunc.TabIndex = 17;
+			this.btSelStepFunc.TabIndex = 10;
 			this.btSelStepFunc.Text = "Select S/F";
 			this.btSelStepFunc.UseVisualStyleBackColor = true;
 			this.btSelStepFunc.Click += new System.EventHandler(this.btSelectStepFunc_Click);
@@ -91,7 +91,7 @@
 			this.btSelectJob.Location = new System.Drawing.Point(28, 127);
 			this.btSelectJob.Name = "btSelectJob";
 			this.btSelectJob.Size = new System.Drawing.Size(108, 21);
-			this.btSelectJob.TabIndex = 18;
+			this.btSelectJob.TabIndex = 8;
 			this.btSelectJob.Text = "Select JOB";
 			this.btSelectJob.UseVisualStyleBackColor = true;
 			this.btSelectJob.Click += new System.EventHandler(this.btSelectJob_Click);
@@ -101,7 +101,7 @@
 			this.tbFunc.Location = new System.Drawing.Point(172, 165);
 			this.tbFunc.Name = "tbFunc";
 			this.tbFunc.Size = new System.Drawing.Size(38, 21);
-			this.tbFunc.TabIndex = 11;
+			this.tbFunc.TabIndex = 12;
 			this.tbFunc.Text = "0";
 			this.tbFunc.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
@@ -110,7 +110,7 @@
 			this.tbStep.Location = new System.Drawing.Point(125, 165);
 			this.tbStep.Name = "tbStep";
 			this.tbStep.Size = new System.Drawing.Size(38, 21);
-			this.tbStep.TabIndex = 12;
+			this.tbStep.TabIndex = 11;
 			this.tbStep.Text = "0";
 			this.tbStep.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
@@ -119,7 +119,7 @@
 			this.tbJobNo.Location = new System.Drawing.Point(148, 127);
 			this.tbJobNo.Name = "tbJobNo";
 			this.tbJobNo.Size = new System.Drawing.Size(62, 21);
-			this.tbJobNo.TabIndex = 13;
+			this.tbJobNo.TabIndex = 9;
 			this.tbJobNo.Text = "1";
 			this.tbJobNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
@@ -129,7 +129,7 @@
 			this.tbPlayback.Name = "tbPlayback";
 			this.tbPlayback.ReadOnly = true;
 			this.tbPlayback.Size = new System.Drawing.Size(62, 21);
-			this.tbPlayback.TabIndex = 14;
+			this.tbPlayback.TabIndex = 7;
 			// 
 			// tbMotor
 			// 
@@ -137,7 +137,7 @@
 			this.tbMotor.Name = "tbMotor";
 			this.tbMotor.ReadOnly = true;
 			this.tbMotor.Size = new System.Drawing.Size(62, 21);
-			this.tbMotor.TabIndex = 15;
+			this.tbMotor.TabIndex = 3;
 			// 
 			// tbProgCnt
 			// 
@@ -145,7 +145,7 @@
 			this.tbProgCnt.Name = "tbProgCnt";
 			this.tbProgCnt.ReadOnly = true;
 			this.tbProgCnt.Size = new System.Drawing.Size(108, 21);
-			this.tbProgCnt.TabIndex = 16;
+			this.tbProgCnt.TabIndex = 5;
 			// 
 			// label3
 			// 
@@ -153,7 +153,7 @@
 			this.label3.Location = new System.Drawing.Point(28, 26);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(37, 12);
-			this.label3.TabIndex = 7;
+			this.label3.TabIndex = 0;
 			this.label3.Text = "Mode";
 			// 
 			// label4
@@ -162,7 +162,7 @@
 			this.label4.Location = new System.Drawing.Point(146, 75);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(57, 12);
-			this.label4.TabIndex = 8;
+			this.label4.TabIndex = 6;
 			this.label4.Text = "Playback";
 			// 
 			// label2
@@ -171,7 +171,7 @@
 			this.label2.Location = new System.Drawing.Point(146, 26);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(37, 12);
-			this.label2.TabIndex = 9;
+			this.label2.TabIndex = 2;
 			this.label2.Text = "Motor";
 			// 
 			// label1
@@ -180,7 +180,7 @@
 			this.label1.Location = new System.Drawing.Point(28, 75);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(101, 12);
-			this.label1.TabIndex = 10;
+			this.label1.TabIndex = 4;
 			this.label1.Text = "Program Counter";
 			// 
 			// tbMode
@@ -189,7 +189,7 @@
 			this.tbMode.Name = "tbMode";
 			this.tbMode.ReadOnly = true;
 			this.tbMode.Size = new System.Drawing.Size(108, 21);
-			this.tbMode.TabIndex = 6;
+			this.tbMode.TabIndex = 1;
 			// 
 			// FormGeneral
 			// 

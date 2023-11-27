@@ -53,7 +53,7 @@
 			this.tbIpAddrRemote.Location = new System.Drawing.Point(150, 26);
 			this.tbIpAddrRemote.Name = "tbIpAddrRemote";
 			this.tbIpAddrRemote.Size = new System.Drawing.Size(114, 21);
-			this.tbIpAddrRemote.TabIndex = 6;
+			this.tbIpAddrRemote.TabIndex = 1;
 			this.tbIpAddrRemote.Text = "192.168.1.172";
 			// 
 			// label5
@@ -62,7 +62,7 @@
 			this.label5.Location = new System.Drawing.Point(28, 29);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(106, 12);
-			this.label5.TabIndex = 2;
+			this.label5.TabIndex = 0;
 			this.label5.Text = "IP addr. (Remote)";
 			// 
 			// chkUpdateOn
@@ -72,7 +72,7 @@
 			this.chkUpdateOn.Location = new System.Drawing.Point(270, 26);
 			this.chkUpdateOn.Name = "chkUpdateOn";
 			this.chkUpdateOn.Size = new System.Drawing.Size(76, 22);
-			this.chkUpdateOn.TabIndex = 7;
+			this.chkUpdateOn.TabIndex = 2;
 			this.chkUpdateOn.Text = "Update ON";
 			this.chkUpdateOn.UseVisualStyleBackColor = true;
 			this.chkUpdateOn.CheckedChanged += new System.EventHandler(this.chkUpdateOn_CheckedChanged);
@@ -87,7 +87,7 @@
 			this.tabCtrl.Name = "tabCtrl";
 			this.tabCtrl.SelectedIndex = 0;
 			this.tabCtrl.Size = new System.Drawing.Size(790, 405);
-			this.tabCtrl.TabIndex = 9;
+			this.tabCtrl.TabIndex = 3;
 			// 
 			// pageGeneral
 			// 
@@ -132,7 +132,7 @@
 			this.panelLog.Location = new System.Drawing.Point(34, 516);
 			this.panelLog.Name = "panelLog";
 			this.panelLog.Size = new System.Drawing.Size(782, 128);
-			this.panelLog.TabIndex = 10;
+			this.panelLog.TabIndex = 5;
 			// 
 			// label1
 			// 
@@ -140,7 +140,7 @@
 			this.label1.Location = new System.Drawing.Point(32, 494);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(64, 12);
-			this.label1.TabIndex = 2;
+			this.label1.TabIndex = 4;
 			this.label1.Text = "Events log";
 			// 
 			// FormBase

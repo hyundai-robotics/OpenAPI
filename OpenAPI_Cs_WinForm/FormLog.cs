@@ -33,11 +33,11 @@ namespace OpenAPI_Cs_WinForm
 
 			var query = MakeUpdateQuery();
 
-			Body respBody;
-			var iret = cli.GetData("logManager/search", query, out respBody);
+			Body body;
+			var iret = cli.GetData("logManager/search", query, out body);
 
 			_jaEvents.Clear();
-			ParseAddEvents(respBody.strBuf);
+			ParseAddEvents(body.strBuf);
 			DisplayLog();
 			return 0;
 		}

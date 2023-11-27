@@ -12,6 +12,15 @@ namespace OpenAPI_Cs_WinForm
 {
 	public class FileCli : HttpCli
 	{
+		// --------------------------------------------------------
+		/// @param[in]		path
+		/// @param[in]		incl_dir		whether to include directories
+		/// @param[in]		incl_file		whether to include files
+		/// @param[out]		jaFileInfos		file info array
+		/// @return
+		///			-	>0		HTTP status code (e.g. 200=OK)
+		///			-	-1		request fault
+		// --------------------------------------------------------
 		public int GetList(string path, bool incl_dir, bool incl_file, out JArray jaFileInfos)
 		{
 			string urlPath = "file_manager/file_list";
@@ -34,6 +43,14 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
+		// --------------------------------------------------------
+		/// @param[in]		pathnameLocal	target absolute pathname
+		/// @param[in]		pathnameRemote	source relative pathname
+		///									(e.g. "project/jobs/9991.job")
+		/// @return
+		///			-	>0		HTTP status code (e.g. 200=OK)
+		///			-	-1		request fault
+		// --------------------------------------------------------
 		public int GetFile(string pathnameLocal, string pathnameRemote)
 		{
 			string urlPath = "file_manager/files";
@@ -44,7 +61,7 @@ namespace OpenAPI_Cs_WinForm
 			if (iret < 0) return iret;
 
 			var fs = new FileStream(pathnameLocal, FileMode.CreateNew, FileAccess.Write);
-			var bw = new BinaryWriter(fs);
+			var bw = new BinaryWriter(fs);	// (transmit always with binary)
 			bw.Write(body.binBuf);
 
 			fs.Close();
@@ -52,13 +69,21 @@ namespace OpenAPI_Cs_WinForm
 			return 0;
 		}
 
-		
+
+		// --------------------------------------------------------
+		/// @param[in]		pathnameLocal	source absolute pathname
+		/// @param[in]		pathnameRemote	target relative pathname
+		///									(e.g. "project/jobs/9991.job")
+		/// @return
+		///			-	>0		HTTP status code (e.g. 200=OK)
+		///			-	-1		request fault
+		// --------------------------------------------------------
 		public int PutFile(string pathnameLocal, string pathnameRemote)
 		{
 			string urlPath = "file_manager/files/";
 			urlPath += pathnameRemote;
 			var body = new Body();
-			body.contentType = "application/octet-stream";
+			body.contentType = "application/octet-stream";	// (transmit always with binary)
 
 			var fs = new FileStream(pathnameLocal, FileMode.Open, FileAccess.Read);
 			var br = new BinaryReader(fs);
@@ -72,6 +97,13 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
+		// --------------------------------------------------------
+		/// @param[in]		pathnameRemote	relative pathname to delete
+		///									(e.g. "project/jobs/9991.job")
+		/// @return
+		///			-	>0		HTTP status code (e.g. 200=OK)
+		///			-	-1		request fault
+		// --------------------------------------------------------
 		public int DelFile(string pathnameRemote)
 		{
 			string urlPath = "file_manager/files/";

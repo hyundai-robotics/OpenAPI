@@ -14,7 +14,7 @@ namespace OpenAPI_Cs_WinForm
 {
 	public class HttpCli
 	{
-		public string IpAddr;
+		public string IpAddr { get; set; }
 
 		public string StrDomain()
 		{
@@ -23,29 +23,38 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		public int GetData(string path, out Body respBody)
+		// --------------------------------------------------------
+		public int GetData(string path, out Body body)
 		{
-			return GetData(path, "", out respBody);
+			return GetData(path, "", out body);
 		}
 
 
-		public int GetData(string path, string query, out Body respBody)
+		// --------------------------------------------------------
+		/// @param[in]	path	HTTP path (e.g. "project/plc/mw/val_s32")
+		/// @param[in]	query	HTTP query (e.g. "?st=0&len=30")
+		/// @param[out]	body	response body
+		/// @return
+		///			-	>0		HTTP status code (e.g. 200=OK)
+		///			-	-1		request fault
+		// --------------------------------------------------------
+		public int GetData(string path, string query, out Body body)
 		{
 			int iresult = 0;
-			respBody = new Body();
+			body = new Body();
 			try
 			{
 				var url = StrDomain() + path + query;
 				var request = (HttpWebRequest)WebRequest.Create(url);
 				request.Method = "GET";
-				request.Timeout = 30 * 1000; // 30초
+				request.Timeout = 30 * 1000; // 30 sec
 
 				using (var resp = (HttpWebResponse)request.GetResponse())
 				{
 					var status = resp.StatusCode;
 					//Console.WriteLine(status);  // 정상이면 "OK"
 
-					iresult = respBody.setResp(resp);
+					iresult = body.setResp(resp);
 				}
 			}
 			catch (WebException e)
@@ -60,7 +69,8 @@ namespace OpenAPI_Cs_WinForm
 			return iresult;
 		}
 
-	
+
+		// --------------------------------------------------------
 		public int PostData(string path)
 		{
 			var body = new Body();
@@ -68,6 +78,13 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
+		// --------------------------------------------------------
+		/// @param[in]		path	HTTP path (e.g. "project/plc/set_relay_value")
+		/// @param[in,out]	body	request & response body
+		/// @return
+		///			-	>0		HTTP status code (e.g. 200=OK)
+		///			-	-1		request fault
+		// --------------------------------------------------------
 		public int PostData(string path, ref Body body)
 		{
 			int iresult = 0;
@@ -102,10 +119,16 @@ namespace OpenAPI_Cs_WinForm
 				return -1;
 			}
 
-			return 0;
+			return iresult;
 		}
 
 
+		// --------------------------------------------------------
+		/// @param[in]		path	HTTP path (e.g. "file_manager/files/project/jobs/9991.job")
+		/// @return
+		///			-	>0		HTTP status code (e.g. 200=OK)
+		///			-	-1		request fault
+		// --------------------------------------------------------
 		public int DelData(string path)
 		{
 			int iresult = 0;

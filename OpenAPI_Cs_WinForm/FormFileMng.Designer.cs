@@ -65,7 +65,7 @@
 			this.lvRemote.MultiSelect = false;
 			this.lvRemote.Name = "lvRemote";
 			this.lvRemote.Size = new System.Drawing.Size(335, 230);
-			this.lvRemote.TabIndex = 0;
+			this.lvRemote.TabIndex = 1;
 			this.lvRemote.UseCompatibleStateImageBehavior = false;
 			this.lvRemote.View = System.Windows.Forms.View.Details;
 			this.lvRemote.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvRemote_MouseClick);
@@ -90,7 +90,7 @@
 			this.btUpdateRemote.Location = new System.Drawing.Point(71, 348);
 			this.btUpdateRemote.Name = "btUpdateRemote";
 			this.btUpdateRemote.Size = new System.Drawing.Size(115, 24);
-			this.btUpdateRemote.TabIndex = 1;
+			this.btUpdateRemote.TabIndex = 6;
 			this.btUpdateRemote.Text = "Update Remote";
 			this.btUpdateRemote.UseVisualStyleBackColor = true;
 			this.btUpdateRemote.Click += new System.EventHandler(this.btUpdateRemote_Click);
@@ -100,7 +100,7 @@
 			this.tbPathRemote.Location = new System.Drawing.Point(71, 286);
 			this.tbPathRemote.Name = "tbPathRemote";
 			this.tbPathRemote.Size = new System.Drawing.Size(276, 21);
-			this.tbPathRemote.TabIndex = 2;
+			this.tbPathRemote.TabIndex = 3;
 			// 
 			// label1
 			// 
@@ -108,7 +108,7 @@
 			this.label1.Location = new System.Drawing.Point(12, 291);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(30, 12);
-			this.label1.TabIndex = 3;
+			this.label1.TabIndex = 2;
 			this.label1.Text = "Path";
 			// 
 			// label2
@@ -117,7 +117,7 @@
 			this.label2.Location = new System.Drawing.Point(12, 324);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(46, 12);
-			this.label2.TabIndex = 3;
+			this.label2.TabIndex = 4;
 			this.label2.Text = "FName";
 			// 
 			// tbFNameRemote
@@ -125,14 +125,14 @@
 			this.tbFNameRemote.Location = new System.Drawing.Point(71, 318);
 			this.tbFNameRemote.Name = "tbFNameRemote";
 			this.tbFNameRemote.Size = new System.Drawing.Size(276, 21);
-			this.tbFNameRemote.TabIndex = 2;
+			this.tbFNameRemote.TabIndex = 5;
 			// 
 			// btGet
 			// 
 			this.btGet.Location = new System.Drawing.Point(353, 80);
 			this.btGet.Name = "btGet";
 			this.btGet.Size = new System.Drawing.Size(61, 62);
-			this.btGet.TabIndex = 4;
+			this.btGet.TabIndex = 15;
 			this.btGet.Text = "Get\r\n\r\n->";
 			this.btGet.UseVisualStyleBackColor = true;
 			this.btGet.Click += new System.EventHandler(this.btGet_Click);
@@ -149,7 +149,7 @@
 			this.lvLocal.MultiSelect = false;
 			this.lvLocal.Name = "lvLocal";
 			this.lvLocal.Size = new System.Drawing.Size(335, 230);
-			this.lvLocal.TabIndex = 0;
+			this.lvLocal.TabIndex = 9;
 			this.lvLocal.UseCompatibleStateImageBehavior = false;
 			this.lvLocal.View = System.Windows.Forms.View.Details;
 			this.lvLocal.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvLocal_MouseClick);
@@ -174,14 +174,14 @@
 			this.tbPathLocal.Location = new System.Drawing.Point(479, 286);
 			this.tbPathLocal.Name = "tbPathLocal";
 			this.tbPathLocal.Size = new System.Drawing.Size(276, 21);
-			this.tbPathLocal.TabIndex = 2;
+			this.tbPathLocal.TabIndex = 11;
 			// 
 			// tbFNameLocal
 			// 
 			this.tbFNameLocal.Location = new System.Drawing.Point(479, 318);
 			this.tbFNameLocal.Name = "tbFNameLocal";
 			this.tbFNameLocal.Size = new System.Drawing.Size(276, 21);
-			this.tbFNameLocal.TabIndex = 2;
+			this.tbFNameLocal.TabIndex = 13;
 			// 
 			// label3
 			// 
@@ -189,7 +189,7 @@
 			this.label3.Location = new System.Drawing.Point(420, 291);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(30, 12);
-			this.label3.TabIndex = 3;
+			this.label3.TabIndex = 10;
 			this.label3.Text = "Path";
 			// 
 			// label4
@@ -198,7 +198,7 @@
 			this.label4.Location = new System.Drawing.Point(420, 324);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(46, 12);
-			this.label4.TabIndex = 3;
+			this.label4.TabIndex = 12;
 			this.label4.Text = "FName";
 			// 
 			// label5
@@ -207,7 +207,7 @@
 			this.label5.Location = new System.Drawing.Point(12, 20);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(152, 12);
-			this.label5.TabIndex = 3;
+			this.label5.TabIndex = 0;
 			this.label5.Text = "Remote (Robot Controller)";
 			// 
 			// label6
@@ -216,7 +216,7 @@
 			this.label6.Location = new System.Drawing.Point(418, 20);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(67, 12);
-			this.label6.TabIndex = 3;
+			this.label6.TabIndex = 8;
 			this.label6.Text = "Local (PC)";
 			// 
 			// button1
@@ -224,7 +224,7 @@
 			this.button1.Location = new System.Drawing.Point(479, 348);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(115, 24);
-			this.button1.TabIndex = 1;
+			this.button1.TabIndex = 14;
 			this.button1.Text = "Update Local";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.btUpdateLocal_Click);
@@ -234,7 +234,7 @@
 			this.btPut.Location = new System.Drawing.Point(353, 161);
 			this.btPut.Name = "btPut";
 			this.btPut.Size = new System.Drawing.Size(61, 62);
-			this.btPut.TabIndex = 5;
+			this.btPut.TabIndex = 16;
 			this.btPut.Text = "Put\r\n\r\n<-";
 			this.btPut.UseVisualStyleBackColor = true;
 			this.btPut.Click += new System.EventHandler(this.btPut_Click);
@@ -244,7 +244,7 @@
 			this.btDelRemote.Location = new System.Drawing.Point(278, 348);
 			this.btDelRemote.Name = "btDelRemote";
 			this.btDelRemote.Size = new System.Drawing.Size(69, 24);
-			this.btDelRemote.TabIndex = 1;
+			this.btDelRemote.TabIndex = 7;
 			this.btDelRemote.Text = "Delete";
 			this.btDelRemote.UseVisualStyleBackColor = true;
 			this.btDelRemote.Click += new System.EventHandler(this.btDelRemote_Click);

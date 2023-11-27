@@ -30,12 +30,6 @@ namespace OpenAPI_Cs_WinForm
 		public FormFileMng()
 		{
 			InitializeComponent();
-			Init();
-		}
-
-		private void Init()
-		{
-			
 		}
 
 

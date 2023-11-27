@@ -45,7 +45,7 @@
 			this.cbUCrdNos.Name = "cbUCrdNos";
 			this.cbUCrdNos.Size = new System.Drawing.Size(61, 20);
 			this.cbUCrdNos.Sorted = true;
-			this.cbUCrdNos.TabIndex = 15;
+			this.cbUCrdNos.TabIndex = 5;
 			// 
 			// label8
 			// 
@@ -53,7 +53,7 @@
 			this.label8.Location = new System.Drawing.Point(24, 97);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(37, 12);
-			this.label8.TabIndex = 12;
+			this.label8.TabIndex = 4;
 			this.label8.Text = "USER";
 			// 
 			// label7
@@ -62,7 +62,7 @@
 			this.label7.Location = new System.Drawing.Point(24, 67);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(37, 12);
-			this.label7.TabIndex = 13;
+			this.label7.TabIndex = 2;
 			this.label7.Text = "BASE";
 			// 
 			// label6
@@ -71,7 +71,7 @@
 			this.label6.Location = new System.Drawing.Point(24, 37);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(37, 12);
-			this.label6.TabIndex = 14;
+			this.label6.TabIndex = 0;
 			this.label6.Text = "AXES";
 			// 
 			// tbCurPoseUser
@@ -80,7 +80,7 @@
 			this.tbCurPoseUser.Name = "tbCurPoseUser";
 			this.tbCurPoseUser.ReadOnly = true;
 			this.tbCurPoseUser.Size = new System.Drawing.Size(285, 21);
-			this.tbCurPoseUser.TabIndex = 9;
+			this.tbCurPoseUser.TabIndex = 6;
 			// 
 			// tbCurPoseBase
 			// 
@@ -88,7 +88,7 @@
 			this.tbCurPoseBase.Name = "tbCurPoseBase";
 			this.tbCurPoseBase.ReadOnly = true;
 			this.tbCurPoseBase.Size = new System.Drawing.Size(352, 21);
-			this.tbCurPoseBase.TabIndex = 10;
+			this.tbCurPoseBase.TabIndex = 3;
 			// 
 			// tbCurPoseAxes
 			// 
@@ -96,7 +96,7 @@
 			this.tbCurPoseAxes.Name = "tbCurPoseAxes";
 			this.tbCurPoseAxes.ReadOnly = true;
 			this.tbCurPoseAxes.Size = new System.Drawing.Size(352, 21);
-			this.tbCurPoseAxes.TabIndex = 11;
+			this.tbCurPoseAxes.TabIndex = 1;
 			// 
 			// FormPoCur
 			// 

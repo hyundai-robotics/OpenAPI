@@ -57,7 +57,7 @@
 			this.cbDataType.Location = new System.Drawing.Point(29, 118);
 			this.cbDataType.Name = "cbDataType";
 			this.cbDataType.Size = new System.Drawing.Size(61, 20);
-			this.cbDataType.TabIndex = 18;
+			this.cbDataType.TabIndex = 7;
 			// 
 			// cbObjType
 			// 
@@ -69,7 +69,7 @@
 			this.cbObjType.Location = new System.Drawing.Point(29, 60);
 			this.cbObjType.Name = "cbObjType";
 			this.cbObjType.Size = new System.Drawing.Size(61, 20);
-			this.cbObjType.TabIndex = 19;
+			this.cbObjType.TabIndex = 1;
 			// 
 			// cbRelayType
 			// 
@@ -87,7 +87,7 @@
 			this.cbRelayType.Location = new System.Drawing.Point(186, 60);
 			this.cbRelayType.Name = "cbRelayType";
 			this.cbRelayType.Size = new System.Drawing.Size(61, 20);
-			this.cbRelayType.TabIndex = 20;
+			this.cbRelayType.TabIndex = 5;
 			this.cbRelayType.SelectedIndexChanged += new System.EventHandler(this.cbRelayType_SelectedIndexChanged);
 			// 
 			// tbIndex
@@ -95,7 +95,7 @@
 			this.tbIndex.Location = new System.Drawing.Point(109, 118);
 			this.tbIndex.Name = "tbIndex";
 			this.tbIndex.Size = new System.Drawing.Size(61, 21);
-			this.tbIndex.TabIndex = 15;
+			this.tbIndex.TabIndex = 9;
 			this.tbIndex.Text = "0";
 			this.tbIndex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
@@ -105,7 +105,7 @@
 			this.tbCurValue.Name = "tbCurValue";
 			this.tbCurValue.ReadOnly = true;
 			this.tbCurValue.Size = new System.Drawing.Size(61, 21);
-			this.tbCurValue.TabIndex = 16;
+			this.tbCurValue.TabIndex = 11;
 			this.tbCurValue.Text = "0";
 			this.tbCurValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
@@ -114,7 +114,7 @@
 			this.tbObjIdx.Location = new System.Drawing.Point(109, 60);
 			this.tbObjIdx.Name = "tbObjIdx";
 			this.tbObjIdx.Size = new System.Drawing.Size(61, 21);
-			this.tbObjIdx.TabIndex = 17;
+			this.tbObjIdx.TabIndex = 3;
 			this.tbObjIdx.Text = "0";
 			this.tbObjIdx.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
@@ -124,7 +124,7 @@
 			this.label13.Location = new System.Drawing.Point(29, 95);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(59, 12);
-			this.label13.TabIndex = 9;
+			this.label13.TabIndex = 6;
 			this.label13.Text = "data_type";
 			// 
 			// lbObjType
@@ -133,7 +133,7 @@
 			this.lbObjType.Location = new System.Drawing.Point(29, 37);
 			this.lbObjType.Name = "lbObjType";
 			this.lbObjType.Size = new System.Drawing.Size(52, 12);
-			this.lbObjType.TabIndex = 10;
+			this.lbObjType.TabIndex = 0;
 			this.lbObjType.Text = "obj_type";
 			// 
 			// label14
@@ -142,7 +142,7 @@
 			this.label14.Location = new System.Drawing.Point(109, 95);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(36, 12);
-			this.label14.TabIndex = 11;
+			this.label14.TabIndex = 8;
 			this.label14.Text = "index";
 			// 
 			// label12
@@ -151,7 +151,7 @@
 			this.label12.Location = new System.Drawing.Point(186, 95);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(57, 12);
-			this.label12.TabIndex = 12;
+			this.label12.TabIndex = 10;
 			this.label12.Text = "cur.value";
 			// 
 			// label10
@@ -160,7 +160,7 @@
 			this.label10.Location = new System.Drawing.Point(186, 37);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(63, 12);
-			this.label10.TabIndex = 13;
+			this.label10.TabIndex = 4;
 			this.label10.Text = "relay_type";
 			// 
 			// lbObjIdx
@@ -169,7 +169,7 @@
 			this.lbObjIdx.Location = new System.Drawing.Point(109, 37);
 			this.lbObjIdx.Name = "lbObjIdx";
 			this.lbObjIdx.Size = new System.Drawing.Size(45, 12);
-			this.lbObjIdx.TabIndex = 14;
+			this.lbObjIdx.TabIndex = 2;
 			this.lbObjIdx.Text = "obj_idx";
 			// 
 			// label1
@@ -186,7 +186,7 @@
 			this.tbNewValue.Location = new System.Drawing.Point(261, 118);
 			this.tbNewValue.Name = "tbNewValue";
 			this.tbNewValue.Size = new System.Drawing.Size(61, 21);
-			this.tbNewValue.TabIndex = 16;
+			this.tbNewValue.TabIndex = 13;
 			this.tbNewValue.Text = "0";
 			this.tbNewValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
@@ -195,7 +195,7 @@
 			this.btSet.Location = new System.Drawing.Point(337, 118);
 			this.btSet.Name = "btSet";
 			this.btSet.Size = new System.Drawing.Size(60, 23);
-			this.btSet.TabIndex = 21;
+			this.btSet.TabIndex = 14;
 			this.btSet.Text = "set";
 			this.btSet.UseVisualStyleBackColor = true;
 			this.btSet.Click += new System.EventHandler(this.btSet_Click);

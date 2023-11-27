@@ -26,11 +26,11 @@ namespace OpenAPI_Cs_WinForm
 		{
 			if (Visible == false) return 0;
 
-			Body respBody;
-			var iret = cli.GetData("project/rgen", out respBody);
+			Body body;
+			var iret = cli.GetData("project/rgen", out body);
 			if (iret < 0) return -1;
 
-			var jo = respBody.ToJObject();
+			var jo = body.ToJObject();
 			DisplayState(jo);
 			UpdateEidLast(jo);
 

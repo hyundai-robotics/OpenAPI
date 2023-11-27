@@ -60,11 +60,11 @@ namespace OpenAPI_Cs_WinForm
 					query += string.Format("&ucrd_no={0}", ucrd_no);
 				}
 			}
-			Body respBody;
-			var iret = cli.GetData("project/robot/po_cur", query, out respBody);
+			Body body;
+			var iret = cli.GetData("project/robot/po_cur", query, out body);
 			if (iret < 0) return -1;
 
-			var jo = respBody.ToJObject();
+			var jo = body.ToJObject();
 
 			return DisplayCurPose(crdType, jo);
 		}
@@ -76,11 +76,11 @@ namespace OpenAPI_Cs_WinForm
 			cbUCrdNos.Items.Add("");
 			cbUCrdNos.Items.Add(0);
 
-			Body respBody;
-			var iret = cli.GetData("project/control/ucss/ucs_nos", out respBody);
+			Body body;
+			var iret = cli.GetData("project/control/ucss/ucs_nos", out body);
 			if (iret < 0) return -1;
 
-			var jaNo = respBody.ToJArray();
+			var jaNo = body.ToJArray();
 			foreach (var no in jaNo)
 			{
 				cbUCrdNos.Items.Add(no);

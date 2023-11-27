@@ -99,6 +99,9 @@
     <EmbeddedResource Include="FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormClient.resx">
+      <DependentUpon>FormClient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFileMng.resx">
       <DependentUpon>FormFileMng.cs</DependentUpon>
     </EmbeddedResource>
