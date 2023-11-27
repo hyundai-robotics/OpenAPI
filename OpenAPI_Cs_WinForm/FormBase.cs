@@ -18,7 +18,7 @@ namespace OpenAPI_Cs_WinForm
 {
 	public partial class FormBase : Form
 	{
-		HttpCli cli = new HttpCli();
+		HttpCli hcli = new HttpCli();
 		FileCli fcli = new FileCli();
 		FormGeneral formGeneral;
 		FormPoCur formPoCur;
@@ -34,9 +34,6 @@ namespace OpenAPI_Cs_WinForm
 
 		protected override void OnLoad(EventArgs e)
 		{
-			cli.IpAddr = tbIpAddrRemote.Text;
-			fcli.IpAddr = tbIpAddrRemote.Text;
-
 			AddClientPage(0, formGeneral = new FormGeneral());
 			AddClientPage(1, formPoCur = new FormPoCur());
 			AddClientPage(2, formIoRelay = new FormIoRelay());
@@ -50,9 +47,9 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected void AddClientPage(int idx, FormClient form)
+		private void AddClientPage(int idx, FormClient form)
 		{
-			form.SetHttpCli(cli);
+			form.SetHttpCli(hcli);
 			form.TopLevel = false;
 			tabCtrl.TabPages[idx].Controls.Add(form);
 			tabCtrl.SelectedIndex = idx;
@@ -61,10 +58,10 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected void CreateLogPanel()
+		private void CreateLogPanel()
 		{
 			formLog = new FormLog();
-			formLog.SetHttpCli(cli);
+			formLog.SetHttpCli(hcli);
 			formLog.TopLevel = false;
 			panelLog.Controls.Add(formLog);
 			formLog.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -72,21 +69,28 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		private void chkUpdateOn_CheckedChanged(object sender, EventArgs e)
+		private void chkConnectOn_CheckedChanged(object sender, EventArgs e)
 		{
-			bool on = chkUpdateOn.Checked;
+			bool on = chkConnectOn.Checked;
 			tbIpAddrRemote.Enabled = !on;
 
 			if (on)
 			{
+				hcli.IpAddr = tbIpAddrRemote.Text;
+				fcli.IpAddr = tbIpAddrRemote.Text;
 				formPoCur.UpdateUCrdNos();
+			}
+			else
+			{
+				hcli.IpAddr = "";
+				fcli.IpAddr = "";
 			}
 		}
 
 
-		private void timerUpdate_Tick(object sender, EventArgs e)
+		private void timerConnect_Tick(object sender, EventArgs e)
 		{
-			if (chkUpdateOn.Checked)
+			if (chkConnectOn.Checked)
 			{
 				formGeneral.DoUpdate();
 				formPoCur.DoUpdate();

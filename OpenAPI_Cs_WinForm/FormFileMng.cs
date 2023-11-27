@@ -25,7 +25,7 @@ namespace OpenAPI_Cs_WinForm
 
 		private const string dirMark = "<dir>";
 
-		protected FileCli fcli;
+		private FileCli fcli;
 
 		public FormFileMng()
 		{
@@ -300,6 +300,7 @@ namespace OpenAPI_Cs_WinForm
 		{
 			char[] cs = { '/', '\\' };
 			var path = path1.TrimEnd(cs) + "/" + path2.TrimStart(cs);
+			path = path.TrimStart(cs);
 			return path;
 		}
 

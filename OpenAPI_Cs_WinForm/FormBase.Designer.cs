@@ -32,7 +32,7 @@
 			this.timerUpdate = new System.Windows.Forms.Timer(this.components);
 			this.tbIpAddrRemote = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
-			this.chkUpdateOn = new System.Windows.Forms.CheckBox();
+			this.chkConnectOn = new System.Windows.Forms.CheckBox();
 			this.tabCtrl = new System.Windows.Forms.TabControl();
 			this.pageGeneral = new System.Windows.Forms.TabPage();
 			this.pagePoCur = new System.Windows.Forms.TabPage();
@@ -46,7 +46,7 @@
 			// timerUpdate
 			// 
 			this.timerUpdate.Interval = 200;
-			this.timerUpdate.Tick += new System.EventHandler(this.timerUpdate_Tick);
+			this.timerUpdate.Tick += new System.EventHandler(this.timerConnect_Tick);
 			// 
 			// tbIpAddrRemote
 			// 
@@ -65,17 +65,17 @@
 			this.label5.TabIndex = 0;
 			this.label5.Text = "IP addr. (Remote)";
 			// 
-			// chkUpdateOn
+			// chkConnectOn
 			// 
-			this.chkUpdateOn.Appearance = System.Windows.Forms.Appearance.Button;
-			this.chkUpdateOn.AutoSize = true;
-			this.chkUpdateOn.Location = new System.Drawing.Point(270, 26);
-			this.chkUpdateOn.Name = "chkUpdateOn";
-			this.chkUpdateOn.Size = new System.Drawing.Size(76, 22);
-			this.chkUpdateOn.TabIndex = 2;
-			this.chkUpdateOn.Text = "Update ON";
-			this.chkUpdateOn.UseVisualStyleBackColor = true;
-			this.chkUpdateOn.CheckedChanged += new System.EventHandler(this.chkUpdateOn_CheckedChanged);
+			this.chkConnectOn.Appearance = System.Windows.Forms.Appearance.Button;
+			this.chkConnectOn.AutoSize = true;
+			this.chkConnectOn.Location = new System.Drawing.Point(279, 24);
+			this.chkConnectOn.Name = "chkConnectOn";
+			this.chkConnectOn.Size = new System.Drawing.Size(84, 22);
+			this.chkConnectOn.TabIndex = 2;
+			this.chkConnectOn.Text = "Connect ON";
+			this.chkConnectOn.UseVisualStyleBackColor = true;
+			this.chkConnectOn.CheckedChanged += new System.EventHandler(this.chkConnectOn_CheckedChanged);
 			// 
 			// tabCtrl
 			// 
@@ -103,7 +103,7 @@
 			// 
 			this.pagePoCur.Location = new System.Drawing.Point(4, 22);
 			this.pagePoCur.Name = "pagePoCur";
-			this.pagePoCur.Size = new System.Drawing.Size(782, 341);
+			this.pagePoCur.Size = new System.Drawing.Size(782, 379);
 			this.pagePoCur.TabIndex = 2;
 			this.pagePoCur.Text = "PoCur";
 			this.pagePoCur.UseVisualStyleBackColor = true;
@@ -113,7 +113,7 @@
 			this.pageIoRelay.Location = new System.Drawing.Point(4, 22);
 			this.pageIoRelay.Name = "pageIoRelay";
 			this.pageIoRelay.Padding = new System.Windows.Forms.Padding(3);
-			this.pageIoRelay.Size = new System.Drawing.Size(782, 341);
+			this.pageIoRelay.Size = new System.Drawing.Size(782, 379);
 			this.pageIoRelay.TabIndex = 1;
 			this.pageIoRelay.Text = "IoRelay";
 			this.pageIoRelay.UseVisualStyleBackColor = true;
@@ -122,7 +122,7 @@
 			// 
 			this.pageFileMng.Location = new System.Drawing.Point(4, 22);
 			this.pageFileMng.Name = "pageFileMng";
-			this.pageFileMng.Size = new System.Drawing.Size(782, 341);
+			this.pageFileMng.Size = new System.Drawing.Size(782, 379);
 			this.pageFileMng.TabIndex = 3;
 			this.pageFileMng.Text = "FileMng";
 			this.pageFileMng.UseVisualStyleBackColor = true;
@@ -150,7 +150,7 @@
 			this.ClientSize = new System.Drawing.Size(844, 661);
 			this.Controls.Add(this.panelLog);
 			this.Controls.Add(this.tabCtrl);
-			this.Controls.Add(this.chkUpdateOn);
+			this.Controls.Add(this.chkConnectOn);
 			this.Controls.Add(this.tbIpAddrRemote);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.label5);
@@ -167,7 +167,7 @@
 		private System.Windows.Forms.Timer timerUpdate;
 		private System.Windows.Forms.TextBox tbIpAddrRemote;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.CheckBox chkUpdateOn;
+		private System.Windows.Forms.CheckBox chkConnectOn;
 		private System.Windows.Forms.TabControl tabCtrl;
 		private System.Windows.Forms.TabPage pageIoRelay;
 		private System.Windows.Forms.TabPage pageGeneral;

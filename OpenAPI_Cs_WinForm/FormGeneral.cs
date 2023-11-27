@@ -30,15 +30,15 @@ namespace OpenAPI_Cs_WinForm
 			var iret = cli.GetData("project/rgen", out body);
 			if (iret < 0) return -1;
 
-			var jo = body.ToJObject();
-			DisplayState(jo);
-			UpdateEidLast(jo);
+			var joRGen = body.ToJObject();
+			DisplayState(joRGen);
+			_eidLast.SetFrom(joRGen);
 
 			return 0;
 		}
 
 
-		protected int DisplayState(JObject jo)
+		private int DisplayState(JObject jo)
 		{
 			DisplayState_Mode(jo);
 			DisplayState_Motor(jo);
@@ -49,7 +49,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int DisplayState_Mode(JObject jo)
+		private int DisplayState_Mode(JObject jo)
 		{
 			int cur_mode = Convert.ToInt32(jo["cur_mode"]);
 			tbMode.Text = (cur_mode <= 1) ? "MANUAL" : "AUTO";
@@ -57,7 +57,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int DisplayState_Motor(JObject jo)
+		private int DisplayState_Motor(JObject jo)
 		{
 			String str;
 			int enable_state = Convert.ToInt32(jo["enable_state"]);
@@ -80,7 +80,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int DisplayState_ProgCnt(JObject jo)
+		private int DisplayState_ProgCnt(JObject jo)
 		{
 			var pno = jo["cur_prog_no"];
 			var sno = jo["cur_step_no"];
@@ -90,7 +90,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int DisplayState_Playback(JObject jo)
+		private int DisplayState_Playback(JObject jo)
 		{
 			int is_playback = Convert.ToInt32(jo["is_playback"]);
 			tbPlayback.Text = (is_playback > 0) ? "RUN" : "STOP";
@@ -152,18 +152,11 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
+		// extract last event ids from rgen object and provide it externally with EidLast attribute
 		private EidLast _eidLast;
 		public EidLast EidLast
 		{
 			get { return _eidLast; }
-		}
-		
-		protected void UpdateEidLast(JObject jo)
-		{
-			_eidLast.err = jo.Value<Int64>("eid_last_err");
-			_eidLast.warn = jo.Value<Int64>("eid_last_warn");
-			_eidLast.notice = jo.Value<Int64>("eid_last_noti");
-			_eidLast.history = jo.Value<Int64>("eid_last_history");
 		}
 	}
 }

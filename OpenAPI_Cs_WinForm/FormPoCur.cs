@@ -42,7 +42,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int UpdateCurPose(CrdType crdType)
+		private int UpdateCurPose(CrdType crdType)
 		{
 			var crd = (int)(crdType);
 			var query = string.Format("?crd={0}&mechinfo=-1", crd);
@@ -91,7 +91,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int DisplayCurPose(CrdType crdType, JObject jo)
+		private int DisplayCurPose(CrdType crdType, JObject jo)
 		{
 			if (crdType == CrdType.Base || crdType == CrdType.Robot)
 			{
@@ -110,7 +110,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int DisplayCurPoseAxes(JObject jo)
+		private int DisplayCurPoseAxes(JObject jo)
 		{
 			var j1 = jo["j1"];
 			var j2 = jo["j2"];
@@ -123,7 +123,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int DisplayCurPoseBase(JObject jo)
+		private int DisplayCurPoseBase(JObject jo)
 		{
 			var x = jo["x"];
 			var y = jo["y"];
@@ -136,7 +136,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int DisplayCurPoseUser(JObject jo)
+		private int DisplayCurPoseUser(JObject jo)
 		{
 			if (jo == null)
 			{

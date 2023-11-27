@@ -23,6 +23,11 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
+		public bool Ready {
+			get { return (IpAddr != "") && (IpAddr != null); }
+		}
+
+
 		// --------------------------------------------------------
 		public int GetData(string path, out Body body)
 		{
@@ -36,12 +41,16 @@ namespace OpenAPI_Cs_WinForm
 		/// @param[out]	body	response body
 		/// @return
 		///			-	>0		HTTP status code (e.g. 200=OK)
-		///			-	-1		request fault
+		///			-	-1		unready
+		///			-	-2		request fault
 		// --------------------------------------------------------
 		public int GetData(string path, string query, out Body body)
 		{
 			int iresult = 0;
 			body = new Body();
+
+			if (Ready == false) return -1;
+
 			try
 			{
 				var url = StrDomain() + path + query;
@@ -51,9 +60,6 @@ namespace OpenAPI_Cs_WinForm
 
 				using (var resp = (HttpWebResponse)request.GetResponse())
 				{
-					var status = resp.StatusCode;
-					//Console.WriteLine(status);  // 정상이면 "OK"
-
 					iresult = body.setResp(resp);
 				}
 			}
@@ -63,7 +69,7 @@ namespace OpenAPI_Cs_WinForm
 				{
 					//Console.WriteLine("Error code: {0}", resp.StatusCode);
 				}
-				return -1;
+				return -2;
 			}
 
 			return iresult;
@@ -83,11 +89,13 @@ namespace OpenAPI_Cs_WinForm
 		/// @param[in,out]	body	request & response body
 		/// @return
 		///			-	>0		HTTP status code (e.g. 200=OK)
-		///			-	-1		request fault
+		///			-	-1		unready
+		///			-	-2		request fault
 		// --------------------------------------------------------
 		public int PostData(string path, ref Body body)
 		{
 			int iresult = 0;
+			if (Ready == false) return -1;
 			try
 			{
 				var request = (HttpWebRequest)WebRequest.Create(StrDomain() + path);
@@ -116,7 +124,7 @@ namespace OpenAPI_Cs_WinForm
 				{
 					//Console.WriteLine("Error code: {0}", resp.StatusCode);
 				}
-				return -1;
+				return -2;
 			}
 
 			return iresult;
@@ -127,11 +135,13 @@ namespace OpenAPI_Cs_WinForm
 		/// @param[in]		path	HTTP path (e.g. "file_manager/files/project/jobs/9991.job")
 		/// @return
 		///			-	>0		HTTP status code (e.g. 200=OK)
-		///			-	-1		request fault
+		///			-	-1		unready
+		///			-	-2		request fault
 		// --------------------------------------------------------
 		public int DelData(string path)
 		{
 			int iresult = 0;
+			if (Ready == false) return -1;
 			try
 			{
 				var request = (HttpWebRequest)WebRequest.Create(StrDomain() + path);
@@ -150,7 +160,7 @@ namespace OpenAPI_Cs_WinForm
 				{
 					//Console.WriteLine("Error code: {0}", resp.StatusCode);
 				}
-				return -1;
+				return -2;
 			}
 
 			return iresult;

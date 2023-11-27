@@ -16,8 +16,8 @@ namespace OpenAPI_Cs_WinForm
 {
 	public partial class FormLog :  FormClient
 	{
-		private Int64 _eidLatest = 0;
-		private JArray _jaEvents = new JArray();
+		private Int64 _eidLastReceived = -1;
+		private JArray _jaNewEvents = new JArray();	// buffer to keep newly generated events
 
 		public FormLog()
 		{
@@ -36,21 +36,21 @@ namespace OpenAPI_Cs_WinForm
 			Body body;
 			var iret = cli.GetData("logManager/search", query, out body);
 
-			_jaEvents.Clear();
+			_jaNewEvents.Clear();
 			ParseAddEvents(body.strBuf);
 			DisplayLog();
 			return 0;
 		}
 
 
-		protected string MakeUpdateQuery()
+		private string MakeUpdateQuery()
 		{
-			var query = string.Format("?n_item={0}&cat_p={1}&id_min={2}", 5, "E,W,N,H", _eidLatest+1);
+			var query = string.Format("?n_item={0}&cat_p={1}&id_min={2}", 5, "E,W,N,H", _eidLastReceived+1);
 			return query;
 		}
 
 
-		protected void ParseAddEvents(string strEvents)
+		private void ParseAddEvents(string strEvents)
 		{
 			string[] strsEvent = strEvents.Split('\n');
 
@@ -61,15 +61,15 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int ParseAddEvent(string str)
+		private int ParseAddEvent(string str)
 		{
 			try
 			{
 				if (String.IsNullOrWhiteSpace(str)) return -1;
 
 				var jo = JObject.Parse(str);
-				_jaEvents.Add(jo);
-				UpdateEidLatest(jo);
+				_jaNewEvents.Add(jo);
+				UpdateEidLastReceived(jo);
 			}
 			catch (JsonReaderException)
 			{
@@ -80,26 +80,26 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int UpdateEidLatest(JObject joEvent)
+		private int UpdateEidLastReceived(JObject joEvent)
 		{
 			JToken tk;
 			bool b = joEvent.TryGetValue("id", out tk);
 			if (b == false) return -1;
 			var eid = tk.Value<int>();
-			if (_eidLatest < eid)
+			if (_eidLastReceived < eid)
 			{
-				_eidLatest = eid;
+				_eidLastReceived = eid;
 			}
 			return 0;
 		}
 
 
-		protected int DisplayLog()
+		private int DisplayLog()
 		{
-			var n = _jaEvents.Count();
+			var n = _jaNewEvents.Count();
 			for (int i = (n - 1); i >= 0; i--)
 			{
-				var tkEvent = _jaEvents[i];
+				var tkEvent = _jaNewEvents[i];
 				var jo = tkEvent.Value<JObject>();
 				var str = MakeLogString(jo);
 				tbLog.AppendText(str);
@@ -110,7 +110,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected string MakeLogString(JObject jo)
+		private string MakeLogString(JObject jo)
 		{
 			try {
 				var timeStamp = jo["ts"].ToString();

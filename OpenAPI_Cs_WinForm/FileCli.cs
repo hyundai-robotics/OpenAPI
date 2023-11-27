@@ -19,7 +19,8 @@ namespace OpenAPI_Cs_WinForm
 		/// @param[out]		jaFileInfos		file info array
 		/// @return
 		///			-	>0		HTTP status code (e.g. 200=OK)
-		///			-	-1		request fault
+		///			-	-1		unready
+		///			-	-2		request fault
 		// --------------------------------------------------------
 		public int GetList(string path, bool incl_dir, bool incl_file, out JArray jaFileInfos)
 		{
@@ -49,7 +50,8 @@ namespace OpenAPI_Cs_WinForm
 		///									(e.g. "project/jobs/9991.job")
 		/// @return
 		///			-	>0		HTTP status code (e.g. 200=OK)
-		///			-	-1		request fault
+		///			-	-1		unready
+		///			-	-2		request fault
 		// --------------------------------------------------------
 		public int GetFile(string pathnameLocal, string pathnameRemote)
 		{
@@ -76,7 +78,8 @@ namespace OpenAPI_Cs_WinForm
 		///									(e.g. "project/jobs/9991.job")
 		/// @return
 		///			-	>0		HTTP status code (e.g. 200=OK)
-		///			-	-1		request fault
+		///			-	-1		unready
+		///			-	-2		request fault
 		// --------------------------------------------------------
 		public int PutFile(string pathnameLocal, string pathnameRemote)
 		{
@@ -102,7 +105,8 @@ namespace OpenAPI_Cs_WinForm
 		///									(e.g. "project/jobs/9991.job")
 		/// @return
 		///			-	>0		HTTP status code (e.g. 200=OK)
-		///			-	-1		request fault
+		///			-	-1		unready
+		///			-	-2		request fault
 		// --------------------------------------------------------
 		public int DelFile(string pathnameRemote)
 		{

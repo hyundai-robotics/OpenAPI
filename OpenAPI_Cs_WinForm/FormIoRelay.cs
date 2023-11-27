@@ -70,7 +70,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected string SelectedRelayName(RelayNotation notation)
+		private string SelectedRelayName(RelayNotation notation)
 		{
 			char separator = (notation == RelayNotation.Url) ? '_' : '.';
 
@@ -98,7 +98,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected DataType SelectedDataType()
+		private DataType SelectedDataType()
 		{
 			var item = cbDataType.SelectedItem;
 			if (item == null) return DataType.Invalid;
@@ -111,7 +111,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected string SelectedDataTypeSuffix()
+		private string SelectedDataTypeSuffix()
 		{
 			var item = cbDataType.SelectedItem;
 			if (item == null) return "";
@@ -124,7 +124,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected bool HasObjType(string relayType)
+		private bool HasObjType(string relayType)
 		{
 			var str = relayType;
 			bool b = (str == "di" || str == "do" || str == "x" || str == "y");
@@ -144,7 +144,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int GetValueFromJaLong(JArray jaLong, DataType dataType, int idx)
+		private int GetValueFromJaLong(JArray jaLong, DataType dataType, int idx)
 		{
 			switch (dataType)
 			{
@@ -165,7 +165,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int GetBitFromJaLong(JArray jaLong, int idx)
+		private int GetBitFromJaLong(JArray jaLong, int idx)
 		{
 			int i = idx / 32;
 			var s32 = jaLong[i].Value<int>();
@@ -175,7 +175,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected sbyte GetSByteFromJaLong(JArray jaLong, int idx)
+		private sbyte GetSByteFromJaLong(JArray jaLong, int idx)
 		{
 			int i = idx / 4;
 			var s32 = jaLong[i].Value<int>();
@@ -185,7 +185,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected short GetShortFromJaLong(JArray jaLong, int idx)
+		private short GetShortFromJaLong(JArray jaLong, int idx)
 		{
 			int i = idx / 2;
 			var s32 = jaLong[i].Value<int>();
@@ -197,7 +197,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		protected int GetLongFromJaLong(JArray jaLong, int idx)
+		private int GetLongFromJaLong(JArray jaLong, int idx)
 		{
 			return jaLong[idx].Value<int>();
 		}
