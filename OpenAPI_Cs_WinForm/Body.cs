@@ -13,6 +13,7 @@ using Newtonsoft.Json.Linq;
 
 namespace OpenAPI_Cs_WinForm
 {
+	// HTTP body class to support text and binary transmission.
 	public class Body
 	{
 		public Body()

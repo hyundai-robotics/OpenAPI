@@ -16,6 +16,7 @@ using Newtonsoft.Json.Linq;
 
 namespace OpenAPI_Cs_WinForm
 {
+	// main form containing all sub-forms
 	public partial class FormBase : Form
 	{
 		HttpCli hcli = new HttpCli();
@@ -25,6 +26,7 @@ namespace OpenAPI_Cs_WinForm
 		FormIoRelay formIoRelay;
 		FormFileMng formFileMng;
 		FormLog formLog;
+
 
 		public FormBase()
 		{

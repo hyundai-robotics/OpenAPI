@@ -22,6 +22,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
+		// You can receive various state information using rgen (remote general) service.
 		public int DoUpdate()
 		{
 			if (Visible == false) return 0;
@@ -152,7 +153,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		// extract last event ids from rgen object and provide it externally with EidLast attribute
+		// extract last event ids from rgen object and provide it externally with EidLast property
 		private EidLast _eidLast;
 		public EidLast EidLast
 		{

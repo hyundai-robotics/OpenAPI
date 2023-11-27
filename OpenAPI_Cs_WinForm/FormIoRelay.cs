@@ -14,6 +14,7 @@ using Newtonsoft.Json.Linq;
 
 namespace OpenAPI_Cs_WinForm
 {
+	// getting and setting IO and built-in PLC values
 	public partial class FormIoRelay : FormClient
 	{
 		protected enum DataType

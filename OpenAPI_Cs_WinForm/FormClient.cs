@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace OpenAPI_Cs_WinForm
 {
+	// base class for all sub-forms
 	public class FormClient : Form
 	{
 		protected HttpCli cli;
@@ -16,6 +17,7 @@ namespace OpenAPI_Cs_WinForm
 		{
 			cli = httpCli;
 		}
+
 
 		private void InitializeComponent()
 		{
@@ -27,7 +29,6 @@ namespace OpenAPI_Cs_WinForm
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "FormClient";
 			this.ResumeLayout(false);
-
 		}
 	}
 }

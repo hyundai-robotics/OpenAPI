@@ -6,6 +6,8 @@ using Newtonsoft.Json.Linq;
 
 namespace OpenAPI_Cs_WinForm
 {
+	// last event ids
+	// (The last id info. is used to update event list only when new event is generated.)
 	public struct EidLast
 	{
 		public Int64 err;

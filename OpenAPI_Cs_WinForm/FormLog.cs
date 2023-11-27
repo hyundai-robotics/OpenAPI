@@ -16,7 +16,11 @@ namespace OpenAPI_Cs_WinForm
 {
 	public partial class FormLog :  FormClient
 	{
+		// last received event id.
+		// Use this for setting id_min query-parameter. You don't have to receive events that you already received.
 		private Int64 _eidLastReceived = -1;
+
+
 		private JArray _jaNewEvents = new JArray();	// buffer to keep newly generated events
 
 		public FormLog()
