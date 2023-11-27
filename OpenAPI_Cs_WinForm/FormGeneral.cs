@@ -42,6 +42,8 @@ namespace OpenAPI_Cs_WinForm
 		private int DisplayState(JObject jo)
 		{
 			DisplayState_Mode(jo);
+			DisplayState_JobState(jo);
+			DisplayState_JobSubState(jo);
 			DisplayState_Motor(jo);
 			DisplayState_ProgCnt(jo);
 			DisplayState_Playback(jo);
@@ -54,6 +56,33 @@ namespace OpenAPI_Cs_WinForm
 		{
 			int cur_mode = Convert.ToInt32(jo["cur_mode"]);
 			tbMode.Text = (cur_mode <= 1) ? "MANUAL" : "AUTO";
+			return 0;
+		}
+
+
+		private int DisplayState_JobState(JObject jo)
+		{
+			var dic = new Dictionary<int, string>();
+			dic.Add(0, "STOP");
+			dic.Add(1, "PLAYBACK");
+			dic.Add(2, "STEP.FWD");
+			dic.Add(3, "STEP.BWD");
+
+			int state = Convert.ToInt32(jo["job_state"]);
+			tbJobState.Text = dic.ContainsKey(state) ? dic[state] : "-";
+
+			return 0;
+		}
+
+
+		private int DisplayState_JobSubState(JObject jo)
+		{
+			var dic = new Dictionary<int, string>();
+			dic.Add(20, "UNTIL mon.");
+			dic.Add(23, "WAITing");
+
+			int state = Convert.ToInt32(jo["job_sub_state"]);
+			tbJobSubState.Text = dic.ContainsKey(state) ? dic[state] : "-";
 			return 0;
 		}
 
@@ -163,6 +192,13 @@ namespace OpenAPI_Cs_WinForm
 		private void btReset_Click(object sender, EventArgs e)
 		{
 			string path = "project/context/tasks/reset";
+			cli.PostData(path);
+		}
+
+
+		private void btRelWait_Click(object sender, EventArgs e)
+		{
+			string path = "project/context/tasks[0]/release_wait";
 			cli.PostData(path);
 		}
 

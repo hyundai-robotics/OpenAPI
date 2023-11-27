@@ -28,6 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.btMotorOff = new System.Windows.Forms.Button();
+			this.btMotorOn = new System.Windows.Forms.Button();
 			this.btStart = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.btReset = new System.Windows.Forms.Button();
@@ -44,15 +46,38 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.tbMode = new System.Windows.Forms.TextBox();
-			this.btMotorOn = new System.Windows.Forms.Button();
-			this.btMotorOff = new System.Windows.Forms.Button();
+			this.btRelWait = new System.Windows.Forms.Button();
+			this.tbJobState = new System.Windows.Forms.TextBox();
+			this.tbJobSubState = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
+			// 
+			// btMotorOff
+			// 
+			this.btMotorOff.Location = new System.Drawing.Point(214, 88);
+			this.btMotorOff.Name = "btMotorOff";
+			this.btMotorOff.Size = new System.Drawing.Size(81, 21);
+			this.btMotorOff.TabIndex = 16;
+			this.btMotorOff.Text = "Mot.OFF";
+			this.btMotorOff.UseVisualStyleBackColor = true;
+			this.btMotorOff.Click += new System.EventHandler(this.btMotorOff_Click);
+			// 
+			// btMotorOn
+			// 
+			this.btMotorOn.Location = new System.Drawing.Point(126, 88);
+			this.btMotorOn.Name = "btMotorOn";
+			this.btMotorOn.Size = new System.Drawing.Size(82, 21);
+			this.btMotorOn.TabIndex = 16;
+			this.btMotorOn.Text = "Mot.ON";
+			this.btMotorOn.UseVisualStyleBackColor = true;
+			this.btMotorOn.Click += new System.EventHandler(this.btMotorOn_Click);
 			// 
 			// btStart
 			// 
 			this.btStart.Location = new System.Drawing.Point(28, 253);
 			this.btStart.Name = "btStart";
-			this.btStart.Size = new System.Drawing.Size(73, 40);
+			this.btStart.Size = new System.Drawing.Size(63, 40);
 			this.btStart.TabIndex = 13;
 			this.btStart.Text = "START";
 			this.btStart.UseVisualStyleBackColor = true;
@@ -60,9 +85,9 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(107, 253);
+			this.button1.Location = new System.Drawing.Point(99, 253);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(73, 40);
+			this.button1.Size = new System.Drawing.Size(63, 40);
 			this.button1.TabIndex = 14;
 			this.button1.Text = "STOP";
 			this.button1.UseVisualStyleBackColor = true;
@@ -70,9 +95,9 @@
 			// 
 			// btReset
 			// 
-			this.btReset.Location = new System.Drawing.Point(185, 253);
+			this.btReset.Location = new System.Drawing.Point(170, 253);
 			this.btReset.Name = "btReset";
-			this.btReset.Size = new System.Drawing.Size(73, 40);
+			this.btReset.Size = new System.Drawing.Size(63, 40);
 			this.btReset.TabIndex = 15;
 			this.btReset.Text = "RESET";
 			this.btReset.UseVisualStyleBackColor = true;
@@ -82,7 +107,7 @@
 			// 
 			this.btSelStepFunc.Location = new System.Drawing.Point(28, 215);
 			this.btSelStepFunc.Name = "btSelStepFunc";
-			this.btSelStepFunc.Size = new System.Drawing.Size(132, 21);
+			this.btSelStepFunc.Size = new System.Drawing.Size(169, 21);
 			this.btSelStepFunc.TabIndex = 10;
 			this.btSelStepFunc.Text = "Select Step/Func";
 			this.btSelStepFunc.UseVisualStyleBackColor = true;
@@ -92,7 +117,7 @@
 			// 
 			this.btSelectJob.Location = new System.Drawing.Point(28, 177);
 			this.btSelectJob.Name = "btSelectJob";
-			this.btSelectJob.Size = new System.Drawing.Size(132, 21);
+			this.btSelectJob.Size = new System.Drawing.Size(169, 21);
 			this.btSelectJob.TabIndex = 8;
 			this.btSelectJob.Text = "Select JOB";
 			this.btSelectJob.UseVisualStyleBackColor = true;
@@ -100,7 +125,7 @@
 			// 
 			// tbFunc
 			// 
-			this.tbFunc.Location = new System.Drawing.Point(216, 215);
+			this.tbFunc.Location = new System.Drawing.Point(262, 215);
 			this.tbFunc.Name = "tbFunc";
 			this.tbFunc.Size = new System.Drawing.Size(42, 21);
 			this.tbFunc.TabIndex = 12;
@@ -109,7 +134,7 @@
 			// 
 			// tbStep
 			// 
-			this.tbStep.Location = new System.Drawing.Point(166, 215);
+			this.tbStep.Location = new System.Drawing.Point(212, 215);
 			this.tbStep.Name = "tbStep";
 			this.tbStep.Size = new System.Drawing.Size(44, 21);
 			this.tbStep.TabIndex = 11;
@@ -118,7 +143,7 @@
 			// 
 			// tbJobNo
 			// 
-			this.tbJobNo.Location = new System.Drawing.Point(166, 177);
+			this.tbJobNo.Location = new System.Drawing.Point(212, 177);
 			this.tbJobNo.Name = "tbJobNo";
 			this.tbJobNo.Size = new System.Drawing.Size(92, 21);
 			this.tbJobNo.TabIndex = 9;
@@ -127,7 +152,7 @@
 			// 
 			// tbPlayback
 			// 
-			this.tbPlayback.Location = new System.Drawing.Point(166, 141);
+			this.tbPlayback.Location = new System.Drawing.Point(212, 141);
 			this.tbPlayback.Name = "tbPlayback";
 			this.tbPlayback.ReadOnly = true;
 			this.tbPlayback.Size = new System.Drawing.Size(92, 21);
@@ -138,7 +163,7 @@
 			this.tbMotor.Location = new System.Drawing.Point(28, 89);
 			this.tbMotor.Name = "tbMotor";
 			this.tbMotor.ReadOnly = true;
-			this.tbMotor.Size = new System.Drawing.Size(73, 21);
+			this.tbMotor.Size = new System.Drawing.Size(81, 21);
 			this.tbMotor.TabIndex = 3;
 			// 
 			// tbProgCnt
@@ -146,7 +171,7 @@
 			this.tbProgCnt.Location = new System.Drawing.Point(28, 141);
 			this.tbProgCnt.Name = "tbProgCnt";
 			this.tbProgCnt.ReadOnly = true;
-			this.tbProgCnt.Size = new System.Drawing.Size(132, 21);
+			this.tbProgCnt.Size = new System.Drawing.Size(169, 21);
 			this.tbProgCnt.TabIndex = 5;
 			// 
 			// label3
@@ -161,7 +186,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(164, 125);
+			this.label4.Location = new System.Drawing.Point(210, 125);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(57, 12);
 			this.label4.TabIndex = 6;
@@ -190,28 +215,52 @@
 			this.tbMode.Location = new System.Drawing.Point(28, 41);
 			this.tbMode.Name = "tbMode";
 			this.tbMode.ReadOnly = true;
-			this.tbMode.Size = new System.Drawing.Size(108, 21);
+			this.tbMode.Size = new System.Drawing.Size(81, 21);
 			this.tbMode.TabIndex = 1;
 			// 
-			// btMotorOn
+			// btRelWait
 			// 
-			this.btMotorOn.Location = new System.Drawing.Point(107, 89);
-			this.btMotorOn.Name = "btMotorOn";
-			this.btMotorOn.Size = new System.Drawing.Size(73, 21);
-			this.btMotorOn.TabIndex = 16;
-			this.btMotorOn.Text = "Mot.ON";
-			this.btMotorOn.UseVisualStyleBackColor = true;
-			this.btMotorOn.Click += new System.EventHandler(this.btMotorOn_Click);
+			this.btRelWait.Location = new System.Drawing.Point(241, 253);
+			this.btRelWait.Name = "btRelWait";
+			this.btRelWait.Size = new System.Drawing.Size(63, 40);
+			this.btRelWait.TabIndex = 15;
+			this.btRelWait.Text = "Release\r\nWAIT";
+			this.btRelWait.UseVisualStyleBackColor = true;
+			this.btRelWait.Click += new System.EventHandler(this.btRelWait_Click);
 			// 
-			// btMotorOff
+			// tbJobState
 			// 
-			this.btMotorOff.Location = new System.Drawing.Point(185, 89);
-			this.btMotorOff.Name = "btMotorOff";
-			this.btMotorOff.Size = new System.Drawing.Size(73, 21);
-			this.btMotorOff.TabIndex = 16;
-			this.btMotorOff.Text = "Mot.OFF";
-			this.btMotorOff.UseVisualStyleBackColor = true;
-			this.btMotorOff.Click += new System.EventHandler(this.btMotorOff_Click);
+			this.tbJobState.Location = new System.Drawing.Point(127, 41);
+			this.tbJobState.Name = "tbJobState";
+			this.tbJobState.ReadOnly = true;
+			this.tbJobState.Size = new System.Drawing.Size(81, 21);
+			this.tbJobState.TabIndex = 1;
+			// 
+			// tbJobSubState
+			// 
+			this.tbJobSubState.Location = new System.Drawing.Point(214, 41);
+			this.tbJobSubState.Name = "tbJobSubState";
+			this.tbJobSubState.ReadOnly = true;
+			this.tbJobSubState.Size = new System.Drawing.Size(90, 21);
+			this.tbJobSubState.TabIndex = 1;
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(124, 26);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(56, 12);
+			this.label5.TabIndex = 0;
+			this.label5.Text = "Job state";
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(214, 26);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(81, 12);
+			this.label6.TabIndex = 0;
+			this.label6.Text = "Job sub state";
 			// 
 			// FormGeneral
 			// 
@@ -222,6 +271,7 @@
 			this.Controls.Add(this.btMotorOn);
 			this.Controls.Add(this.btStart);
 			this.Controls.Add(this.button1);
+			this.Controls.Add(this.btRelWait);
 			this.Controls.Add(this.btReset);
 			this.Controls.Add(this.btSelStepFunc);
 			this.Controls.Add(this.btSelectJob);
@@ -231,10 +281,14 @@
 			this.Controls.Add(this.tbPlayback);
 			this.Controls.Add(this.tbMotor);
 			this.Controls.Add(this.tbProgCnt);
+			this.Controls.Add(this.label6);
+			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
+			this.Controls.Add(this.tbJobSubState);
+			this.Controls.Add(this.tbJobState);
 			this.Controls.Add(this.tbMode);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "FormGeneral";
@@ -264,5 +318,10 @@
 		private System.Windows.Forms.TextBox tbMode;
 		private System.Windows.Forms.Button btMotorOn;
 		private System.Windows.Forms.Button btMotorOff;
+		private System.Windows.Forms.Button btRelWait;
+		private System.Windows.Forms.TextBox tbJobState;
+		private System.Windows.Forms.TextBox tbJobSubState;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label6;
 	}
 }
