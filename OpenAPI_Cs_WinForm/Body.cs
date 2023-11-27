@@ -29,7 +29,7 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
-		public void setResp(HttpWebResponse resp)
+		public int setResp(HttpWebResponse resp)
 		{
 			contentType = resp.ContentType;
 			var stream = resp.GetResponseStream();
@@ -47,6 +47,8 @@ namespace OpenAPI_Cs_WinForm
 
 				stream.Read(binBuf, 0, (int)nbyte);
 			}
+
+			return (int)(resp.StatusCode);
 		}
 
 

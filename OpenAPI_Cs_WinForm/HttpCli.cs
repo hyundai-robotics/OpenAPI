@@ -31,6 +31,7 @@ namespace OpenAPI_Cs_WinForm
 
 		public int GetData(string path, string query, out Body respBody)
 		{
+			int iresult = 0;
 			respBody = new Body();
 			try
 			{
@@ -43,8 +44,8 @@ namespace OpenAPI_Cs_WinForm
 				{
 					var status = resp.StatusCode;
 					//Console.WriteLine(status);  // 정상이면 "OK"
-					
-					respBody.setResp(resp);
+
+					iresult = respBody.setResp(resp);
 				}
 			}
 			catch (WebException e)
@@ -56,7 +57,7 @@ namespace OpenAPI_Cs_WinForm
 				return -1;
 			}
 
-			return 0;
+			return iresult;
 		}
 
 	
@@ -69,6 +70,7 @@ namespace OpenAPI_Cs_WinForm
 
 		public int PostData(string path, ref Body body)
 		{
+			int iresult = 0;
 			try
 			{
 				var request = (HttpWebRequest)WebRequest.Create(StrDomain() + path);
@@ -86,10 +88,9 @@ namespace OpenAPI_Cs_WinForm
 				}
 
 				// Response 처리
-				string responseText = string.Empty;
 				using (var resp = (HttpWebResponse)request.GetResponse())
 				{
-					body.setResp(resp);
+					iresult = body.setResp(resp);
 				}
 			}
 			catch (WebException e)
@@ -102,6 +103,34 @@ namespace OpenAPI_Cs_WinForm
 			}
 
 			return 0;
+		}
+
+
+		public int DelData(string path)
+		{
+			int iresult = 0;
+			try
+			{
+				var request = (HttpWebRequest)WebRequest.Create(StrDomain() + path);
+				request.Method = "DELETE";
+				request.Timeout = 5 * 1000;
+
+				// Response 처리
+				using (var resp = (HttpWebResponse)request.GetResponse())
+				{
+					iresult = (int)(resp.StatusCode);
+				}
+			}
+			catch (WebException e)
+			{
+				using (var resp = (HttpWebResponse)e.Response)
+				{
+					//Console.WriteLine("Error code: {0}", resp.StatusCode);
+				}
+				return -1;
+			}
+
+			return iresult;
 		}
 	}
 }

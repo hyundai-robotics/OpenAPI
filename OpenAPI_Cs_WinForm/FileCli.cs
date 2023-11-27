@@ -70,5 +70,14 @@ namespace OpenAPI_Cs_WinForm
 
 			return PostData(urlPath, ref body);
 		}
+
+
+		public int DelFile(string pathnameRemote)
+		{
+			string urlPath = "file_manager/files/";
+			urlPath += pathnameRemote;
+
+			return DelData(urlPath);
+		}
 	}
 }

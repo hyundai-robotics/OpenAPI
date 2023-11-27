@@ -166,6 +166,16 @@ namespace OpenAPI_Cs_WinForm
 		}
 
 
+		private void btDelRemote_Click(object sender, EventArgs e)
+		{
+			string pathname = PathnameRemote();
+			var iret = fcli.DelFile(pathname);
+			if (iret < 0) return;
+
+			UpdateRemoteFileList(tbPathRemote.Text);
+		}
+
+
 		// ====================================================================
 		// LOCAL
 		// ====================================================================

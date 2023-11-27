@@ -50,6 +50,7 @@
 			this.label6 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
 			this.btPut = new System.Windows.Forms.Button();
+			this.btDelRemote = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// lvRemote
@@ -238,6 +239,16 @@
 			this.btPut.UseVisualStyleBackColor = true;
 			this.btPut.Click += new System.EventHandler(this.btPut_Click);
 			// 
+			// btDelRemote
+			// 
+			this.btDelRemote.Location = new System.Drawing.Point(278, 348);
+			this.btDelRemote.Name = "btDelRemote";
+			this.btDelRemote.Size = new System.Drawing.Size(69, 24);
+			this.btDelRemote.TabIndex = 1;
+			this.btDelRemote.Text = "Delete";
+			this.btDelRemote.UseVisualStyleBackColor = true;
+			this.btDelRemote.Click += new System.EventHandler(this.btDelRemote_Click);
+			// 
 			// FormFileMng
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -256,6 +267,7 @@
 			this.Controls.Add(this.tbPathLocal);
 			this.Controls.Add(this.tbPathRemote);
 			this.Controls.Add(this.button1);
+			this.Controls.Add(this.btDelRemote);
 			this.Controls.Add(this.btUpdateRemote);
 			this.Controls.Add(this.lvLocal);
 			this.Controls.Add(this.lvRemote);
@@ -291,5 +303,6 @@
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button btPut;
+		private System.Windows.Forms.Button btDelRemote;
 	}
 }
