@@ -29,9 +29,9 @@ namespace OpenAPI_Cs_WinForm
 
 
 		// --------------------------------------------------------
-		public int GetData(string path, out Body body)
+		public int ProcGet(string path, out Body body)
 		{
-			return GetData(path, "", out body);
+			return ProcGet(path, "", out body);
 		}
 
 
@@ -44,7 +44,7 @@ namespace OpenAPI_Cs_WinForm
 		///			-	-1		unready
 		///			-	-2		request fault
 		// --------------------------------------------------------
-		public int GetData(string path, string query, out Body body)
+		public int ProcGet(string path, string query, out Body body)
 		{
 			int iresult = 0;
 			body = new Body();
@@ -77,10 +77,10 @@ namespace OpenAPI_Cs_WinForm
 
 
 		// --------------------------------------------------------
-		public int PostData(string path)
+		public int ProcPost(string path)
 		{
 			var body = new Body();
-			return PostData(path, ref body);
+			return ProcPost(path, ref body);
 		}
 
 
@@ -92,7 +92,7 @@ namespace OpenAPI_Cs_WinForm
 		///			-	-1		unready
 		///			-	-2		request fault
 		// --------------------------------------------------------
-		public int PostData(string path, ref Body body)
+		public int ProcPost(string path, ref Body body)
 		{
 			int iresult = 0;
 			if (Ready == false) return -1;
@@ -138,7 +138,7 @@ namespace OpenAPI_Cs_WinForm
 		///			-	-1		unready
 		///			-	-2		request fault
 		// --------------------------------------------------------
-		public int DelData(string path)
+		public int ProcDel(string path)
 		{
 			int iresult = 0;
 			if (Ready == false) return -1;

@@ -54,7 +54,7 @@ namespace OpenAPI_Cs_WinForm
 			string query = "?st=0&len=30";	// 30 * 4byte = 120byte
 			Body body;
 
-			var iret = cli.GetData(path, query, out body);
+			var iret = cli.ProcGet(path, query, out body);
 			if (iret < 0) return -1;
 
 			var jaLong = body.ToJArray();
@@ -217,7 +217,7 @@ namespace OpenAPI_Cs_WinForm
 			joReqBody.Add("value", strValue);
 
 			var body = new Body(joReqBody);
-			cli.PostData(path, ref body);
+			cli.ProcPost(path, ref body);
 		}
 	}
 }

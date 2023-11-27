@@ -68,7 +68,7 @@ namespace OpenAPI_Cs_WinForm
 			joBody.Add("expr", tbExpression.Text);
 
 			var body = new Body(joBody);
-			cli.PostData(path, ref body);
+			cli.ProcPost(path, ref body);
 		}
 
 
@@ -93,7 +93,7 @@ namespace OpenAPI_Cs_WinForm
 			joBody.Add("expr", tbExpression.Text);
 
 			var body = new Body(joBody);
-			var iret = cli.PostData(path, ref body);
+			var iret = cli.ProcPost(path, ref body);
 			if (iret != 200) return;
 			 
 			tbValue.Text = body.strBuf;

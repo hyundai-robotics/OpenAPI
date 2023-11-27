@@ -61,7 +61,7 @@ namespace OpenAPI_Cs_WinForm
 				}
 			}
 			Body body;
-			var iret = cli.GetData("project/robot/po_cur", query, out body);
+			var iret = cli.ProcGet("project/robot/po_cur", query, out body);
 			if (iret < 0) return -1;
 
 			var jo = body.ToJObject();
@@ -77,7 +77,7 @@ namespace OpenAPI_Cs_WinForm
 			cbUCrdNos.Items.Add(0);
 
 			Body body;
-			var iret = cli.GetData("project/control/ucss/ucs_nos", out body);
+			var iret = cli.ProcGet("project/control/ucss/ucs_nos", out body);
 			if (iret < 0) return -1;
 
 			var jaNo = body.ToJArray();

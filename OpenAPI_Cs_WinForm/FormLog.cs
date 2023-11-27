@@ -38,7 +38,7 @@ namespace OpenAPI_Cs_WinForm
 			var query = MakeUpdateQuery();
 
 			Body body;
-			var iret = cli.GetData("logManager/search", query, out body);
+			var iret = cli.ProcGet("logManager/search", query, out body);
 
 			_jaNewEvents.Clear();
 			ParseAddEvents(body.strBuf);

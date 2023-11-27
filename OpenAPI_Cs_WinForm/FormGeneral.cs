@@ -28,7 +28,7 @@ namespace OpenAPI_Cs_WinForm
 			if (Visible == false) return 0;
 
 			Body body;
-			var iret = cli.GetData("project/rgen", out body);
+			var iret = cli.ProcGet("project/rgen", out body);
 			if (iret < 0) return -1;
 
 			var joRGen = body.ToJObject();
@@ -113,14 +113,14 @@ namespace OpenAPI_Cs_WinForm
 		private void btMotorOn_Click(object sender, EventArgs e)
 		{
 			string path = "project/robot/motor_on";
-			cli.PostData(path);
+			cli.ProcPost(path);
 		}
 
 
 		private void btMotorOff_Click(object sender, EventArgs e)
 		{
 			string path = "project/robot/motor_off";
-			cli.PostData(path);
+			cli.ProcPost(path);
 		}
 
 
@@ -154,7 +154,7 @@ namespace OpenAPI_Cs_WinForm
 			joReqBody.Add("ext_sel", 0);
 
 			var body = new Body(joReqBody);
-			cli.PostData(path, ref body);
+			cli.ProcPost(path, ref body);
 		}
 
 
@@ -171,35 +171,35 @@ namespace OpenAPI_Cs_WinForm
 			joReqBody.Add("ext_sel", 0);
 
 			var body = new Body(joReqBody);
-			cli.PostData(path, ref body);
+			cli.ProcPost(path, ref body);
 		}
 
 
 		private void btStart_Click(object sender, EventArgs e)
 		{
 			string path = "project/robot/start";
-			cli.PostData(path);
+			cli.ProcPost(path);
 		}
 
 
 		private void btStop_Click(object sender, EventArgs e)
 		{
 			string path = "project/robot/stop";
-			cli.PostData(path);
+			cli.ProcPost(path);
 		}
 
 
 		private void btReset_Click(object sender, EventArgs e)
 		{
 			string path = "project/context/tasks/reset";
-			cli.PostData(path);
+			cli.ProcPost(path);
 		}
 
 
 		private void btRelWait_Click(object sender, EventArgs e)
 		{
 			string path = "project/context/tasks[0]/release_wait";
-			cli.PostData(path);
+			cli.ProcPost(path);
 		}
 
 

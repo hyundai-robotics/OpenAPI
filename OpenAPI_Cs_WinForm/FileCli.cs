@@ -31,7 +31,7 @@ namespace OpenAPI_Cs_WinForm
 				, path, str_incl_dir, str_incl_file);
 			Body body;
 
-			var iret = GetData(urlPath, query, out body);
+			var iret = ProcGet(urlPath, query, out body);
 			if (iret < 0)
 			{
 				jaFileInfos = new JArray();
@@ -59,7 +59,7 @@ namespace OpenAPI_Cs_WinForm
 			string query = "?pathname=" + pathnameRemote;
 			Body body;
 
-			var iret = GetData(urlPath, query, out body);
+			var iret = ProcGet(urlPath, query, out body);
 			if (iret < 0) return iret;
 
 			var fs = new FileStream(pathnameLocal, FileMode.CreateNew, FileAccess.Write);
@@ -96,7 +96,7 @@ namespace OpenAPI_Cs_WinForm
 			br.Read(body.binBuf, 0, (int)nbyte);
 			fs.Close();
 
-			return PostData(urlPath, ref body);
+			return ProcPost(urlPath, ref body);
 		}
 
 
@@ -113,7 +113,7 @@ namespace OpenAPI_Cs_WinForm
 			string urlPath = "file_manager/files/";
 			urlPath += pathnameRemote;
 
-			return DelData(urlPath);
+			return ProcDel(urlPath);
 		}
 	}
 }
