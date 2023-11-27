@@ -40,6 +40,7 @@
 			this.pageFileMng = new System.Windows.Forms.TabPage();
 			this.panelLog = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
+			this.pageTask = new System.Windows.Forms.TabPage();
 			this.tabCtrl.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -69,12 +70,13 @@
 			// 
 			this.chkConnectOn.Appearance = System.Windows.Forms.Appearance.Button;
 			this.chkConnectOn.AutoSize = true;
+			this.chkConnectOn.BackColor = System.Drawing.Color.DarkGray;
 			this.chkConnectOn.Location = new System.Drawing.Point(279, 24);
 			this.chkConnectOn.Name = "chkConnectOn";
 			this.chkConnectOn.Size = new System.Drawing.Size(84, 22);
 			this.chkConnectOn.TabIndex = 2;
 			this.chkConnectOn.Text = "Connect ON";
-			this.chkConnectOn.UseVisualStyleBackColor = true;
+			this.chkConnectOn.UseVisualStyleBackColor = false;
 			this.chkConnectOn.CheckedChanged += new System.EventHandler(this.chkConnectOn_CheckedChanged);
 			// 
 			// tabCtrl
@@ -82,6 +84,7 @@
 			this.tabCtrl.Controls.Add(this.pageGeneral);
 			this.tabCtrl.Controls.Add(this.pagePoCur);
 			this.tabCtrl.Controls.Add(this.pageIoRelay);
+			this.tabCtrl.Controls.Add(this.pageTask);
 			this.tabCtrl.Controls.Add(this.pageFileMng);
 			this.tabCtrl.Location = new System.Drawing.Point(30, 68);
 			this.tabCtrl.Name = "tabCtrl";
@@ -143,6 +146,15 @@
 			this.label1.TabIndex = 4;
 			this.label1.Text = "Events log";
 			// 
+			// pageTask
+			// 
+			this.pageTask.Location = new System.Drawing.Point(4, 22);
+			this.pageTask.Name = "pageTask";
+			this.pageTask.Size = new System.Drawing.Size(782, 379);
+			this.pageTask.TabIndex = 4;
+			this.pageTask.Text = "Task";
+			this.pageTask.UseVisualStyleBackColor = true;
+			// 
 			// FormBase
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -175,6 +187,7 @@
 		private System.Windows.Forms.Panel panelLog;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TabPage pageFileMng;
+		private System.Windows.Forms.TabPage pageTask;
 	}
 }
 

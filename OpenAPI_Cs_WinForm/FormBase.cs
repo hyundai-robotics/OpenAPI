@@ -24,6 +24,7 @@ namespace OpenAPI_Cs_WinForm
 		FormGeneral formGeneral;
 		FormPoCur formPoCur;
 		FormIoRelay formIoRelay;
+		FormTask formTask;
 		FormFileMng formFileMng;
 		FormLog formLog;
 
@@ -39,7 +40,8 @@ namespace OpenAPI_Cs_WinForm
 			AddClientPage(0, formGeneral = new FormGeneral());
 			AddClientPage(1, formPoCur = new FormPoCur());
 			AddClientPage(2, formIoRelay = new FormIoRelay());
-			AddClientPage(3, formFileMng = new FormFileMng());
+			AddClientPage(3, formTask = new FormTask());
+			AddClientPage(4, formFileMng = new FormFileMng());
 			formFileMng.SetFileCli(fcli);
 			tabCtrl.SelectedIndex = 0;
 
@@ -81,11 +83,13 @@ namespace OpenAPI_Cs_WinForm
 				hcli.IpAddr = tbIpAddrRemote.Text;
 				fcli.IpAddr = tbIpAddrRemote.Text;
 				formPoCur.UpdateUCrdNos();
+				chkConnectOn.BackColor = Color.FromName("LightGreen");
 			}
 			else
 			{
 				hcli.IpAddr = "";
 				fcli.IpAddr = "";
+				chkConnectOn.BackColor = Color.FromName("DarkGray");
 			}
 		}
 
