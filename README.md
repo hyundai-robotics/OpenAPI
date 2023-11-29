@@ -4,14 +4,14 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 아래 그림을 통해서 보다 Open API 의 역할이 어떤 것인지를 보다 쉽게 이해할 수 있습니다.
 
-![05_open_api_flow](https://github.com/hyundai-robotics/OpenAPI/assets/48194000/9e9dcc53-1ee5-4ba1-b709-628c46fe37f1)
+![05_open_api_flow](https://github.com/hyundai-robotics/OpenAPI/assets/48194000/3a3974b1-f68b-4c7f-a4c2-f4343a97e529)
 
 위 그림에서 주황색으로 표시된 부분들은 Open API 의 역할을 보여주고 있습니다.  
 
 |주황색 화살표|설명|
 |:---|:---|
-|`위쪽 진한색` |개발자(클라이언트)가 정해진 4가지 방법(GET, POST, PUT, DELETE)을 이용하여 Hi6(서버)에 정보를 `요청`하는 것을 의미|
-|`아래쪽 연한색` |요청을 받은 제어기가 그에 맞는 `응답`을 json 혹은 text 형식으로 반환하는 것을 의미|
+|`실선` |개발자(클라이언트)가 정해진 4가지 방법(GET, POST, PUT, DELETE)을 이용하여 Hi6(서버)에 정보를 `요청`하는 것을 의미|
+|`점선` |요청을 받은 제어기가 그에 맞는 `응답`을 json 혹은 text 형식으로 반환하는 것을 의미|
 
 이처럼 개발자는 해당 문서의 Open API 를 활용해서 Hi6 와 이더넷으로 연결된 본인의 데스크탑, 노트북, 태블릿 pc 등을 http 와 REST API 기반으로 원격 제어 또는 모니터링을 할 수 있게 됩니다.
 
