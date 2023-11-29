@@ -4,7 +4,7 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 아래 그림을 통해서 보다 Open API 의 역할이 어떤 것인지를 보다 쉽게 이해할 수 있습니다.
 
-![05_open_api_flow](https://github.com/hyundai-robotics/OpenAPI/assets/48194000/4048136c-1185-4576-9498-a5b0f751d703)
+![05_open_api_flow](https://github.com/hyundai-robotics/OpenAPI/assets/48194000/9e9dcc53-1ee5-4ba1-b709-628c46fe37f1)
 
 위 그림에서 주황색 화살표는 Open API 의 역할을 보여주고 있습니다.
 * `진한 주황색 화살표` 
