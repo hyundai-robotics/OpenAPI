@@ -62,12 +62,12 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 #### 3.2 프로그램 프리뷰
 
 - 제어기와 PC가 연결되어있는 상태에서 `Update ON` 을 클릭하면 아래처럼 `이벤트 로그`와 기타 상태 정보를 확인할 수 있습니다.  
-<br>
-![01_program_img](https://github.com/hyundai-robotics/OpenAPI/assets/48194000/524169b3-2ac5-4b21-b6bb-0cef2f76b316)
+
+    ![01_program_img](https://github.com/hyundai-robotics/OpenAPI/assets/48194000/524169b3-2ac5-4b21-b6bb-0cef2f76b316)
 
 
 - 확인되는 정보는 아래와 같이, 실제 제어기에서 출력되는 로그들에 해당합니다.  
-<br>
-![03_vtp_program_img](https://github.com/hyundai-robotics/OpenAPI/assets/48194000/0cedec91-0aaf-4455-8fd2-ae8c457d07bc)
+
+    ![03_vtp_program_img](https://github.com/hyundai-robotics/OpenAPI/assets/48194000/0cedec91-0aaf-4455-8fd2-ae8c457d07bc)
 
 - 이 외에도 현재 포즈 정보, IO릴레이 등에 대한 정보 또한 확인할 수 있으며 이 모든 기능에 대한 소스코드는 해당 레포지토리에서 확인 가능합니다. 
