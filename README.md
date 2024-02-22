@@ -24,7 +24,7 @@
 ### Implementation  
 - `.exe` is in the `Debug` folder. You can open with below shell command.
     ```sh
-    C:\Users\kim\Desktop> explorer %HOMEDRIVE%%HOMEPATH%\Desktop\OpenAPI\OpenAPI_Cs_WinForm\bin\Debug
+    C:\Users\DHL\Desktop> explorer %HOMEDRIVE%%HOMEPATH%\Desktop\OpenAPI\OpenAPI_Cs_WinForm\bin\Debug
     ```
 - Double Click the `OpenAPI_Cs_WinForm.exe`  
 
