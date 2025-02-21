@@ -2,8 +2,8 @@
 * We provied the `C#` sample program and source code utilizing Hi6 OpenAPI.
 * This program was tested with `Visual Studio 2013`.
 * Detailed explanations can be found at the Hi6 OpenAPI HRBook.
-    - [en](https://hrbook-hrc.web.app/#/view/doc-hi6-open-api/english/1-intro/3-sample-code/1-csharp)
-    - [ko](https://hrbook-hrc.web.app/#/view/doc-hi6-open-api/korean/1-intro/3-sample-code/1-csharp)
+    - [en](https://hrbook-hrc.web.app/#/view/doc-hi6-open-api/english/0-intro/3-sample-code/1-csharp)
+    - [ko](https://hrbook-hrc.web.app/#/view/doc-hi6-open-api/korean/0-intro/3-sample-code/1-csharp)
 
 ### Program Preview  
 - Executed program image  
